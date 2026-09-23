@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DeskChat } from "@/components/desk-chat";
+import { registerIntroduction } from "@/lib/introduction";
 import { SiteHeader } from "@/components/site-header";
 import {
   ArrowRight,
@@ -59,37 +60,44 @@ const STEPS = [
 export function Brochure() {
   const [lens, setLens] = useState<LensId>("read");
   const [sent, setSent] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     organisation: "",
+    email: "",
     role: "Buyer",
     note: "",
   });
 
   const active = LENSES.find((item) => item.id === lens) ?? LENSES[0];
 
-  function submit(event: React.FormEvent) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!form.name.trim() || !form.organisation.trim()) return;
-    setSent(true);
-  }
-
-  async function copyNote() {
-    const text = [
-      "Sourza introduction",
-      `Name: ${form.name}`,
-      `Organisation: ${form.organisation}`,
-      `Role: ${form.role}`,
-      form.note.trim() ? `Note: ${form.note.trim()}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    if (busy) return;
+    const next = {
+      name: form.name.trim(),
+      organisation: form.organisation.trim(),
+      email: form.email.trim(),
+      role: form.role,
+      note: form.note.trim(),
+    };
+    if (!next.name || !next.organisation || !next.email) return;
+    const fax = String(new FormData(event.currentTarget).get("fax") ?? "");
+    setBusy(true);
+    setError("");
     try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
+      const result = await registerIntroduction({ data: { ...next, fax } });
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setForm(next);
+      setSent(true);
     } catch {
-      setCopied(false);
+      setError("The desk could not save this just now.");
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -326,21 +334,19 @@ export function Brochure() {
             <div className="md:col-span-7">
               {sent ? (
                 <div className="rounded-card border border-line bg-cream p-7">
-                  <p className="font-display text-3xl text-ink-deep">Note drafted.</p>
+                  <p className="font-display text-3xl text-ink-deep">Introduction received.</p>
                   <p className="mt-3 leading-relaxed text-muted">
-                    {form.name} · {form.organisation} · {form.role}. The founding desk will
-                    take this in a direct conversation.
+                    {form.name} · {form.organisation} · {form.role}. The desk has this.
                   </p>
-                  <button
-                    type="button"
-                    onClick={copyNote}
-                    className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 py-3 text-sm text-cream"
-                  >
-                    {copied ? "Copied" : "Copy introduction"}
-                  </button>
                 </div>
               ) : (
-                <form onSubmit={submit} className="rounded-card border border-line bg-cream p-6 md:p-7">
+                <form onSubmit={submit} className="relative rounded-card border border-line bg-cream p-6 md:p-7">
+                  <div className="absolute top-0 left-0 -z-10 h-px w-px overflow-hidden" aria-hidden="true">
+                    <label>
+                      Fax
+                      <input name="fax" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+                    </label>
+                  </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="block text-sm">
                       Name
@@ -359,6 +365,16 @@ export function Brochure() {
                         onChange={(event) =>
                           setForm({ ...form, organisation: event.target.value })
                         }
+                        className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
+                      />
+                    </label>
+                    <label className="block text-sm sm:col-span-2">
+                      Email
+                      <input
+                        required
+                        type="email"
+                        value={form.email}
+                        onChange={(event) => setForm({ ...form, email: event.target.value })}
                         className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
                       />
                     </label>
@@ -399,11 +415,13 @@ export function Brochure() {
                       placeholder="A category, a corridor, or a question."
                     />
                   </label>
+                  {error ? <p className="mt-4 text-sm text-gold-deep">{error}</p> : null}
                   <button
                     type="submit"
-                    className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream"
+                    disabled={busy}
+                    className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream disabled:opacity-60"
                   >
-                    Draft introduction
+                    {busy ? "Saving" : "Request an introduction"}
                     <ArrowRight className="size-4" />
                   </button>
                 </form>
