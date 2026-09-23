@@ -50,9 +50,10 @@ function PlantsPage() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
-  async function submit(event: React.FormEvent) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
+    const fax = String(new FormData(event.currentTarget).get("fax") ?? "");
     const next: Interest = {
       ...form,
       works: form.works.trim(),
@@ -67,7 +68,7 @@ function PlantsPage() {
     setBusy(true);
     setError("");
     try {
-      const result = await registerPlant({ data: next });
+      const result = await registerPlant({ data: { ...next, fax } });
       if (!result.ok) {
         setError(result.error);
         return;
@@ -144,7 +145,13 @@ function PlantsPage() {
               </div>
             </div>
           ) : (
-            <form onSubmit={submit} className="rounded-3xl border border-line bg-cream p-6 md:p-8">
+            <form onSubmit={submit} className="relative rounded-3xl border border-line bg-cream p-6 md:p-8">
+              <div className="absolute top-0 left-0 -z-10 h-px w-px overflow-hidden" aria-hidden="true">
+                <label>
+                  Fax
+                  <input name="fax" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+                </label>
+              </div>
               <h2 className="font-display text-3xl text-ink-deep">Register interest</h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <Field label="Works name" value={form.works} onChange={(value) => update("works", value)} />

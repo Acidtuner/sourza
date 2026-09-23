@@ -9,6 +9,7 @@ type Interest = {
   trade: "Already export" | "Preparing to export";
   capability: string;
   note: string;
+  fax: string;
 };
 
 const TRADES = ["Already export", "Preparing to export"] as const;
@@ -34,6 +35,20 @@ function clip(value: unknown, max: number) {
 
 function clean(input: unknown): Interest {
   if (!input || typeof input !== "object") throw new Error("Send the works details.");
+  const fax = clip((input as { fax?: unknown }).fax, 200);
+  if (fax) {
+    return {
+      works: "-",
+      place: "-",
+      contact: "-",
+      email: "held@example.com",
+      phone: "",
+      trade: "Already export",
+      capability: "-",
+      note: "",
+      fax,
+    };
+  }
   const raw = input as Partial<Interest>;
   const trade = TRADES.includes(raw.trade as Interest["trade"])
     ? (raw.trade as Interest["trade"])
@@ -47,6 +62,7 @@ function clean(input: unknown): Interest {
     trade: trade ?? "Already export",
     capability: clip(raw.capability, 2000),
     note: clip(raw.note, 2000),
+    fax: "",
   };
   if (!interest.works || !interest.place || !interest.contact || !interest.capability) {
     throw new Error("Send the works details.");
@@ -106,6 +122,7 @@ async function getPool() {
 export const registerPlant = createServerFn({ method: "POST" })
   .validator(clean)
   .handler(async ({ data }) => {
+    if (data.fax) return { ok: true as const };
     const hour = 60 * 60 * 1000;
     if (!allow("plants", 30, hour) || !allow(data.email, 4, hour)) {
       return { ok: false as const, error: "Too many registrations just now. Try again shortly." };
