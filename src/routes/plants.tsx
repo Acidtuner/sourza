@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DeskChat } from "@/components/desk-chat";
 import { SiteHeader } from "@/components/site-header";
-
-const STORAGE_KEY = "sourza.plantInterest";
+import { registerPlant } from "@/lib/plant-register";
 
 type Interest = {
   works: string;
@@ -44,25 +43,16 @@ export const Route = createFileRoute("/plants")({
 function PlantsPage() {
   const [form, setForm] = useState<Interest>(EMPTY);
   const [saved, setSaved] = useState<Interest | null>(null);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    try {
-      const parsed = JSON.parse(raw) as Interest;
-      if (parsed.works && parsed.email) setSaved(parsed);
-    } catch {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  }, []);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
   function update<K extends keyof Interest>(key: K, value: Interest[K]) {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
-  function submit(event: React.FormEvent) {
+  async function submit(event: React.FormEvent) {
     event.preventDefault();
+    if (busy) return;
     const next: Interest = {
       ...form,
       works: form.works.trim(),
@@ -74,30 +64,19 @@ function PlantsPage() {
       note: form.note.trim(),
     };
     if (!next.works || !next.place || !next.contact || !next.email || !next.capability) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    setSaved(next);
-  }
-
-  async function copyInterest() {
-    if (!saved) return;
-    const text = [
-      "Sourza plant interest",
-      `Works: ${saved.works}`,
-      `Place: ${saved.place}`,
-      `Contact: ${saved.contact}`,
-      `Email: ${saved.email}`,
-      saved.phone ? `Phone: ${saved.phone}` : "",
-      `Trade: ${saved.trade}`,
-      `Capability: ${saved.capability}`,
-      saved.note ? `Note: ${saved.note}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    setBusy(true);
+    setError("");
     try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
+      const result = await registerPlant({ data: next });
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+      setSaved(next);
     } catch {
-      setCopied(false);
+      setError("The register could not save this just now.");
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -138,8 +117,8 @@ function PlantsPage() {
             <div className="rounded-3xl border border-line bg-cream p-6 md:p-8">
               <p className="font-display text-3xl text-ink-deep">Interest registered.</p>
               <p className="mt-3 leading-relaxed text-muted">
-                {saved.works}, {saved.place}. {saved.contact} · {saved.email}. Share this
-                with the Sourza desk when you speak.
+                {saved.works}, {saved.place}. {saved.contact} · {saved.email}. The works is
+                on the register.
               </p>
               <dl className="mt-6 space-y-3 text-sm">
                 <div className="flex justify-between gap-4 border-b border-line pb-3">
@@ -151,24 +130,16 @@ function PlantsPage() {
                   <dd className="mt-1 leading-relaxed">{saved.capability}</dd>
                 </div>
               </dl>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={copyInterest}
-                  className="inline-flex min-h-11 items-center rounded-full bg-ink px-5 py-3 text-sm text-cream"
-                >
-                  {copied ? "Copied" : "Copy interest"}
-                </button>
+              <div className="mt-6">
                 <button
                   type="button"
                   onClick={() => {
-                    localStorage.removeItem(STORAGE_KEY);
                     setSaved(null);
-                    setCopied(false);
+                    setError("");
                   }}
                   className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-3 text-sm"
                 >
-                  Revise
+                  Register another works
                 </button>
               </div>
             </div>
@@ -236,11 +207,13 @@ function PlantsPage() {
                   className="mt-2 w-full resize-y rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
                 />
               </label>
+              {error ? <p className="mt-4 text-sm text-gold-deep">{error}</p> : null}
               <button
                 type="submit"
-                className="mt-5 inline-flex min-h-11 items-center rounded-full bg-ink px-5 py-3 text-sm text-cream"
+                disabled={busy}
+                className="mt-5 inline-flex min-h-11 items-center rounded-full bg-ink px-5 py-3 text-sm text-cream disabled:opacity-60"
               >
-                Register interest
+                {busy ? "Saving" : "Register interest"}
               </button>
             </form>
           )}
