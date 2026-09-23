@@ -14,26 +14,26 @@ const LENSES = [
   {
     id: "read",
     kicker: "01",
-    title: "Reads the requirement",
-    body: "A written specification is uneven: mixed units, missing tolerances, a note in the margin. Sourza turns that language into a structured ask before anyone is invited to quote.",
+    title: "Reads the spec",
+    body: "Specs arrive messy. Mixed units, a missing tolerance, a note in the margin. Sourza turns that into a brief a plant can quote against, before anyone is asked.",
   },
   {
     id: "match",
     kicker: "02",
-    title: "Matches capability, not catalogues",
-    body: "The model compares a requirement to what a verified plant can actually run — process, material, and evidence — rather than a public list of everything a factory claims to make.",
+    title: "Finds who can make it",
+    body: "It looks at process, material, and proof of what a factory can actually run. Not a public list of everything they say they make.",
   },
   {
     id: "compare",
     kicker: "03",
-    title: "Lines quotes up on the same terms",
-    body: "Offers come back against one brief. Gaps, exceptions, and lead differences stay visible, so a buyer is comparing work, not storytelling.",
+    title: "Puts the quotes side by side",
+    body: "Every offer is read against the same brief. Gaps, exceptions, and lead time stay visible, so you compare the work, not the sales story.",
   },
   {
     id: "remember",
     kicker: "04",
-    title: "Remembers what held",
-    body: "Each decision leaves a trace: what fitted, what was refused, and why. The next match starts from that memory, not from a blank search.",
+    title: "Remembers the last job",
+    body: "What fitted, what was refused, and why is kept. The next match starts from that, not from a blank search.",
   },
 ] as const;
 
@@ -42,18 +42,18 @@ type LensId = (typeof LENSES)[number]["id"];
 const STEPS = [
   {
     n: "01",
-    title: "A specified ask",
-    text: "The buyer describes the part, the standard, and the constraint. Sourza does not browse a shop. It starts from the drawing of the need.",
+    title: "The requirement",
+    text: "You describe the part, the standard, and the constraint. There is no catalogue to browse. It starts from what you need made.",
   },
   {
     n: "02",
-    title: "A short, reasoned set",
-    text: "A few verified plants are invited. The file shows why each was considered, and where an offer falls short of the brief.",
+    title: "A short list, with reasons",
+    text: "A few plants are invited. You can see why each one was considered, and where an offer misses the brief.",
   },
   {
     n: "03",
-    title: "A record that travels",
-    text: "The decision, the milestones, and the quality evidence stay in one place through the order — for the buyer and for the plant.",
+    title: "One file for the order",
+    text: "The decision, the milestones, and the quality evidence stay in one place, for you and for the plant.",
   },
 ];
 
@@ -109,22 +109,22 @@ export function Brochure() {
         <section className="mx-auto grid max-w-6xl items-end gap-12 px-5 pb-16 pt-14 md:grid-cols-12 md:px-8 md:pb-24 md:pt-20">
           <div className="md:col-span-7">
             <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">
-              AI-native procurement
+              Specified parts
             </p>
             <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
-              Intelligence between a drawing and a decision.
+              You know the part. Finding the plant is the hard bit.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Sourza reads a specified industrial requirement, matches it to verified
-              Indian plants, and keeps the reasoning in one file. Built for buyers who
-              already know the part — and need a second source they can trust.
+              Sourza reads the requirement, finds Indian plants that can actually make it,
+              and puts the quotes side by side. For buyers in the Gulf who want a second
+              source they can stand behind.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="#intelligence"
                 className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream"
               >
-                How the model works
+                How it works
                 <ArrowRight className="size-4" />
               </a>
               <button
@@ -132,7 +132,7 @@ export function Brochure() {
                 onClick={() => window.dispatchEvent(new Event("sourza-desk-open"))}
                 className="inline-flex min-h-11 items-center rounded-full border border-line bg-cream px-5 py-3 text-sm"
               >
-                Ask Sourza
+                Ask a question
               </button>
             </div>
           </div>
@@ -140,24 +140,24 @@ export function Brochure() {
           <aside className="md:col-span-5">
             <div className="rounded-3xl border border-line bg-cream p-5 shadow-lg">
               <div className="flex items-center justify-between border-b border-line pb-3">
-                <p className="text-xs tracking-widest text-soft uppercase">Live reading</p>
+                <p className="text-xs tracking-widest text-soft uppercase">Example</p>
                 <Sparkles className="size-4 text-gold" aria-hidden="true" />
               </div>
               <p className="mt-4 font-display text-2xl leading-snug text-ink-deep">
-                Shaft, specified tolerance, export packing.
+                A shaft. A stated tolerance. Export packing.
               </p>
               <ul className="mt-5 space-y-3 text-sm">
                 <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">Interpretation</span>
-                  <span>Structured brief</span>
+                  <span className="text-muted">What we read</span>
+                  <span>A clean brief</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">Plant fit</span>
-                  <span>Capability, not catalogue</span>
+                  <span className="text-muted">Who can make it</span>
+                  <span>Process and material</span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
-                  <span className="text-muted">Decision file</span>
-                  <span>Quotes, gaps, evidence</span>
+                  <span className="text-muted">What you compare</span>
+                  <span>Quotes, gaps, proof</span>
                 </li>
               </ul>
             </div>
@@ -167,9 +167,9 @@ export function Brochure() {
         <section className="border-y border-line bg-ink-deep text-cream">
           <div className="mx-auto grid max-w-6xl gap-8 px-5 py-8 sm:grid-cols-3 md:px-8">
             {[
-              ["Origin", "Verified Indian plants"],
-              ["First corridor", "GCC procurement desks"],
-              ["Role", "Intermediary, not principal"],
+              ["Plants", "Verified factories in India"],
+              ["First buyers", "Procurement teams in the GCC"],
+              ["Our role", "We don't own the goods"],
             ].map(([label, value]) => (
               <div key={label}>
                 <p className="text-xs tracking-widest text-gold uppercase">{label}</p>
@@ -182,15 +182,15 @@ export function Brochure() {
         <section id="intelligence" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-              The model
+              The software
             </p>
             <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-              Four kinds of attention. One file.
+              Four jobs. Then a record.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              Sourza is not a directory and not a freight desk. The product is the
-              intelligence that sits on a specified order — reading, matching, comparing,
-              and remembering.
+              This is not a supplier directory, and it is not a freight desk. The software
+              reads the requirement, finds the plants, lines the quotes up, and remembers
+              what worked last time.
             </p>
           </div>
 
@@ -241,7 +241,7 @@ export function Brochure() {
                   For a buyer
                 </p>
                 <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                  From requirement to a comparable decision.
+                  From a requirement to a decision you can compare.
                 </h2>
               </div>
               <GitCompare className="hidden size-8 text-gold md:block" aria-hidden="true" />
@@ -265,19 +265,19 @@ export function Brochure() {
                 Where we begin
               </p>
               <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                India-origin parts. GCC buyers first.
+                Indian plants. Gulf buyers first.
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-muted">
-                The first work is specified industrial components — beginning with machined
-                parts — between verified Indian plants and procurement desks in the UAE and
-                the wider Gulf. The same intelligence is designed to travel; the desk is not.
+                We start with machined parts, between verified Indian plants and buyers in
+                the UAE and the wider Gulf. The software can go further later. We are not
+                trying to cover every trade on day one.
               </p>
             </div>
             <div className="grid gap-4">
               {[
-                ["Buyers", "Industrial traders and contractor procurement teams who already import, and want a second source that can hit a drawing.", ""],
-                ["Plants", "Export-capable manufacturers who want a clearer requirement and a written decision — without giving up the customer relationship.", "/plants"],
-                ["Partners", "Programme partners, including Hub71, looking at how specified sourcing can sit in Abu Dhabi.", ""],
+                ["Buyers", "Traders and contractor buying teams who already import parts, and want another plant that can hit the drawing.", ""],
+                ["Plants", "Factories that export, or are getting ready to. You get a clearer requirement and a written decision. The customer stays with you.", "/plants"],
+                ["Partners", "People looking at how this kind of sourcing can sit in Abu Dhabi, including Hub71.", ""],
               ].map(([title, text, href]) => (
                 <div key={title} className="rounded-2xl border border-line bg-cream p-5">
                   <h3 className="font-display text-2xl text-ink-deep">{title}</h3>
@@ -297,16 +297,16 @@ export function Brochure() {
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
             <div className="flex items-center gap-3">
               <ShieldCheck className="size-5 text-gold" aria-hidden="true" />
-              <p className="text-xs tracking-widest text-gold uppercase">What we will not become</p>
+              <p className="text-xs tracking-widest text-gold uppercase">What this is not</p>
             </div>
             <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">
-              A marketplace with a narrow promise.
+              A few things we will not do.
             </h2>
             <ul className="mt-10 grid gap-8 md:grid-cols-3">
               {[
-                ["Agent, not owner", "Sourza does not take title to the goods. The manufacturer remains exporter of record."],
-                ["Not a catalogue", "There is no public shop of SKUs. Work starts from a specified requirement."],
-                ["Not a carrier", "Freight and duty stay with the parties to the shipment. Sourza keeps the decision file."],
+                ["We don't own the goods", "The plant remains the exporter. Sourza does not take title."],
+                ["No shop window", "There is no public list of parts. Work starts when someone has a requirement."],
+                ["We don't ship it", "Freight and duty stay with the people on the shipment. We keep the decision on file."],
               ].map(([title, text]) => (
                 <li key={title}>
                   <h3 className="font-display text-2xl">{title}</h3>
@@ -324,11 +324,11 @@ export function Brochure() {
                 Introduction
               </p>
               <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                A conversation, not a signup.
+                Tell us who you are.
               </h2>
               <p className="mt-4 leading-relaxed text-muted">
-                Sourza is introduced through named conversations — buyers, plants, and
-                programme partners.
+                If you buy, make, or want to work with us, leave a note. Someone from the
+                founding team will write back.
               </p>
             </div>
             <div className="md:col-span-7">
@@ -336,7 +336,7 @@ export function Brochure() {
                 <div className="rounded-card border border-line bg-cream p-7">
                   <p className="font-display text-3xl text-ink-deep">Introduction received.</p>
                   <p className="mt-3 leading-relaxed text-muted">
-                    {form.name} · {form.organisation} · {form.role}. The desk has this.
+                    {form.name} · {form.organisation} · {form.role}. We'll write to you.
                   </p>
                 </div>
               ) : (
@@ -412,7 +412,7 @@ export function Brochure() {
                       value={form.note}
                       onChange={(event) => setForm({ ...form, note: event.target.value })}
                       className="mt-2 w-full resize-y rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
-                      placeholder="A category, a corridor, or a question."
+                      placeholder="What you buy, what you make, or what you want to know."
                     />
                   </label>
                   {error ? <p className="mt-4 text-sm text-gold-deep">{error}</p> : null}
@@ -435,7 +435,7 @@ export function Brochure() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
           <img src="/sourza-logo.svg" alt="" className="h-6 w-auto" />
           <p className="max-w-md text-sm leading-relaxed text-muted">
-            Specified industrial sourcing. India and the GCC.
+            Indian plants. Gulf buyers. Specified parts.
           </p>
         </div>
       </footer>

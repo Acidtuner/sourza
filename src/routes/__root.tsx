@@ -10,11 +10,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sourza — AI for specified industrial sourcing" },
+      { title: "Sourza — Finding the plant for a specified part" },
       {
         name: "description",
         content:
-          "Sourza is an AI-native procurement layer that matches specified industrial requirements to verified Indian plants, for GCC buyers who already know what they want.",
+          "Sourza finds Indian plants that can make a specified part, and puts the quotes side by side. For buyers in the Gulf.",
       },
       { name: "theme-color", content: "#112e59" },
     ],

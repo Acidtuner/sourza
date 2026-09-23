@@ -4,7 +4,7 @@ import { askSourzaDesk } from "@/lib/sourza-desk";
 
 type Turn = { role: "user" | "assistant"; content: string };
 
-const PROMPTS = ["Who is Sourza for?", "What does the model do?", "India and the GCC"];
+const PROMPTS = ["Who is this for?", "What does the software do?", "Why India and the Gulf?"];
 
 export function DeskChat() {
   const [sessionId, setSessionId] = useState("");
@@ -63,7 +63,7 @@ export function DeskChat() {
           <header className="flex items-center justify-between border-b border-line bg-ink px-4 py-3 text-cream">
             <div>
               <p className="font-display text-base font-medium">Sourza desk</p>
-              <p className="text-xs text-cream/80">Public introduction</p>
+              <p className="text-xs text-cream/80">Ask us</p>
             </div>
             <button
               type="button"
@@ -76,7 +76,7 @@ export function DeskChat() {
           </header>
           <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
             <p className="rounded-2xl bg-paper px-3 py-3 text-sm leading-relaxed text-muted">
-              Ask about the model, who Sourza is for, or the India–GCC corridor.
+              Ask what Sourza does, who it is for, or why we start with India and the Gulf.
             </p>
             {turns.map((turn, index) => (
               <p
@@ -90,7 +90,7 @@ export function DeskChat() {
                 {turn.content}
               </p>
             ))}
-            {busy ? <p className="text-sm text-muted">Reading the question…</p> : null}
+            {busy ? <p className="text-sm text-muted">One moment.</p> : null}
             {error ? <p className="text-sm text-gold-deep">{error}</p> : null}
             {turns.length === 0 ? (
               <div className="mt-auto flex flex-col gap-2">

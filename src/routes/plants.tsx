@@ -29,7 +29,7 @@ const EMPTY: Interest = {
 export const Route = createFileRoute("/plants")({
   head: () => ({
     meta: [
-      { title: "Sourza — For Indian plants" },
+      { title: "Sourza — For Indian factories" },
       {
         name: "description",
         content:
@@ -87,39 +87,39 @@ function PlantsPage() {
       <main className="mx-auto grid max-w-6xl gap-12 px-5 py-14 md:grid-cols-12 md:px-8 md:py-20">
         <div className="md:col-span-5">
           <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-            For Indian plants
+            For factories in India
           </p>
           <h1 className="mt-3 font-display text-4xl leading-tight font-medium text-ink-deep md:text-5xl">
-            Be invited against a drawing, not listed in a shop.
+            Quote against a drawing. Don't sit in a catalogue.
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            Sourza is looking for works that can run a specified industrial part,
-            beginning with machined components, for buyers in the UAE and the wider GCC.
-            You remain the exporter. The requirement arrives structured, and the quote
-            is read on the same terms as the other plants invited.
+            We're looking for factories that can make a specified part — machined
+            components first — for buyers in the UAE and the wider GCC. You stay the
+            exporter. The requirement arrives cleaned up, and your quote is read on the
+            same terms as the others.
           </p>
           <ul className="mt-8 space-y-4 text-sm leading-relaxed">
             <li className="border-t border-line pt-4">
               <span className="font-medium">A clearer brief.</span> Mixed units and missing
-              notes are resolved before you are asked to quote.
+              notes are sorted out before anyone asks you to quote.
             </li>
             <li className="border-t border-line pt-4">
-              <span className="font-medium">Capability, not a catalogue.</span> Interest is
-              in what the works can run, not a public list of every SKU.
+              <span className="font-medium">What you can actually run.</span> We want the
+              process and the material, not a public list of every part you have made.
             </li>
             <li className="border-t border-line pt-4">
-              <span className="font-medium">The relationship stays yours.</span> Sourza does
-              not take title to the goods.
+              <span className="font-medium">The customer stays yours.</span> We don't take
+              title to the goods.
             </li>
           </ul>
         </div>
         <div className="md:col-span-7">
           {saved ? (
             <div className="rounded-3xl border border-line bg-cream p-6 md:p-8">
-              <p className="font-display text-3xl text-ink-deep">Interest registered.</p>
+              <p className="font-display text-3xl text-ink-deep">We've got it.</p>
               <p className="mt-3 leading-relaxed text-muted">
-                {saved.works}, {saved.place}. {saved.contact} · {saved.email}. The works is
-                on the register.
+                {saved.works}, {saved.place}. {saved.contact} · {saved.email}. We'll be in
+                touch.
               </p>
               <dl className="mt-6 space-y-3 text-sm">
                 <div className="flex justify-between gap-4 border-b border-line pb-3">
@@ -140,7 +140,7 @@ function PlantsPage() {
                   }}
                   className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-3 text-sm"
                 >
-                  Register another works
+                  Register another factory
                 </button>
               </div>
             </div>
@@ -154,7 +154,7 @@ function PlantsPage() {
               </div>
               <h2 className="font-display text-3xl text-ink-deep">Register interest</h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <Field label="Works name" value={form.works} onChange={(value) => update("works", value)} />
+                <Field label="Factory name" value={form.works} onChange={(value) => update("works", value)} />
                 <Field label="City and state" value={form.place} onChange={(value) => update("place", value)} />
                 <Field label="Contact name" value={form.contact} onChange={(value) => update("contact", value)} />
                 <Field
@@ -171,7 +171,7 @@ function PlantsPage() {
                 />
               </div>
               <fieldset className="mt-4">
-                <legend className="text-sm">Export position</legend>
+                <legend className="text-sm">Do you export today?</legend>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {(["Already export", "Preparing to export"] as const).map((trade) => (
                     <label
@@ -189,19 +189,19 @@ function PlantsPage() {
                         onChange={() => update("trade", trade)}
                         className="sr-only"
                       />
-                      {trade}
+                      {trade === "Already export" ? "We export" : "Getting ready"}
                     </label>
                   ))}
                 </div>
               </fieldset>
               <label className="mt-4 block text-sm">
-                What the works can run
+                What you can make
                 <textarea
                   required
                   rows={4}
                   value={form.capability}
                   onChange={(event) => update("capability", event.target.value)}
-                  placeholder="Processes, materials, and the kind of part you can hold to a drawing."
+                  placeholder="Turning, milling, materials, and the kind of part you can hold to a drawing."
                   className="mt-2 w-full resize-y rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
                 />
               </label>

@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { href: "/#intelligence", label: "Intelligence" },
-  { href: "/#method", label: "Method" },
-  { href: "/#corridor", label: "Corridor" },
-  { href: "/#principles", label: "Principles" },
+  { href: "/#intelligence", label: "How it works" },
+  { href: "/#method", label: "Buyers" },
+  { href: "/#corridor", label: "Where" },
+  { href: "/#principles", label: "Limits" },
   { href: "/plants", label: "Plants" },
 ];
 
