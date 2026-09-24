@@ -285,7 +285,6 @@ export function Brochure() {
               {[
                 ["Buyers", "Traders and contractor buying teams who already import parts, and want another plant that can hit the drawing.", ""],
                 ["Plants", "Factories that export, or are getting ready to. You get a clearer requirement and a written decision. The customer stays with you.", "/plants"],
-                ["Partners", "People looking at how this kind of sourcing can sit in Abu Dhabi, including Hub71.", ""],
               ].map(([title, text, href]) => (
                 <div key={title} className="rounded-2xl border border-line bg-cream p-5">
                   <h3 className="font-display text-2xl text-ink-deep">{title}</h3>
