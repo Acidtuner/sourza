@@ -112,7 +112,7 @@ export function Brochure() {
               Specified parts
             </p>
             <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
-              You know the part. Finding the plant is the hard bit.
+              You know the <span className="text-gold-deep">part</span>. Finding the plant is the hard bit.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               Sourza reads the requirement, finds Indian plants that can actually make it,
