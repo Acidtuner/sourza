@@ -106,7 +106,14 @@ export function Brochure() {
       <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
 
       <main id="top">
-        <section className="mx-auto grid max-w-6xl items-end gap-12 px-5 pb-16 pt-14 md:grid-cols-12 md:px-8 md:pb-24 md:pt-20">
+        <section className="relative overflow-hidden">
+          <img
+            src="/banner.jpg"
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_40%]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper/70 via-paper/30 to-paper/65 md:bg-gradient-to-r md:from-paper/82 md:via-paper/35 md:to-transparent" />
+          <div className="relative mx-auto grid max-w-6xl items-end gap-12 px-5 pt-14 pb-16 md:grid-cols-12 md:px-8 md:pt-20 md:pb-24">
           <div className="md:col-span-7">
             <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">
               Specified parts
@@ -162,6 +169,7 @@ export function Brochure() {
               </ul>
             </div>
           </aside>
+          </div>
         </section>
 
         <section className="border-y border-line bg-ink-deep text-cream">
