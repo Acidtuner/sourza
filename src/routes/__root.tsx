@@ -10,12 +10,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sourza — Finding the plant for a specified part" },
+      { title: "Sourza — Find the plant for a specified part" },
       {
         name: "description",
         content:
-          "Sourza finds Indian plants that can make a specified part, and puts the quotes side by side. For buyers in the Gulf.",
+          "Sourza finds verified Indian plants that can make a specified part for buyers in the UAE and the Gulf, and puts the quotes side by side. Machined parts first.",
       },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "Sourza" },
       { name: "theme-color", content: "#112e59" },
     ],
     links: [

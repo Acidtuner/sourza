@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DeskChat } from "@/components/desk-chat";
 import { SiteHeader } from "@/components/site-header";
+import { PLANTS_DESCRIPTION, PLANTS_TITLE, pageMeta } from "@/lib/seo";
 import { registerPlant } from "@/lib/plant-register";
 
 type Interest = {
@@ -28,14 +29,7 @@ const EMPTY: Interest = {
 
 export const Route = createFileRoute("/plants")({
   head: () => ({
-    meta: [
-      { title: "Sourza — For Indian factories" },
-      {
-        name: "description",
-        content:
-          "Register interest if your works can run a specified industrial requirement for buyers in the GCC.",
-      },
-    ],
+    meta: pageMeta(PLANTS_TITLE, PLANTS_DESCRIPTION),
   }),
   component: PlantsPage,
 });
