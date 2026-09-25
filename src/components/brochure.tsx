@@ -4,8 +4,11 @@ import { registerIntroduction } from "@/lib/introduction";
 import { SiteHeader } from "@/components/site-header";
 import {
   ArrowRight,
+  Columns2,
+  Factory,
   FileSearch,
   GitCompare,
+  History,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -16,24 +19,28 @@ const LENSES = [
     kicker: "01",
     title: "Reads the spec",
     body: "Specs arrive messy. Mixed units, a missing tolerance, a note in the margin. Sourza turns that into a brief a plant can quote against, before anyone is asked.",
+    icon: FileSearch,
   },
   {
     id: "match",
     kicker: "02",
     title: "Finds who can make it",
     body: "It looks at process, material, and proof of what a factory can actually run. Not a public list of everything they say they make.",
+    icon: Factory,
   },
   {
     id: "compare",
     kicker: "03",
     title: "Puts the quotes side by side",
     body: "Every offer is read against the same brief. Gaps, exceptions, and lead time stay visible, so you compare the work, not the sales story.",
+    icon: Columns2,
   },
   {
     id: "remember",
     kicker: "04",
     title: "Remembers the last job",
     body: "What fitted, what was refused, and why is kept. The next match starts from that, not from a blank search.",
+    icon: History,
   },
 ] as const;
 
@@ -221,7 +228,10 @@ export function Brochure() {
                         : "border-line bg-cream text-ink hover:border-ink")
                     }
                   >
-                    <span className={selected ? "text-gold" : "text-gold-deep"}>{item.kicker}</span>
+                    <span className="flex items-center justify-between gap-3">
+                      <span className={selected ? "text-gold" : "text-gold-deep"}>{item.kicker}</span>
+                      <item.icon className="size-4 shrink-0" aria-hidden="true" />
+                    </span>
                     <span className="mt-1 block font-display text-2xl">{item.title}</span>
                   </button>
                 );
@@ -232,7 +242,7 @@ export function Brochure() {
               role="tabpanel"
             >
               <div>
-                <FileSearch className="size-6 text-gold-deep" aria-hidden="true" />
+                <active.icon className="size-6 text-gold-deep" aria-hidden="true" />
                 <h3 className="mt-6 font-display text-4xl leading-tight text-ink-deep">
                   {active.title}
                 </h3>
