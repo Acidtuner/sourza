@@ -52,8 +52,8 @@ const STEPS = [
   },
   {
     n: "03",
-    title: "One file for the order",
-    text: "The decision, the milestones, and the quality evidence stay in one place, for you and for the plant.",
+    title: "A written decision",
+    text: "Who was chosen, or why the job stopped, stays on the file. The plant still makes it and ships it.",
   },
 ];
 
@@ -122,9 +122,9 @@ export function Brochure() {
               You know the <span className="text-gold-deep">part</span>. Finding the plant is the hard bit.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Sourza reads the requirement, finds Indian plants that can actually make it,
-              and puts the quotes side by side. For buyers in the Gulf who want a second
-              source they can stand behind.
+              We take the requirement, turn it into a brief a plant can quote, and put the
+              offers side by side. For buyers in the Gulf who want a second source they can
+              stand behind.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
@@ -151,20 +151,20 @@ export function Brochure() {
                 <Sparkles className="size-4 text-gold" aria-hidden="true" />
               </div>
               <p className="mt-4 font-display text-2xl leading-snug text-ink-deep">
-                A shaft. A stated tolerance. Export packing.
+                A shaft. Diameter stated. Tolerance missing.
               </p>
               <ul className="mt-5 space-y-3 text-sm">
                 <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">What we read</span>
-                  <span>A clean brief</span>
+                  <span className="text-muted">Plant A</span>
+                  <span className="text-right">Can mill it. No tolerance on the file, so no price.</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">Who can make it</span>
-                  <span>Process and material</span>
+                  <span className="text-muted">Plant B</span>
+                  <span className="text-right">Can turn and grind it. Asks for the tolerance before quoting.</span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
-                  <span className="text-muted">What you compare</span>
-                  <span>Quotes, gaps, proof</span>
+                  <span className="text-muted">What stays visible</span>
+                  <span className="text-right">The gap, not a guess.</span>
                 </li>
               </ul>
             </div>
@@ -175,9 +175,9 @@ export function Brochure() {
         <section className="border-y border-line bg-ink-deep text-cream">
           <div className="mx-auto grid max-w-6xl gap-8 px-5 py-8 sm:grid-cols-3 md:px-8">
             {[
-              ["Plants", "Verified factories in India"],
-              ["First buyers", "Procurement teams in the GCC"],
-              ["Our role", "We don't own the goods"],
+              ["Plants", "Factories we are qualifying in India"],
+              ["Buyers", "Teams in the Gulf who already know the part"],
+              ["Our role", "The plant stays the exporter"],
             ].map(([label, value]) => (
               <div key={label}>
                 <p className="text-xs tracking-widest text-gold uppercase">{label}</p>
@@ -198,7 +198,8 @@ export function Brochure() {
             <p className="mt-4 text-lg leading-relaxed text-muted">
               This is not a supplier directory, and it is not a freight desk. The software
               reads the requirement, finds the plants, lines the quotes up, and remembers
-              what worked last time.
+              what worked last time. The desk does this with you now. The software is so the
+              next job does not depend on one person.
             </p>
           </div>
 
@@ -283,15 +284,15 @@ export function Brochure() {
             </div>
             <div className="grid gap-4">
               {[
-                ["Buyers", "Traders and contractor buying teams who already import parts, and want another plant that can hit the drawing.", ""],
-                ["Plants", "Factories that export, or are getting ready to. You get a clearer requirement and a written decision. The customer stays with you.", "/plants"],
-              ].map(([title, text, href]) => (
+                ["Buyers", "Traders and contractor buying teams who already import parts, and want another plant that can hit the drawing.", "/#introduction", "Tell us the part"],
+                ["Plants", "Factories that export, or are getting ready to. You get a clearer requirement and a written decision. The customer stays with you.", "/plants", "Register interest"],
+              ].map(([title, text, href, link]) => (
                 <div key={title} className="rounded-2xl border border-line bg-cream p-5">
                   <h3 className="font-display text-2xl text-ink-deep">{title}</h3>
                   <p className="mt-2 leading-relaxed text-muted">{text}</p>
                   {href ? (
                     <a href={href} className="mt-3 inline-flex min-h-11 items-center text-sm text-gold-deep">
-                      Register interest
+                      {link}
                     </a>
                   ) : null}
                 </div>
@@ -334,8 +335,7 @@ export function Brochure() {
                 Tell us who you are.
               </h2>
               <p className="mt-4 leading-relaxed text-muted">
-                If you buy, make, or want to work with us, leave a note. Someone from the
-                founding team will write back.
+                If you buy or make, leave a note. Someone from the founding team will write back.
               </p>
             </div>
             <div className="md:col-span-7">
@@ -389,7 +389,7 @@ export function Brochure() {
                   <fieldset className="mt-4">
                     <legend className="text-sm">You are</legend>
                     <div className="mt-2 flex flex-wrap gap-2">
-                      {["Buyer", "Plant", "Partner"].map((role) => (
+                      {["Buyer", "Plant"].map((role) => (
                         <label
                           key={role}
                           className={
