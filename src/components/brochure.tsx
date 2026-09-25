@@ -277,8 +277,14 @@ export function Brochure() {
           </div>
         </section>
 
-        <section id="corridor" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-          <div className="grid gap-12 md:grid-cols-2">
+        <section id="corridor" className="relative overflow-hidden">
+          <img
+            src="/corridor.jpg"
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-paper/90" />
+          <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2 md:px-8 md:py-28">
             <div>
               <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
                 Where we begin
