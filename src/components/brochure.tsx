@@ -462,11 +462,13 @@ export function Brochure() {
       </main>
 
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
-          <img src="/sourza-logo.svg" alt="" className="h-6 w-auto" />
-          <p className="max-w-md text-sm leading-relaxed text-muted">
-            Indian plants. Gulf buyers. Specified parts.
-          </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-8 md:flex-row md:items-end md:justify-between md:px-8">
+          <div>
+            <img src="/sourza-logo.svg" alt="" className="h-6 w-auto" />
+            <p className="mt-3 text-lg leading-snug text-muted md:text-xl">
+              Indian plants. Gulf buyers. Specified parts.
+            </p>
+          </div>
           <a href="/privacy" className="text-sm text-muted hover:text-ink">
             Privacy
           </a>
