@@ -447,6 +447,13 @@ export function Brochure() {
                     {busy ? "Saving" : "Request an introduction"}
                     <ArrowRight className="size-4" />
                   </button>
+                  <p className="mt-3 text-sm leading-relaxed text-soft">
+                    By sending this, you agree we may keep these details as described in the{" "}
+                    <a href="/privacy" className="text-gold-deep underline">
+                      privacy notice
+                    </a>
+                    .
+                  </p>
                 </form>
               )}
             </div>
@@ -460,6 +467,9 @@ export function Brochure() {
           <p className="max-w-md text-sm leading-relaxed text-muted">
             Indian plants. Gulf buyers. Specified parts.
           </p>
+          <a href="/privacy" className="text-sm text-muted hover:text-ink">
+            Privacy
+          </a>
         </div>
       </footer>
       <DeskChat />

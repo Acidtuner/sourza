@@ -216,10 +216,25 @@ function PlantsPage() {
               >
                 {busy ? "Saving" : "Register interest"}
               </button>
+              <p className="mt-3 text-sm leading-relaxed text-soft">
+                By sending this, you agree we may keep these details as described in the{" "}
+                <a href="/privacy" className="text-gold-deep underline">
+                  privacy notice
+                </a>
+                .
+              </p>
             </form>
           )}
         </div>
       </main>
+      <footer className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-8 md:px-8">
+          <p className="text-sm text-muted">Indian plants. Gulf buyers. Specified parts.</p>
+          <a href="/privacy" className="text-sm text-muted hover:text-ink">
+            Privacy
+          </a>
+        </div>
+      </footer>
       <DeskChat />
     </div>
   );
