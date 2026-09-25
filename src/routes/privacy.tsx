@@ -126,7 +126,9 @@ function PrivacyPage() {
         <Section title="Who else sees it">
           <p>
             The host stores the database for us. xAI sees only the chat text, and only to
-            write the reply. We do not pass the forms to a buyer, a plant, or a freight
+            write the reply. Google Tag Manager may set a cookie and receive technical
+            details of the visit, such as the page and the browser, so we can see how the
+            site is used. We do not pass the forms to a buyer, a plant, or a freight
             firm. We will disclose an entry if a competent authority in the UAE requires
             it under the law.
           </p>
