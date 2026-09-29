@@ -23,7 +23,7 @@ function PrivacyPage() {
         <h1 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
           What we keep, and why.
         </h1>
-        <p className="mt-4 text-sm text-soft">25 September 2026</p>
+        <p className="mt-4 text-sm text-soft">29 September 2026</p>
         <p className="mt-6 text-lg leading-relaxed text-muted">
           This notice is for anyone who sends a form on this site, or who types a question
           to the desk. It describes what Sourza actually does with that information. It is
@@ -69,7 +69,10 @@ function PrivacyPage() {
           <p>The introduction form asks for your name, organisation, email, whether you buy or make, and a note.</p>
           <p>
             The factory form asks for the works name, where it is, a contact name, email,
-            phone, whether you already export, what you can run, and a note.
+            phone, whether you already export, whether you are listed on another platform
+            such as IndiaMART or Bharat Source, what you can run, and a note. You may also
+            attach PDF files, such as a certificate or a product sheet. Those files are
+            stored with the registration and are not published.
           </p>
           <p>
             We do not ask for an Emirates ID, a passport, a bank account, or a card. Do not

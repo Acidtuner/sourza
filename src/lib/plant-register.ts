@@ -9,10 +9,16 @@ type Interest = {
   trade: "Already export" | "Preparing to export";
   capability: string;
   note: string;
+  platforms: string;
+  files: StoredFile[];
   fax: string;
 };
 
+type StoredFile = { name: string; data: string };
+
 const TRADES = ["Already export", "Preparing to export"] as const;
+const MAX_FILES = 3;
+const MAX_FILE_BYTES = 8 * 1024 * 1024;
 
 const buckets = new Map<string, number[]>();
 
@@ -33,6 +39,23 @@ function clip(value: unknown, max: number) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
+function cleanFiles(raw: unknown): StoredFile[] {
+  if (raw == null) return [];
+  if (!Array.isArray(raw)) throw new Error("Send PDF files only.");
+  if (raw.length > MAX_FILES) throw new Error("Send up to 3 PDF files.");
+  return raw.map((item) => {
+    if (!item || typeof item !== "object") throw new Error("Send PDF files only.");
+    const name = clip((item as { name?: unknown }).name, 180);
+    const data = typeof (item as { data?: unknown }).data === "string" ? (item as { data: string }).data : "";
+    if (!name.toLowerCase().endsWith(".pdf") || !data) throw new Error("Send PDF files only.");
+    const bytes = Buffer.from(data, "base64");
+    if (!bytes.length || bytes.length > MAX_FILE_BYTES || bytes.subarray(0, 5).toString("utf8") !== "%PDF-") {
+      throw new Error("Each file must be a PDF under 8 MB.");
+    }
+    return { name: name.replace(/[^\w.\- ()]+/g, "").slice(0, 180) || "document.pdf", data };
+  });
+}
+
 function clean(input: unknown): Interest {
   if (!input || typeof input !== "object") throw new Error("Send the works details.");
   const fax = clip((input as { fax?: unknown }).fax, 200);
@@ -46,6 +69,8 @@ function clean(input: unknown): Interest {
       trade: "Already export",
       capability: "-",
       note: "",
+      platforms: "",
+      files: [],
       fax,
     };
   }
@@ -62,11 +87,14 @@ function clean(input: unknown): Interest {
     trade: trade ?? "Already export",
     capability: clip(raw.capability, 2000),
     note: clip(raw.note, 2000),
+    platforms: clip(raw.platforms, 500),
+    files: cleanFiles((raw as { files?: unknown }).files),
     fax: "",
   };
   if (!interest.works || !interest.place || !interest.contact || !interest.capability) {
     throw new Error("Send the works details.");
   }
+  if (!interest.platforms) throw new Error("Say whether the works is listed on another platform.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(interest.email)) {
     throw new Error("Use a valid email.");
   }
@@ -74,8 +102,12 @@ function clean(input: unknown): Interest {
   return interest;
 }
 
-type Pool = {
-  query: (sql: string, values?: unknown[]) => Promise<unknown>;
+type Sql = {
+  query: (sql: string, values?: unknown[]) => Promise<[unknown, unknown]>;
+};
+
+type Pool = Sql & {
+  getConnection: () => Promise<Sql & { beginTransaction: () => Promise<void>; commit: () => Promise<void>; rollback: () => Promise<void>; release: () => void }>;
 };
 
 let pool: Pool | null = null;
@@ -111,7 +143,35 @@ async function getPool() {
         trade VARCHAR(40) NOT NULL,
         capability TEXT NOT NULL,
         note TEXT NOT NULL,
+        platforms VARCHAR(500) NOT NULL DEFAULT '',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )`,
+    );
+    try {
+      await pool.query(
+        "ALTER TABLE plant_interest ADD COLUMN IF NOT EXISTS platforms VARCHAR(500) NOT NULL DEFAULT ''",
+      );
+    } catch (error) {
+      const errno = (error as { errno?: number }).errno;
+      if (errno !== 1060) {
+        try {
+          await pool.query(
+            "ALTER TABLE plant_interest ADD COLUMN platforms VARCHAR(500) NOT NULL DEFAULT ''",
+          );
+        } catch (again) {
+          if ((again as { errno?: number }).errno !== 1060) throw again;
+        }
+      }
+    }
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS plant_interest_file (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        plant_id INT NOT NULL,
+        filename VARCHAR(180) NOT NULL,
+        size_bytes INT NOT NULL,
+        content LONGBLOB NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX (plant_id)
       )`,
     );
     tableReady = true;
@@ -129,11 +189,13 @@ export const registerPlant = createServerFn({ method: "POST" })
     }
     const db = await getPool();
     if (!db) return { ok: false as const, error: "The register is not connected yet." };
+    const conn = await db.getConnection();
     try {
-      await db.query(
+      await conn.beginTransaction();
+      const [header] = await conn.query(
         `INSERT INTO plant_interest
-          (works, place, contact_name, email, phone, trade, capability, note)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          (works, place, contact_name, email, phone, trade, capability, note, platforms)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           data.works,
           data.place,
@@ -143,10 +205,24 @@ export const registerPlant = createServerFn({ method: "POST" })
           data.trade,
           data.capability,
           data.note,
+          data.platforms,
         ],
       );
+      const plantId = Number((header as { insertId?: number }).insertId);
+      if (!plantId) throw new Error("no id");
+      for (const file of data.files) {
+        const bytes = Buffer.from(file.data, "base64");
+        await conn.query(
+          `INSERT INTO plant_interest_file (plant_id, filename, size_bytes, content) VALUES (?, ?, ?, ?)`,
+          [plantId, file.name, bytes.length, bytes],
+        );
+      }
+      await conn.commit();
     } catch {
+      await conn.rollback();
       return { ok: false as const, error: "The register could not save this just now." };
+    } finally {
+      conn.release();
     }
     return { ok: true as const };
   });

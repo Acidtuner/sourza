@@ -13,8 +13,14 @@ type Interest = {
   phone: string;
   capability: string;
   trade: "Already export" | "Preparing to export";
+  platforms: string[];
+  otherPlatform: string;
   note: string;
 };
+
+const LISTINGS = ["IndiaMART", "Bharat Source", "Not listed"] as const;
+const MAX_FILES = 3;
+const MAX_FILE_BYTES = 8 * 1024 * 1024;
 
 const EMPTY: Interest = {
   works: "",
@@ -24,6 +30,8 @@ const EMPTY: Interest = {
   phone: "",
   capability: "",
   trade: "Already export",
+  platforms: [],
+  otherPlatform: "",
   note: "",
 };
 
@@ -39,9 +47,57 @@ function PlantsPage() {
   const [saved, setSaved] = useState<Interest | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
 
   function update<K extends keyof Interest>(key: K, value: Interest[K]) {
     setForm((current) => ({ ...current, [key]: value }));
+  }
+
+  function toggleListing(name: (typeof LISTINGS)[number]) {
+    setForm((current) => {
+      if (name === "Not listed") {
+        const on = current.platforms.includes("Not listed");
+        return { ...current, platforms: on ? [] : ["Not listed"], otherPlatform: on ? current.otherPlatform : "" };
+      }
+      const without = current.platforms.filter((item) => item !== "Not listed" && item !== name);
+      const platforms = current.platforms.includes(name) ? without : [...without, name];
+      return { ...current, platforms };
+    });
+  }
+
+  function listingLine(next: Interest) {
+    const named = next.platforms.filter((item) => item !== "Not listed");
+    const other = next.otherPlatform.trim();
+    const parts = other ? [...named, other] : named;
+    if (next.platforms.includes("Not listed") && parts.length === 0) return "Not listed";
+    return parts.join(", ");
+  }
+
+  async function readPdf(file: File) {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const head = String.fromCharCode(bytes[0] ?? 0, bytes[1] ?? 0, bytes[2] ?? 0, bytes[3] ?? 0, bytes[4] ?? 0);
+    if (head !== "%PDF-") throw new Error("Each file must be a PDF under 8 MB.");
+    let binary = "";
+    for (let index = 0; index < bytes.length; index += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(index, index + 0x8000));
+    }
+    return { name: file.name, data: btoa(binary) };
+  }
+
+  function chooseFiles(list: FileList | null) {
+    const next = Array.from(list ?? []);
+    if (next.length > MAX_FILES) {
+      setError("Send up to 3 PDF files.");
+      setFiles([]);
+      return;
+    }
+    if (next.some((file) => !file.name.toLowerCase().endsWith(".pdf") || file.size > MAX_FILE_BYTES)) {
+      setError("Each file must be a PDF under 8 MB.");
+      setFiles([]);
+      return;
+    }
+    setError("");
+    setFiles(next);
   }
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -58,18 +114,25 @@ function PlantsPage() {
       capability: form.capability.trim(),
       note: form.note.trim(),
     };
+    const platforms = listingLine(next);
     if (!next.works || !next.place || !next.contact || !next.email || !next.capability) return;
+    if (!platforms) {
+      setError("Say whether the works is listed on another platform.");
+      return;
+    }
     setBusy(true);
     setError("");
     try {
-      const result = await registerPlant({ data: { ...next, fax } });
+      const uploaded = [];
+      for (const file of files) uploaded.push(await readPdf(file));
+      const result = await registerPlant({ data: { ...next, platforms, files: uploaded, fax } });
       if (!result.ok) {
         setError(result.error);
         return;
       }
       setSaved(next);
-    } catch {
-      setError("The register could not save this just now.");
+    } catch (err) {
+      setError(err instanceof Error && err.message ? err.message : "The register could not save this just now.");
     } finally {
       setBusy(false);
     }
@@ -120,6 +183,16 @@ function PlantsPage() {
                   <dt className="text-muted">Trade</dt>
                   <dd>{saved.trade}</dd>
                 </div>
+                <div className="flex justify-between gap-4 border-b border-line pb-3">
+                  <dt className="text-muted">Other platforms</dt>
+                  <dd className="text-right">{listingLine(saved)}</dd>
+                </div>
+                {files.length ? (
+                  <div className="flex justify-between gap-4 border-b border-line pb-3">
+                    <dt className="text-muted">Files</dt>
+                    <dd className="text-right">{files.map((file) => file.name).join(", ")}</dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="text-muted">Capability</dt>
                   <dd className="mt-1 leading-relaxed">{saved.capability}</dd>
@@ -130,6 +203,7 @@ function PlantsPage() {
                   type="button"
                   onClick={() => {
                     setSaved(null);
+                    setFiles([]);
                     setError("");
                   }}
                   className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-3 text-sm"
@@ -188,6 +262,56 @@ function PlantsPage() {
                   ))}
                 </div>
               </fieldset>
+              <fieldset className="mt-4">
+                <legend className="text-sm">Listed on another platform?</legend>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {LISTINGS.map((name) => (
+                    <label
+                      key={name}
+                      className={
+                        "inline-flex min-h-11 items-center rounded-full border px-4 text-sm " +
+                        (form.platforms.includes(name)
+                          ? "border-ink bg-ink text-cream"
+                          : "border-line bg-paper")
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        name="platforms"
+                        value={name}
+                        checked={form.platforms.includes(name)}
+                        onChange={() => toggleListing(name)}
+                        className="sr-only"
+                      />
+                      {name}
+                    </label>
+                  ))}
+                </div>
+                <label className="mt-3 block text-sm">
+                  Another platform, if it is not one of those
+                  <input
+                    value={form.otherPlatform}
+                    disabled={form.platforms.includes("Not listed")}
+                    onChange={(event) => update("otherPlatform", event.target.value)}
+                    placeholder="Name it"
+                    className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink disabled:opacity-50"
+                  />
+                </label>
+              </fieldset>
+              <label className="mt-4 block text-sm">
+                Certificates or a product file
+                <input
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  multiple
+                  onChange={(event) => chooseFiles(event.target.files)}
+                  className="mt-2 block w-full text-sm file:mr-3 file:rounded-full file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:text-cream"
+                />
+                <span className="mt-2 block leading-relaxed text-soft">
+                  PDF only. A certificate, a catalogue, or product sheets. Up to 3 files, 8 MB each.
+                  {files.length ? ` ${files.map((file) => file.name).join(", ")}` : ""}
+                </span>
+              </label>
               <label className="mt-4 block text-sm">
                 What you can make
                 <textarea
