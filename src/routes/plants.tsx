@@ -18,7 +18,7 @@ type Interest = {
   note: string;
 };
 
-const LISTINGS = ["IndiaMART", "Bharat Source", "Not listed"] as const;
+const LISTINGS = ["IndiaMART", "Trade India", "Not listed"] as const;
 const MAX_FILES = 3;
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
 

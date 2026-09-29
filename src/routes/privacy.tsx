@@ -70,7 +70,7 @@ function PrivacyPage() {
           <p>
             The factory form asks for the works name, where it is, a contact name, email,
             phone, whether you already export, whether you are listed on another platform
-            such as IndiaMART or Bharat Source, what you can run, and a note. You may also
+            such as IndiaMART or Trade India, what you can run, and a note. You may also
             attach PDF files, such as a certificate or a product sheet. Those files are
             stored with the registration and are not published.
           </p>
