@@ -48,6 +48,7 @@ function PlantsPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [files, setFiles] = useState<File[]>([]);
+  const [code, setCode] = useState("");
 
   function update<K extends keyof Interest>(key: K, value: Interest[K]) {
     setForm((current) => ({ ...current, [key]: value }));
@@ -130,6 +131,7 @@ function PlantsPage() {
         setError(result.error);
         return;
       }
+      setCode(result.plantId);
       setSaved(next);
     } catch (err) {
       setError(err instanceof Error && err.message ? err.message : "The register could not save this just now.");
@@ -178,6 +180,9 @@ function PlantsPage() {
                 {saved.works}, {saved.place}. {saved.contact} · {saved.email}. We'll be in
                 touch.
               </p>
+              {code ? (
+                <p className="mt-4 font-display text-2xl tracking-widest text-ink-deep">{code}</p>
+              ) : null}
               <dl className="mt-6 space-y-3 text-sm">
                 <div className="flex justify-between gap-4 border-b border-line pb-3">
                   <dt className="text-muted">Trade</dt>
@@ -204,6 +209,7 @@ function PlantsPage() {
                   onClick={() => {
                     setSaved(null);
                     setFiles([]);
+                    setCode("");
                     setError("");
                   }}
                   className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-3 text-sm"

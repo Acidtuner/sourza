@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { randomInt } from "node:crypto";
 
 type Interest = {
   works: string;
@@ -19,6 +20,15 @@ type StoredFile = { name: string; data: string };
 const TRADES = ["Already export", "Preparing to export"] as const;
 const MAX_FILES = 3;
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
+const PLANT_ID_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+function makePlantId() {
+  let code = "";
+  for (let index = 0; index < 5; index += 1) {
+    code += PLANT_ID_ALPHABET[randomInt(PLANT_ID_ALPHABET.length)];
+  }
+  return code;
+}
 
 const buckets = new Map<string, number[]>();
 
@@ -166,7 +176,7 @@ async function getPool() {
     await pool.query(
       `CREATE TABLE IF NOT EXISTS plant_interest_file (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        plant_id INT NOT NULL,
+        plant_id VARCHAR(5) NOT NULL,
         filename VARCHAR(180) NOT NULL,
         size_bytes INT NOT NULL,
         content LONGBLOB NOT NULL,
@@ -174,6 +184,26 @@ async function getPool() {
         INDEX (plant_id)
       )`,
     );
+    await pool.query("ALTER TABLE plant_interest_file MODIFY plant_id VARCHAR(5) NOT NULL");
+    try {
+      await pool.query(
+        "ALTER TABLE plant_interest ADD COLUMN IF NOT EXISTS plant_id VARCHAR(5) NULL",
+      );
+    } catch (error) {
+      const errno = (error as { errno?: number }).errno;
+      if (errno !== 1060) {
+        try {
+          await pool.query("ALTER TABLE plant_interest ADD COLUMN plant_id VARCHAR(5) NULL");
+        } catch (again) {
+          if ((again as { errno?: number }).errno !== 1060) throw again;
+        }
+      }
+    }
+    try {
+      await pool.query("CREATE UNIQUE INDEX plant_interest_code ON plant_interest (plant_id)");
+    } catch (error) {
+      if ((error as { errno?: number }).errno !== 1061) throw error;
+    }
     tableReady = true;
   }
   return pool;
@@ -182,7 +212,7 @@ async function getPool() {
 export const registerPlant = createServerFn({ method: "POST" })
   .validator(clean)
   .handler(async ({ data }) => {
-    if (data.fax) return { ok: true as const };
+    if (data.fax) return { ok: true as const, plantId: "" };
     const hour = 60 * 60 * 1000;
     if (!allow("plants", 30, hour) || !allow(data.email, 4, hour)) {
       return { ok: false as const, error: "Too many registrations just now. Try again shortly." };
@@ -191,38 +221,44 @@ export const registerPlant = createServerFn({ method: "POST" })
     if (!db) return { ok: false as const, error: "The register is not connected yet." };
     const conn = await db.getConnection();
     try {
-      await conn.beginTransaction();
-      const [header] = await conn.query(
-        `INSERT INTO plant_interest
-          (works, place, contact_name, email, phone, trade, capability, note, platforms)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          data.works,
-          data.place,
-          data.contact,
-          data.email,
-          data.phone,
-          data.trade,
-          data.capability,
-          data.note,
-          data.platforms,
-        ],
-      );
-      const plantId = Number((header as { insertId?: number }).insertId);
-      if (!plantId) throw new Error("no id");
-      for (const file of data.files) {
-        const bytes = Buffer.from(file.data, "base64");
-        await conn.query(
-          `INSERT INTO plant_interest_file (plant_id, filename, size_bytes, content) VALUES (?, ?, ?, ?)`,
-          [plantId, file.name, bytes.length, bytes],
-        );
+      for (let attempt = 0; attempt < 5; attempt += 1) {
+        const plantId = makePlantId();
+        try {
+          await conn.beginTransaction();
+          await conn.query(
+            `INSERT INTO plant_interest
+              (plant_id, works, place, contact_name, email, phone, trade, capability, note, platforms)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+              plantId,
+              data.works,
+              data.place,
+              data.contact,
+              data.email,
+              data.phone,
+              data.trade,
+              data.capability,
+              data.note,
+              data.platforms,
+            ],
+          );
+          for (const file of data.files) {
+            const bytes = Buffer.from(file.data, "base64");
+            await conn.query(
+              `INSERT INTO plant_interest_file (plant_id, filename, size_bytes, content) VALUES (?, ?, ?, ?)`,
+              [plantId, file.name, bytes.length, bytes],
+            );
+          }
+          await conn.commit();
+          return { ok: true as const, plantId };
+        } catch (error) {
+          await conn.rollback();
+          if ((error as { errno?: number }).errno === 1062 && attempt < 4) continue;
+          return { ok: false as const, error: "The register could not save this just now." };
+        }
       }
-      await conn.commit();
-    } catch {
-      await conn.rollback();
       return { ok: false as const, error: "The register could not save this just now." };
     } finally {
       conn.release();
     }
-    return { ok: true as const };
   });
