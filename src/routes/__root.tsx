@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Sourza finds verified Indian plants that can make a specified part for buyers in the UAE and the Gulf, and puts the quotes side by side. Machined parts first.",
+          "Sourza reads a specified part, turns it into a brief, and lines up quotes from Indian plants for buyers in the UAE and the Gulf. Machined parts first.",
       },
       { name: "robots", content: "index, follow" },
       { property: "og:site_name", content: "Sourza" },

@@ -1,6 +1,6 @@
 export const HOME_TITLE = "Sourza — Find the plant for a specified part";
 export const HOME_DESCRIPTION =
-  "Sourza finds verified Indian plants that can make a specified part for buyers in the UAE and the Gulf, and puts the quotes side by side. Machined parts first.";
+  "Sourza reads a specified part, turns it into a brief, and lines up quotes from Indian plants for buyers in the UAE and the Gulf. Machined parts first.";
 
 export const PLANTS_TITLE = "Sourza — Register an Indian factory";
 export const PLANTS_DESCRIPTION =

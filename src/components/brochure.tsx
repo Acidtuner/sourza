@@ -18,28 +18,28 @@ const LENSES = [
     id: "read",
     kicker: "01",
     title: "Reads the spec",
-    body: "Specs arrive messy. Mixed units, a missing tolerance, a note in the margin. Sourza turns that into a brief a plant can quote against, before anyone is asked.",
+    body: "The model turns a messy spec into a brief a plant can quote against. Mixed units, a missing tolerance, a note in the margin. It does this before anyone is asked.",
     icon: FileSearch,
   },
   {
     id: "match",
     kicker: "02",
     title: "Finds who can make it",
-    body: "It looks at process, material, and proof of what a factory can actually run. Not a public list of everything they say they make.",
+    body: "The model looks at process, material, and proof of what a factory can actually run. Not a public list of everything they say they make.",
     icon: Factory,
   },
   {
     id: "compare",
     kicker: "03",
     title: "Puts the quotes side by side",
-    body: "Every offer is read against the same brief. Gaps, exceptions, and lead time stay visible, so you compare the work, not the sales story.",
+    body: "The model reads every offer against the same brief. Gaps, exceptions, and lead time stay visible, so you compare the work, not the sales story.",
     icon: Columns2,
   },
   {
     id: "remember",
     kicker: "04",
     title: "Remembers the last job",
-    body: "What fitted, what was refused, and why is kept. The next match starts from that, not from a blank search.",
+    body: "The model keeps what fitted, what was refused, and why. The next match starts from that, not from a blank search.",
     icon: History,
   },
 ] as const;
@@ -123,15 +123,15 @@ export function Brochure() {
           <div className="relative mx-auto grid max-w-6xl items-end gap-12 px-5 pt-14 pb-16 md:grid-cols-12 md:px-8 md:pt-20 md:pb-24">
           <div className="md:col-span-7">
             <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">
-              Specified parts
+              AI for specified parts
             </p>
             <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
               You know the <span className="text-gold-deep">part</span>. Finding the plant is the hard bit.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              We take the requirement, turn it into a brief a plant can quote, and put the
-              offers side by side. For buyers in the Gulf who want a second source they can
-              stand behind.
+              Sourza reads the requirement, turns it into a brief a plant can quote, and lines
+              the offers up against that brief. The same gaps, every time. For buyers in
+              the Gulf who want a second source they can stand behind.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
@@ -154,7 +154,7 @@ export function Brochure() {
           <aside className="md:col-span-5">
             <div className="rounded-3xl border border-line bg-cream p-5 shadow-lg">
               <div className="flex items-center justify-between border-b border-line pb-3">
-                <p className="text-xs tracking-widest text-soft uppercase">Example</p>
+                <p className="text-xs tracking-widest text-soft uppercase">What it flags</p>
                 <Sparkles className="size-4 text-gold" aria-hidden="true" />
               </div>
               <p className="mt-4 font-display text-2xl leading-snug text-ink-deep">
@@ -197,16 +197,15 @@ export function Brochure() {
         <section id="intelligence" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-              The software
+              The model
             </p>
             <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-              Four jobs. Then a record.
+              It reads the spec. Then it keeps the decision.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              This is not a supplier directory, and it is not a freight desk. The software
-              reads the requirement, finds the plants, lines the quotes up, and remembers
-              what worked last time. The desk does this with you now. The software is so the
-              next job does not depend on one person.
+              This is not a supplier directory, and it is not a freight desk. The model
+              reads a messy requirement, finds the plants that can run it, lines the quotes
+              up, and keeps what fitted or failed last time.
             </p>
           </div>
 
