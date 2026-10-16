@@ -1,9 +1,11 @@
+export type ArticleBucket = "sourcing" | "policy" | "macro";
+
 export type Article = {
   slug: string;
   title: string;
   date: string;
   summary: string;
-  bucket: "sourcing" | "policy" | "macro";
+  bucket: ArticleBucket;
   body: string[];
 };
 
@@ -26,10 +28,43 @@ export const ARTICLES: Article[] = [
   },
 ];
 
+export const BUCKETS: ArticleBucket[] = ["sourcing", "policy", "macro"];
+
 export function getArticle(slug: string) {
   return ARTICLES.find((article) => article.slug === slug);
 }
 
 export function listArticles() {
   return [...ARTICLES].sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function readingTime(article: Article) {
+  const words = [article.title, article.summary, ...article.body]
+    .join(" ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+export function getRelatedArticles(slug: string, limit = 5) {
+  const current = getArticle(slug);
+  if (!current) return [];
+
+  const others = listArticles().filter((article) => article.slug !== slug);
+  const sameBucket = others.filter((article) => article.bucket === current.bucket);
+  const otherBuckets = others.filter((article) => article.bucket !== current.bucket);
+
+  return [...sameBucket, ...otherBuckets].slice(0, limit);
+}
+
+export function getAdjacentArticles(slug: string) {
+  const ordered = listArticles();
+  const index = ordered.findIndex((article) => article.slug === slug);
+  if (index < 0) return { prev: null, next: null };
+
+  return {
+    prev: ordered[index + 1] ?? null,
+    next: ordered[index - 1] ?? null,
+  };
 }
