@@ -46,7 +46,8 @@ function ArticlePage() {
           {article.title}
         </h1>
         <p className="mt-4 text-sm text-soft">{article.date}</p>
-        <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted">
+        <p className="mt-6 text-lg leading-relaxed text-muted">{article.summary}</p>
+        <div className="mt-8 space-y-6 text-lg leading-relaxed text-ink">
           {article.body.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
