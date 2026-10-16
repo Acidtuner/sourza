@@ -51,7 +51,7 @@ function ResourcesPage() {
                 params={{ slug: article.slug }}
                 className="mt-3 inline-flex text-sm text-gold-deep"
               >
-                Read
+                Read more
               </Link>
             </li>
           ))}
