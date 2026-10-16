@@ -6,6 +6,7 @@ const LINKS = [
   { href: "/#method", label: "Buyers" },
   { href: "/#corridor", label: "Where" },
   { href: "/#principles", label: "Limits" },
+  { href: "/resources", label: "Resources" },
   { href: "/plants", label: "Plants" },
 ];
 
