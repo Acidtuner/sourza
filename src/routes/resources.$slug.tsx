@@ -83,9 +83,18 @@ function ArticlePage() {
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
-            <p className="mt-12 text-sm text-soft">
-              Written from the desk. The plant stays the exporter.
-            </p>
+
+            <div className="mt-12 border-t border-line pt-8">
+              <p className="text-lg leading-relaxed text-muted">
+                If you have a part that needs a plant, tell us what you need made.
+              </p>
+              <a
+                href="/#introduction"
+                className="mt-4 inline-flex min-h-11 items-center text-gold-deep hover:text-ink"
+              >
+                Request an introduction
+              </a>
+            </div>
 
             <div className="mt-10 grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
               {adjacent.prev ? (
