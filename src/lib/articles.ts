@@ -11,6 +11,36 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "under-cif-war-risk-is-yours-to-ask-for",
+    title: "Under CIF, war risk is yours to ask for",
+    date: "2026-10-16",
+    summary:
+      "A CIF quote from an Indian plant covers minimum cargo insurance, and with Hormuz disrupted, Gulf buyers should check whether war risk is included.",
+    bucket: "sourcing",
+    body: [
+      "Plenty of Gulf POs for machined parts say CIF Jebel Ali. It feels safe, because the plant books the freight and buys the insurance. But under Incoterms 2020, risk passes to you once the goods are loaded on board in India.",
+      "The insurance the plant buys under CIF only has to be minimum cover. Extra cover, such as war risk, generally has to be requested. If nobody asks, nobody adds it.",
+      "That used to be a footnote. It isn't now. Ships have been hit and lost near Hormuz this month, and surcharges keep stacking up. One carrier's 7 October advisory added a USD 1,000 per container Hormuz fee, billed to the consignee.",
+      "None of this needs a new contract. It needs one line in the RFQ. State the cover you expect, war risk included, and ask the plant to show it on the quote.",
+      "The plant stays the exporter and books what you agreed. Getting the right cover is a matter of being specific in the RFQ. Incoterms choices and insurance terms change from deal to deal, so confirm yours with your advisor or forwarder.",
+    ],
+  },
+  {
+    slug: "what-a-power-cut-in-india-does-to-your-dispatch-date",
+    title: "What a power cut in India does to your dispatch date",
+    date: "2026-10-16",
+    summary:
+      "India's coal and gas squeeze can show up as a slipped dispatch date, so ask the plant how it's powered before you rely on the schedule.",
+    bucket: "macro",
+    body: [
+      "By 10 October, nearly half of India's coal-fired power stations were below 25% of the coal stock they're meant to hold. Small steel mills were losing 10 to 12 hours of power a day.",
+      "Gas didn't offer much relief. India's LNG tender prices reached USD 26.4 per mmBtu in September, up from USD 16.8 to 18.8 between March and June.",
+      "None of that is in a quote you got last month. It can show up later as a dispatch date that quietly moves, or as a revised price on heat treatment.",
+      "So before you rely on a schedule, ask the plant two things. Is it running on grid power or captive power? And what runs the furnace and the CNC line when the grid cuts?",
+      "A plant that answers plainly, and builds a buffer into the date, is giving you something more useful than a tight promise. That's worth more than a few days on paper.",
+    ],
+  },
+  {
     slug: "rodtep-ends-31-december-check-your-january-quotes",
     title: "RoDTEP ends on 31 December. Check your January quotes.",
     date: "2026-10-16",
