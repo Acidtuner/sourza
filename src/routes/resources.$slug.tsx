@@ -7,7 +7,7 @@ import {
   readingTime,
   type ArticleBucket,
 } from "@/lib/articles";
-import { pageMeta } from "@/lib/seo";
+import { articleMeta, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: ({ params }) => {
@@ -20,12 +20,14 @@ export const Route = createFileRoute("/resources/$slug")({
       minutes: readingTime(article),
     };
   },
-  head: ({ loaderData }) => ({
-    meta: pageMeta(
-      `Sourza — ${loaderData.article.title}`,
-      loaderData.article.summary,
-    ),
-  }),
+  head: ({ loaderData }) => {
+    const path = `/resources/${loaderData.article.slug}`;
+    const title = `Sourza — ${loaderData.article.title}`;
+    return {
+      meta: articleMeta(title, loaderData.article.summary, path, loaderData.article.date),
+      links: [{ rel: "canonical", href: `${SITE_URL}${path}` }],
+    };
+  },
   component: ArticlePage,
   notFoundComponent: () => (
     <div className="min-h-screen bg-paper text-ink">
