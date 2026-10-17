@@ -123,7 +123,7 @@ function ArticlePage() {
           </article>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <h2 className="font-display text-xl text-ink-deep">More from the desk</h2>
+            <h2 className="font-display text-xl text-gold">More from the desk</h2>
             {related.length === 0 ? (
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 More notes are on the way. One piece every couple of days.
