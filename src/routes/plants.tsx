@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DeskChat } from "@/components/desk-chat";
 import { SiteHeader } from "@/components/site-header";
-import { PLANTS_DESCRIPTION, PLANTS_TITLE, pageMeta } from "@/lib/seo";
+import { canonicalLink, PLANTS_DESCRIPTION, PLANTS_TITLE, pageMeta } from "@/lib/seo";
 import { registerPlant } from "@/lib/plant-register";
 
 type Interest = {
@@ -37,7 +37,8 @@ const EMPTY: Interest = {
 
 export const Route = createFileRoute("/plants")({
   head: () => ({
-    meta: pageMeta(PLANTS_TITLE, PLANTS_DESCRIPTION),
+    meta: pageMeta(PLANTS_TITLE, PLANTS_DESCRIPTION, "/plants"),
+    links: [canonicalLink("/plants")],
   }),
   component: PlantsPage,
 });

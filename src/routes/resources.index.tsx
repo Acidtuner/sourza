@@ -1,6 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { BUCKETS, listArticles, type ArticleBucket } from "@/lib/articles";
+import { canonicalLink, pageMeta } from "@/lib/seo";
+
+const TITLE = "Sourza — Resources";
+const DESCRIPTION =
+  "Practical notes on India to Gulf machined parts: how a brief is written, why the plant stays the exporter, and what the corridor actually looks like.";
 
 export const Route = createFileRoute("/resources/")({
   validateSearch: (search: Record<string, unknown>) => {
@@ -9,6 +14,10 @@ export const Route = createFileRoute("/resources/")({
       bucket: BUCKETS.includes(bucket as ArticleBucket) ? (bucket as ArticleBucket) : undefined,
     };
   },
+  head: () => ({
+    meta: pageMeta(TITLE, DESCRIPTION, "/resources"),
+    links: [canonicalLink("/resources")],
+  }),
   component: ResourcesIndex,
 });
 
@@ -28,15 +37,13 @@ function ResourcesIndex() {
     <div className="min-h-screen bg-paper text-ink">
       <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
       <main className="mx-auto max-w-3xl px-5 py-14 md:px-8 md:py-20">
-        <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-          Resources
-        </p>
+        <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">Resources</p>
         <h1 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
           Knowledge center
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Short notes from the desk on how specified parts move from a requirement to a
-          decision. One piece every couple of days.
+          Short notes from the desk on how specified parts move from a requirement to a decision.
+          One piece every couple of days.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -78,9 +85,7 @@ function ResourcesIndex() {
           ))}
         </ul>
 
-        {articles.length === 0 && (
-          <p className="mt-10 text-muted">No notes in this bucket yet.</p>
-        )}
+        {articles.length === 0 && <p className="mt-10 text-muted">No notes in this bucket yet.</p>}
       </main>
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-8 md:flex-row md:items-end md:justify-between md:px-8">
@@ -113,9 +118,7 @@ function FilterChip({
       type="button"
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-sm ${
-        active
-          ? "border-ink bg-ink text-cream"
-          : "border-line text-muted hover:text-ink"
+        active ? "border-ink bg-ink text-cream" : "border-line text-muted hover:text-ink"
       }`}
     >
       {label}

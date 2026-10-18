@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://sourza.com/sitemap.xml

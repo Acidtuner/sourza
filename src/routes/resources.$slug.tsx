@@ -7,7 +7,7 @@ import {
   readingTime,
   type ArticleBucket,
 } from "@/lib/articles";
-import { articleMeta, SITE_URL } from "@/lib/seo";
+import { articleJsonLd, articleMeta, canonicalLink, jsonLdScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: ({ params }) => {
@@ -21,11 +21,20 @@ export const Route = createFileRoute("/resources/$slug")({
     };
   },
   head: ({ loaderData }) => {
-    const path = `/resources/${loaderData.article.slug}`;
-    const title = `Sourza — ${loaderData.article.title}`;
+    if (!loaderData) return {};
+    const { article } = loaderData;
+    const path = `/resources/${article.slug}`;
+    const title = `Sourza — ${article.title}`;
     return {
-      meta: articleMeta(title, loaderData.article.summary, path, loaderData.article.date),
-      links: [{ rel: "canonical", href: `${SITE_URL}${path}` }],
+      meta: articleMeta(
+        title,
+        article.summary,
+        path,
+        article.date,
+        article.updated ?? article.date,
+      ),
+      links: [canonicalLink(path)],
+      scripts: [jsonLdScript(articleJsonLd(article))],
     };
   },
   component: ArticlePage,
@@ -69,11 +78,7 @@ function ArticlePage() {
               <span>{article.date}</span>
               <span>{minutes} min read</span>
               <span className="uppercase tracking-widest">{labelFor(article.bucket)}</span>
-              <button
-                type="button"
-                onClick={copyLink}
-                className="text-gold-deep hover:text-ink"
-              >
+              <button type="button" onClick={copyLink} className="text-gold-deep hover:text-ink">
                 Copy link
               </button>
             </div>

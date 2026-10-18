@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
-import { pageMeta } from "@/lib/seo";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 const TITLE = "Sourza — Privacy";
 const DESCRIPTION =
@@ -9,7 +9,8 @@ const DESCRIPTION =
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
-    meta: pageMeta(TITLE, DESCRIPTION),
+    meta: pageMeta(TITLE, DESCRIPTION, "/privacy"),
+    links: [canonicalLink("/privacy")],
   }),
   component: PrivacyPage,
 });

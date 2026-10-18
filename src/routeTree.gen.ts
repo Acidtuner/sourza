@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlantsRouteImport } from './routes/plants'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
@@ -36,6 +37,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources': typeof ResourcesIndexRoute
 }
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -78,16 +87,24 @@ export interface FileRouteTypes {
     | '/plants'
     | '/privacy'
     | '/resources'
+    | '/sitemap.xml'
     | '/resources/$slug'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/plants' | '/privacy' | '/resources/$slug' | '/resources'
+  to:
+    | '/'
+    | '/plants'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/resources/$slug'
+    | '/resources'
   id:
     | '__root__'
     | '/'
     | '/plants'
     | '/privacy'
     | '/resources'
+    | '/sitemap.xml'
     | '/resources/$slug'
     | '/resources/'
   fileRoutesById: FileRoutesById
@@ -97,6 +114,7 @@ export interface RootRouteChildren {
   PlantsRoute: typeof PlantsRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -127,6 +145,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources/': {
@@ -165,6 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlantsRoute: PlantsRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

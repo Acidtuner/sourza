@@ -375,8 +375,28 @@ export function grokOgHeadTags({
   return tags;
 }
 
+/** Share metas a page marks `data-page-meta` are page-specific and survive stripping. */
+function isPageShareMeta(tag) {
+  return /\bdata-page-meta\s*=/i.test(tag);
+}
+
+function shareMetaKey(tag) {
+  const match = tag.match(/<meta\b[^>]*\b(?:property|name)\s*=\s*["']([^"']+)["']/i);
+  return match ? String(match[1]).toLowerCase() : "";
+}
+
+/** Keys of the page-specific share metas present in `html`. */
+export function pageShareMetaKeys(html) {
+  const keys = new Set();
+  for (const [tag] of String(html).matchAll(/<meta\b[^>]*>/gi)) {
+    if (isPageShareMeta(tag)) keys.add(shareMetaKey(tag));
+  }
+  return keys;
+}
+
 export function stripShareMetaTags(html) {
   return String(html).replace(/<meta\b[^>]*>/gi, (tag) => {
+    if (isPageShareMeta(tag)) return tag;
     const attrs = [...tag.matchAll(/\b(?:property|name)\s*=\s*["']([^"']+)["']/gi)];
     for (const match of attrs) {
       if (SHARE_META_KEYS.has(String(match[1]).toLowerCase())) return "";
@@ -442,9 +462,12 @@ export function injectGrokPwaHead(html, ctx = {}) {
     })
     .map(([, tag]) => tag);
 
+  const pageKeys = pageShareMetaKeys(next);
   next = insertAfterHeadOpen(
     next,
-    grokOgHeadTags({ host, appName, site, documentTitle, cwd }).join(""),
+    grokOgHeadTags({ host, appName, site, documentTitle, cwd })
+      .filter((tag) => !pageKeys.has(shareMetaKey(tag)))
+      .join(""),
   );
 
   if (!next.includes("/grok-app-builder/extensions.js")) {

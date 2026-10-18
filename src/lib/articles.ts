@@ -4,6 +4,8 @@ export type Article = {
   slug: string;
   title: string;
   date: string;
+  /** Last substantive edit (YYYY-MM-DD); defaults to `date`. */
+  updated?: string;
   summary: string;
   bucket: ArticleBucket;
   body: string[];
