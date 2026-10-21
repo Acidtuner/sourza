@@ -8,10 +8,45 @@ export type Article = {
   updated?: string;
   summary: string;
   bucket: ArticleBucket;
+  /**
+   * Paragraphs. A string starting with "## " renders as an H2 subheading.
+   * Inline [text](url) renders as a link (http(s), site-relative "/..." or "#...").
+   * Plain strings render exactly as before.
+   */
   body: string[];
+  /**
+   * Hero + share-card image, a site path like `/images/articles/<slug>.jpg`
+   * (1200x630 JPG in public/images/articles/). Optional: without it the page
+   * shows no hero and the share card falls back to the site-wide /og.jpg.
+   */
+  image?: string;
+  /** Plain description of `image` for screen readers. Set whenever `image` is set. */
+  imageAlt?: string;
 };
 
 export const ARTICLES: Article[] = [
+  {
+    slug: "mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq",
+    title: "Mill test certificates: ask for EN 10204 3.1 in the RFQ",
+    date: "2026-10-21",
+    summary:
+      "An RFQ that says \"MTC required\" doesn't say which certificate, so name EN 10204 3.1 and ask for the heat number to trace to each part.",
+    bucket: "sourcing",
+    image: "/images/articles/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq.jpg",
+    imageAlt: "Machined steel shaft and flange beside a blank inspection certificate on a workshop bench",
+    body: [
+      "Name the certificate in the RFQ: EN 10204 3.1, with the heat number traceable to each part. \"MTC required\" alone can be met four different ways. EN 10204 is the European standard for inspection documents on metal products, and a mill test certificate (MTC) is usually issued to one of its four types.",
+      "## EN 10204 2.1 vs 2.2 vs 3.1 vs 3.2: what's the difference?",
+      "A 2.1 declares the material meets the order, with no test results. A 2.2 adds results, but from the mill's routine testing, not necessarily on the material you're getting. A 3.1 gives results from tests on the material actually supplied, validated by an inspection representative independent of production. A 3.2 is that, plus your inspector or one named by regulation (EN 10204:2004, clauses 3 and 4).",
+      "## Why does \"MTC required\" cause problems at dispatch?",
+      "So a plant can meet \"MTC required\" with a 2.2, honestly, and it still isn't what your end customer's QA expected. That usually comes out at dispatch, or when the parts reach site. Then it's a document chase across two time zones, or a re-order. A 3.2 is a bigger ask again. It needs an outside inspector involved, so it has to be agreed before the material is bought, and quoted for.",
+      "## How does traceability work when the plant isn't the mill?",
+      "The plant usually isn't the mill. It buys bar from a mill or a stockist and machines it. The standard covers that: whoever passes the material on hands over the original certificate or a copy, unaltered, with a way to trace product to paper (clause 6). In practice that's the heat number. It should be on the certificate, on the bar, and on the plant's route card after cutting. Ask how the plant keeps that link once the bar is in pieces. A plant with a working system can walk you through it quickly. If it heat-treats, ask for that record too.",
+      "## What should the RFQ line say?",
+      "One line in the RFQ settles most of it: \"Mill test certificate to EN 10204 3.1 from the mill, heat number traceable to each part, copy with the dispatch documents.\" Then every plant quotes the same paper. The plant stays the exporter and issues its own documents. Your job is to say which ones you need before the PO, not after.",
+      "In short: an RFQ that says \"MTC required\" doesn't say which certificate, so name EN 10204 3.1 and ask for the heat number to trace to each part. A 3.2 needs an outside inspector, so agree it before the material is bought.",
+    ],
+  },
   {
     slug: "under-cif-war-risk-is-yours-to-ask-for",
     title: "Under CIF, war risk is yours to ask for",

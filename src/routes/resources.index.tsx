@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { BUCKETS, listArticles, type ArticleBucket } from "@/lib/articles";
-import { canonicalLink, pageMeta } from "@/lib/seo";
+import { ARTICLE_IMAGE_HEIGHT, ARTICLE_IMAGE_WIDTH, canonicalLink, pageMeta } from "@/lib/seo";
 
 const TITLE = "Sourza — Resources";
 const DESCRIPTION =
@@ -60,27 +60,55 @@ function ResourcesIndex() {
 
         <ul className="mt-10 space-y-8">
           {articles.map((article) => (
-            <li key={article.slug} className="border-b border-line pb-8">
-              <p className="text-xs tracking-widest text-soft uppercase">
-                {article.date} · {labelFor(article.bucket)}
-              </p>
-              <h2 className="mt-2 font-display text-2xl text-ink-deep md:text-3xl">
+            <li
+              key={article.slug}
+              className={`border-b border-line pb-8 ${
+                article.image
+                  ? "flex flex-col sm:grid sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-6"
+                  : ""
+              }`}
+            >
+              <div>
+                <p className="text-xs tracking-widest text-soft uppercase">
+                  {article.date} · {labelFor(article.bucket)}
+                </p>
+                <h2 className="mt-2 font-display text-2xl text-ink-deep md:text-3xl">
+                  <Link
+                    to="/resources/$slug"
+                    params={{ slug: article.slug }}
+                    className="hover:text-gold-deep"
+                  >
+                    {article.title}
+                  </Link>
+                </h2>
+                <p className="mt-3 leading-relaxed text-muted">{article.summary}</p>
                 <Link
                   to="/resources/$slug"
                   params={{ slug: article.slug }}
-                  className="hover:text-gold-deep"
+                  className="mt-3 inline-flex text-sm text-gold-deep"
                 >
-                  {article.title}
+                  Read more
                 </Link>
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted">{article.summary}</p>
-              <Link
-                to="/resources/$slug"
-                params={{ slug: article.slug }}
-                className="mt-3 inline-flex text-sm text-gold-deep"
-              >
-                Read more
-              </Link>
+              </div>
+              {article.image && (
+                <Link
+                  to="/resources/$slug"
+                  params={{ slug: article.slug }}
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="order-first mb-5 block sm:order-none sm:mt-1 sm:mb-0"
+                >
+                  <img
+                    src={article.image}
+                    alt=""
+                    width={ARTICLE_IMAGE_WIDTH}
+                    height={ARTICLE_IMAGE_HEIGHT}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[40/21] h-auto w-full rounded-lg border border-line object-cover"
+                  />
+                </Link>
+              )}
             </li>
           ))}
         </ul>

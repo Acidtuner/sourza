@@ -16,6 +16,21 @@ export const PLANTS_DESCRIPTION =
   "Factories in India can register with Sourza to quote machined parts for buyers in the UAE and the Gulf. You stay the exporter.";
 
 const OG_IMAGE = `${SITE_URL}/og.jpg`;
+const OG_IMAGE_WIDTH = 1200;
+const OG_IMAGE_HEIGHT = 630;
+
+/** Article images in public/images/articles/ are 1200x630 (1.91:1). */
+export const ARTICLE_IMAGE_WIDTH = 1200;
+export const ARTICLE_IMAGE_HEIGHT = 630;
+
+/** Absolute share image for an article: its own image, else the site-wide card. */
+export function articleImage(article: Pick<Article, "image">) {
+  if (!article.image) {
+    return { url: OG_IMAGE, width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT };
+  }
+  const path = article.image.startsWith("/") ? article.image : `/${article.image}`;
+  return { url: `${SITE_URL}${path}`, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT };
+}
 
 /**
  * Share tags marked `data-page-meta` are kept by the platform head injector
@@ -54,6 +69,11 @@ export function articleMeta(
   path: string,
   published: string,
   modified: string = published,
+  image: { url: string; width: number; height: number; alt?: string } = {
+    url: OG_IMAGE,
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+  },
 ) {
   const url = canonicalUrl(path);
   return [
@@ -63,13 +83,19 @@ export function articleMeta(
     { property: "og:description", content: description, ...PAGE },
     { property: "og:type", content: "article", ...PAGE },
     { property: "og:url", content: url, ...PAGE },
-    { property: "og:image", content: OG_IMAGE },
+    // Marked data-page-meta so the head injector keeps this page's image
+    // instead of swapping in the site-wide card (and drops its own copies).
+    { property: "og:image", content: image.url, ...PAGE },
+    { property: "og:image:width", content: String(image.width), ...PAGE },
+    { property: "og:image:height", content: String(image.height), ...PAGE },
+    ...(image.alt ? [{ property: "og:image:alt", content: image.alt }] : []),
     { property: "article:published_time", content: published },
     { property: "article:modified_time", content: modified },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title, ...PAGE },
     { name: "twitter:description", content: description, ...PAGE },
-    { name: "twitter:image", content: OG_IMAGE },
+    { name: "twitter:image", content: image.url, ...PAGE },
+    ...(image.alt ? [{ name: "twitter:image:alt", content: image.alt }] : []),
   ];
 }
 
@@ -88,6 +114,7 @@ export function organizationJsonLd() {
 /** schema.org Article JSON-LD for one /resources/<slug> page. */
 export function articleJsonLd(article: Article) {
   const url = canonicalUrl(`/resources/${article.slug}`);
+  const image = articleImage(article);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -97,7 +124,7 @@ export function articleJsonLd(article: Article) {
     dateModified: article.updated ?? article.date,
     author: ORG,
     publisher: ORG,
-    image: OG_IMAGE,
+    image: { "@type": "ImageObject", url: image.url, width: image.width, height: image.height },
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };

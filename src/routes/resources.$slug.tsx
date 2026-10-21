@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArticleBody } from "@/components/article-body";
 import { SiteHeader } from "@/components/site-header";
 import {
   getAdjacentArticles,
@@ -7,7 +8,15 @@ import {
   readingTime,
   type ArticleBucket,
 } from "@/lib/articles";
-import { articleJsonLd, articleMeta, canonicalLink, jsonLdScript } from "@/lib/seo";
+import {
+  ARTICLE_IMAGE_HEIGHT,
+  ARTICLE_IMAGE_WIDTH,
+  articleImage,
+  articleJsonLd,
+  articleMeta,
+  canonicalLink,
+  jsonLdScript,
+} from "@/lib/seo";
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: ({ params }) => {
@@ -32,6 +41,7 @@ export const Route = createFileRoute("/resources/$slug")({
         path,
         article.date,
         article.updated ?? article.date,
+        { ...articleImage(article), alt: article.image ? article.imageAlt : undefined },
       ),
       links: [canonicalLink(path)],
       scripts: [jsonLdScript(articleJsonLd(article))],
@@ -65,7 +75,7 @@ function ArticlePage() {
       <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
       <main className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <article>
+          <article className="min-w-0">
             <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
               <Link to="/resources" className="hover:text-ink">
                 Resources
@@ -82,11 +92,21 @@ function ArticlePage() {
                 Copy link
               </button>
             </div>
+            {article.image && (
+              <img
+                src={article.image}
+                alt={article.imageAlt ?? ""}
+                width={ARTICLE_IMAGE_WIDTH}
+                height={ARTICLE_IMAGE_HEIGHT}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="mt-8 aspect-[40/21] h-auto w-full rounded-lg border border-line object-cover"
+              />
+            )}
             <p className="mt-6 text-lg leading-relaxed text-muted">{article.summary}</p>
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-ink">
-              {article.body.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+            <div className="mt-8 space-y-6 text-lg leading-relaxed break-words text-ink">
+              <ArticleBody blocks={article.body} />
             </div>
 
             <div className="mt-12 border-t border-line pt-8">
