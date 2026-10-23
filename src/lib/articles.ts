@@ -26,6 +26,29 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "rfq-for-machined-parts-what-to-put-in-it-before-you-send",
+    title: "RFQ for machined parts: what to include before you send",
+    date: "2026-10-23",
+    summary:
+      "An RFQ for machined parts should name what's checked on arrival: tolerances, finish, grade, heat treatment, documents, packing and the Incoterm.",
+    bucket: "sourcing",
+    image: "/images/articles/rfq-for-machined-parts-what-to-put-in-it-before-you-send.jpg",
+    imageAlt: "Machined steel shaft and caliper resting on an engineering drawing on a workshop bench",
+    body: [
+      "An RFQ for machined parts should name what's checked on arrival: tolerances, finish, grade, heat treatment, documents, packing and the Incoterm. Leave one out and each plant fills the gap with its own assumption. The quotes come back. They just don't answer the same question.",
+      "## What goes on the technical side of the RFQ?",
+      "Start with the drawing and its revision letter. Then tolerances. \"As per standard\" means different things in different shops, so name the general tolerance you mean, for example ISO 2768-m, and mark the two or three features that actually matter, with a datum where position or runout counts. Give surface finish as an Ra value on the faces that seal, slide or mate. Give material as a grade under a named standard, not \"SS\" or \"alloy steel\", and say whether an equivalent grade needs your written approval. Give heat treatment as condition and hardness range, and say whether it comes before or after finish machining. That changes the process route, not just the price.",
+      "## Which documents and packing should the RFQ name?",
+      "Documents cost the plant time and money, so they belong in the RFQ, not the PO. Name the certificate: a mill test certificate to EN 10204 3.1, heat number traceable to each part ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq) covers why). Say what dimensional report you want: how many pieces, measured values on which features. Say if there's third-party inspection. Then packing: VCI wrap or oil, crate type, ISPM 15 treated wood ([IPPC standard](https://www.ippc.int/en/core-activities/standards-setting/ispms/)) for any wooden packaging, maximum weight per crate, part number on each crate. Carbon steel can rust on a humid sea leg. If you want protection, write it down.",
+      "## What commercial terms should the RFQ state?",
+      "State the quantity and any price break you want quoted, say 200 pieces with a price at 500. State the Incoterm with its place and version, for example CIF Jebel Ali, Incoterms 2020, because it decides who books the freight and the insurance. State payment terms, for example 30/70 TT. Give a required-at-site date, not \"ASAP\", and name one person for technical questions. If you can't decide something yet, say so. \"Finish on non-functional faces: plant's standard, please state\" turns a guess into a stated assumption you can compare.",
+      "## Why does a longer RFQ get a firm price sooner?",
+      "A careful plant quotes what it can prove at inspection. Faced with a gap, its estimator either prices in a contingency or sends a question and waits. Each question is a round of email across a time difference. If six points are open and each takes a working day to answer, that's more than a week before a firm price exists. A complete RFQ can be priced in one sitting. And it still doesn't tell the plant how to machine the part. That stays the plant's call.",
+      "In short: An RFQ for machined parts should name what's checked on arrival: tolerances, finish, grade, heat treatment, documents, packing and the Incoterm. Where you can't decide yet, ask the plant to state its assumption.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq",
     title: "Mill test certificates: ask for EN 10204 3.1 in the RFQ",
     date: "2026-10-21",
