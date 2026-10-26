@@ -32,6 +32,8 @@ export const ARTICLES: Article[] = [
     summary:
       "Under the India–UAE CEPA, the plant applies for the CEPA certificate of origin on DGFT's eCoO 2.0 system, with a current IEC and a Class III DSC.",
     bucket: "policy",
+    image: "/images/articles/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step.jpg",
+    imageAlt: "Machined steel flange resting on a stack of export documents beside a stamp and a laptop on an office desk",
     body: [
       "Under the India–UAE CEPA, the plant, as exporter, applies for the CEPA certificate of origin online, through DGFT's eCoO 2.0 system on the [government trade portal](https://www.trade.gov.in/). The UAE importer then presents it at clearance to claim the preferential rate. The certificate only holds if the part meets the rule of origin for its HS code, and the plant's own records show it. Rules change; confirm with your advisor.",
       "## What does a plant need before the first application?",
@@ -98,6 +100,8 @@ export const ARTICLES: Article[] = [
     summary:
       "A CIF quote from an Indian plant only has to carry Institute Cargo Clauses (C) cover, so Gulf buyers need to ask for war risk by name.",
     bucket: "sourcing",
+    image: "/images/articles/under-cif-war-risk-is-yours-to-ask-for.jpg",
+    imageAlt: "Container ship at anchor off a Gulf port at dusk",
     body: [
       "Many Gulf POs for machined parts say CIF Jebel Ali. It feels safe. The plant books the freight and buys the insurance. But under Incoterms 2020, risk passes to you once the goods are on board in India.",
       "Under CIF, the plant only has to buy minimum cover: Institute Cargo Clauses (C). That's the narrowest standard cover. War and strikes are not in it. They generally have to be requested. If nobody asks, nobody adds them.",
@@ -113,6 +117,8 @@ export const ARTICLES: Article[] = [
     summary:
       "India's power-station coal shortage can turn into a slipped dispatch date, so ask the plant how it's powered before you rely on the schedule.",
     bucket: "macro",
+    image: "/images/articles/what-a-power-cut-in-india-does-to-your-dispatch-date.jpg",
+    imageAlt: "CNC machines on a dimly lit machining shop floor",
     body: [
       "On 8 October, 87 of the 191 coal-fired power stations tracked by the Central Electricity Authority held less than 25% of the coal stock they're meant to hold. That's nearly half (CEA daily coal stock report, 8 Oct 2026).",
       "None of that is in a quote you got last month. It can show up later, as a dispatch date that quietly moves or a revised price on heat-intensive steps.",
@@ -127,6 +133,8 @@ export const ARTICLES: Article[] = [
     summary:
       "RoDTEP is only notified to 31 December 2026, so ask any Indian plant quoting for January dispatch whether its price assumes the remission.",
     bucket: "policy",
+    image: "/images/articles/rodtep-ends-31-december-check-your-january-quotes.jpg",
+    imageAlt: "Export documents, a desk calendar and machined parts on a desk",
     body: [
       "India's RoDTEP scheme refunds some of the embedded taxes and duties on exported goods. DGFT Notification 41/2026-27, dated 30 September 2026, extends it to 31 December 2026 at unchanged rates and value caps. PIB announced it on 2 October (https://www.pib.gov.in/PressReleasePage.aspx?PRID=2318052). Nothing has been notified beyond that date yet. Last checked: 16 Oct 2026.",
       "That matters if your parts ship in January. Some plants may build the expected remission into their price. Others may not. Either is fine. Not knowing which one you're looking at is the problem.",
