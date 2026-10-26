@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step",
+    title: "CEPA certificate of origin for UAE exports: a step-by-step guide for Indian plants",
+    date: "2026-10-26",
+    summary:
+      "Under the India–UAE CEPA, the plant applies for the CEPA certificate of origin on DGFT's eCoO 2.0 system, with a current IEC and a Class III DSC.",
+    bucket: "policy",
+    body: [
+      "Under the India–UAE CEPA, the plant, as exporter, applies for the CEPA certificate of origin online, through DGFT's eCoO 2.0 system on the [government trade portal](https://www.trade.gov.in/). The UAE importer then presents it at clearance to claim the preferential rate. The certificate only holds if the part meets the rule of origin for its HS code, and the plant's own records show it. Rules change; confirm with your advisor.",
+      "## What does a plant need before the first application?",
+      "Three things. An Importer Exporter Code (IEC) with a current email and mobile number in the DGFT system, because the registration password goes to the IEC holder and branch details fill in from the IEC record. A Class III digital signature certificate (DSC), the same one used for other DGFT applications ([DGFT Trade Notice 05/2022-23](https://content.dgft.gov.in/Website/dgftprod/b603f8eb-91c3-4bba-b37e-ad33d6e7f855/Trade%20Notice%2005%20-%20India%20UAE%20CEPA%20go-live.pdf)). And a registration on eCoO 2.0. Since 17 January 2025, CEPA certificates of origin are filed there, and the old platform at coo.dgft.gov.in takes no new applications under the preferential scheme ([DGFT notice](https://coo.dgft.gov.in/), [Trade Notice 24/2024-25](https://content.dgft.gov.in/Website/dgftprod/6078e80d-9233-4092-a92b-838e0870ef8e/Rescheduling%20of%20Launch%20Date%20for%20Preferential%20eCoO%202.0%20System-reg..pdf)).",
+      "## How does a plant check that the part qualifies?",
+      "Start with the HS code at six digits, [agreed with the buyer before the PO](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send). The agreement gives two routes: wholly obtained in India, or meeting the product-specific rule for that HS code (Article 3.2, [CEPA text](https://www.eicindia.gov.in/WebApp1/resources/PDF/India-UAE%20Comprehensive%20Economic%20Partnership%20Agreement.pdf)). A part machined from imported bar is not wholly obtained. So the product-specific rule decides, and depending on the code it may ask for a change in tariff classification, a minimum value content, or both. Work it out per part, not per plant. Two parts off the same line can sit under different rules.",
+      "## What goes into the application?",
+      "On the platform, the plant chooses the preferential scheme, the India–UAE CEPA, a normal certificate and the issuing agency. Then it enters exporter details, the product with its HS code, the raw materials with their country of origin, and the description of goods. The commercial invoice is a mandatory upload ([Noida SEZ procedure](https://www.nsez.gov.in/Resources/Trade/Documents%20for%20COO%20issuance%20UAE.pdf)). It signs with the DSC and submits. Screens on eCoO 2.0 may differ from older guides, so follow the help manual on the portal. Behind the form sits the cost breakup per consignment: inputs, their origin, their value. The agreement asks for supporting records to be kept for five years (Article 3.19).",
+      "## What should match across the shipping documents?",
+      "The description, quantity and HS code should read the same on the invoice, the packing list, the shipping bill and the certificate. \"Machined components\" on one and \"shafts\" on another is defensible each time and a query when read together. Send the buyer a copy of the certificate with the invoice and packing list before the vessel sails, so their broker can check the UAE side early. The plant knows its own costing best. The point is only that the buyer sees the same story on every page.",
+      "In short: Under the India–UAE CEPA, the plant applies for the CEPA certificate of origin on DGFT's eCoO 2.0 system, with a current IEC and a Class III DSC. Check the product-specific rule for the HS code first, and keep the cost records for five years.",
+      "Make machined parts for export to the Gulf? Tell us about your plant and how you work. [Tell us about your plant](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "rfq-for-machined-parts-what-to-put-in-it-before-you-send",
     title: "RFQ for machined parts: what to include before you send",
     date: "2026-10-23",
