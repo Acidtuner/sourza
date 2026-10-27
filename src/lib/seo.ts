@@ -7,9 +7,9 @@ import type { Article } from "@/lib/articles";
  */
 export const SITE_URL = "https://sourza.com";
 
-export const HOME_TITLE = "Sourza — Find the plant for a specified part";
+export const HOME_TITLE = "AI sourcing for machined parts from India | Sourza";
 export const HOME_DESCRIPTION =
-  "Sourza reads a specified part, turns it into a brief, and lines up quotes from Indian plants for buyers in the UAE and the Gulf. Machined parts first.";
+  "Sourza's AI reads your drawing, writes a clear brief and lines up quotes from Indian plants side by side, so Gulf buyers can choose with confidence.";
 
 export const PLANTS_TITLE = "Sourza — Register an Indian factory";
 export const PLANTS_DESCRIPTION =
@@ -136,5 +136,18 @@ export function jsonLdScript(data: unknown) {
     type: "application/ld+json",
     // Escape `<` so article text can never close the script element.
     children: JSON.stringify(data).replace(/</g, "\\u003c"),
+  };
+}
+
+/** schema.org FAQPage JSON-LD built from the home page FAQ. */
+export function faqPageJsonLd(items: readonly { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 }

@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const ROLES = ["Buyer", "Plant", "Partner"] as const;
+const ROLES = ["Buyer", "Plant", "Investor", "Partner"] as const;
 
 type Introduction = {
   name: string;

@@ -13,59 +13,51 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const LENSES = [
-  {
-    id: "read",
-    kicker: "01",
-    title: "Reads the spec",
-    body: "The model turns a messy spec into a brief a plant can quote against. Mixed units, a missing tolerance, a note in the margin. It does this before anyone is asked.",
-    icon: FileSearch,
-  },
-  {
-    id: "match",
-    kicker: "02",
-    title: "Finds who can make it",
-    body: "The model looks at process, material, and proof of what a factory can actually run. Not a public list of everything they say they make.",
-    icon: Factory,
-  },
-  {
-    id: "compare",
-    kicker: "03",
-    title: "Puts the quotes side by side",
-    body: "The model reads every offer against the same brief. Gaps, exceptions, and lead time stay visible, so you compare the work, not the sales story.",
-    icon: Columns2,
-  },
-  {
-    id: "remember",
-    kicker: "04",
-    title: "Remembers the last job",
-    body: "The model keeps what fitted, what was refused, and why. The next match starts from that, not from a blank search.",
-    icon: History,
-  },
+const STEPS = [
+  { n: "01", title: "It reads the drawing.", text: "You send a drawing as a PDF or a high-resolution JPG or PNG, along with any specification or a plain description. The AI picks out the material, the dimensions, the standards and the notes in the margin, even when the units are mixed.", icon: FileSearch },
+  { n: "02", title: "It flags the gaps before anyone quotes.", text: "If a tolerance, a finish or a material grade is missing, the AI spots it and asks you first. That way no plant has to guess, and every quote prices the same part.", icon: Sparkles },
+  { n: "03", title: "It matches plants by what they can actually make.", text: "The AI looks at each plant's capabilities, meaning its machines and processes, and invites the few that fit. You can see why each one was chosen. Over time, we plan to add each plant's delivery record and part quality to the matching too.", icon: Factory },
+  { n: "04", title: "It lines the quotes up side by side.", text: "Quotes arrive in different formats. Sourza puts them on one page against the brief, so you can see the price, the lead time and where an offer falls short.", icon: Columns2 },
+  { n: "05", title: "It remembers the last job.", text: "What fitted, what failed and why are all kept on file. Your next enquiry starts from what you already know, not from a blank page.", icon: History },
 ] as const;
 
-type LensId = (typeof LENSES)[number]["id"];
+export const FAQ = [
+  { q: "What do I need to send?", a: "A drawing as a PDF or a high-resolution JPG or PNG is ideal, together with any specification or a clear description. Include the material, quantity, any standards and the delivery location, and the AI will flag anything that's missing before plants are asked to quote." },
+  { q: "How many quotes will I get?", a: "Usually two or three, from plants that can actually make the part. We invite a small, suitable short list rather than sending your drawing to everyone." },
+  { q: "Who do I pay?", a: "You pay the plant directly, not Sourza. Default terms are 30% advance and 70% balance by telegraphic transfer (TT), agreed between the buyer and the plant." },
+  { q: "What parts do you cover?", a: "Any metal part made to a drawing. We cover all metal materials and every machining and fabrication process, with no size limits. Machined parts are where we started, and there is a minimum order value of USD 5,000." },
+  { q: "What does it cost?", a: "Sourza is free for buyers. Sourza earns a 5% commission on each completed sale, paid by the plant." },
+  { q: "I run a plant. How do I join?", a: "Fill in the form below and choose \"Plant\". You can also register on our plants page. Someone from the founding team will get in touch to learn about your machines, processes and export experience as part of qualifying your plant. Joining is free, and you pay a 5% commission only on completed sales." },
+] as const;
 
-const STEPS = [
-  {
-    n: "01",
-    title: "The requirement",
-    text: "You describe the part, the standard, and the constraint. There is no catalogue to browse. It starts from what you need made.",
-  },
-  {
-    n: "02",
-    title: "A short list, with reasons",
-    text: "A few plants are invited. You can see why each one was considered, and where an offer misses the brief.",
-  },
-  {
-    n: "03",
-    title: "A written decision",
-    text: "Who was chosen, or why the job stopped, stays on the file. The plant still makes it and ships it.",
-  },
-];
+const GUIDES = [
+  ["/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send", "What to put in an RFQ for machined parts before you send it"],
+  ["/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq", "Mill test certificates: ask for EN 10204 3.1 in the RFQ"],
+  ["/resources/under-cif-war-risk-is-yours-to-ask-for", "Under CIF, war risk cover is yours to ask for"],
+  ["/resources/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step", "CEPA certificate of origin for UAE exports: a step-by-step guide"],
+] as const;
+
+const btn = "inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream";
+const btn2 = "inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-cream px-5 py-3 text-sm";
+
+function Audience({ id, eyebrow, title, lead, intro, points, cta }: { id: string; eyebrow: string; title: string; lead: string; intro?: string; points: [string, string][]; cta: [string, string] }) {
+  return (
+    <div id={id} className="scroll-mt-24 rounded-card border border-line bg-cream p-7">
+      <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">{eyebrow}</p>
+      <h3 className="mt-3 font-display text-3xl leading-tight text-ink-deep">{title}</h3>
+      <p className="mt-3 text-lg text-ink">{lead}</p>
+      {intro ? <p className="mt-3 leading-relaxed text-muted">{intro}</p> : null}
+      <ul className="mt-5 space-y-3">
+        {points.map(([t, x]) => (
+          <li key={t} className="leading-relaxed text-muted"><strong className="text-ink">{t}</strong> {x}</li>
+        ))}
+      </ul>
+      <a href={cta[0]} className={btn + " mt-6"}>{cta[1]}<ArrowRight className="size-4" /></a>
+    </div>
+  );
+}
 
 export function Brochure() {
-  const [lens, setLens] = useState<LensId>("read");
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -76,8 +68,6 @@ export function Brochure() {
     role: "Buyer",
     note: "",
   });
-
-  const active = LENSES.find((item) => item.id === lens) ?? LENSES[0];
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -114,243 +104,143 @@ export function Brochure() {
 
       <main id="top">
         <section className="relative overflow-hidden">
-          <img
-            src="/banner.jpg"
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_40%]"
-          />
+          <img src="/banner.jpg" alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_40%]" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper/95 via-paper/88 to-paper/92 md:bg-gradient-to-r md:from-paper/96 md:via-paper/88 md:to-paper/72" />
-          <div className="relative mx-auto grid max-w-6xl items-end gap-12 px-5 pt-14 pb-16 md:grid-cols-12 md:px-8 md:pt-20 md:pb-24">
-          <div className="md:col-span-7">
-            <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">
-              AI for specified parts
-            </p>
-            <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
-              You know the <span className="text-gold-deep">part</span>. Finding the plant is the hard bit.
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Sourza reads the requirement, turns it into a brief a plant can quote, and lines
-              the offers up against that brief. The same gaps, every time. For buyers in
-              the Gulf who want a second source they can stand behind.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#intelligence"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream"
-              >
-                How it works
-                <ArrowRight className="size-4" />
-              </a>
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new Event("sourza-desk-open"))}
-                className="inline-flex min-h-11 items-center rounded-full border border-line bg-cream px-5 py-3 text-sm"
-              >
-                Ask a question
-              </button>
-            </div>
-          </div>
-
-          <aside className="md:col-span-5">
-            <div className="rounded-3xl border border-line bg-cream p-5 shadow-lg">
-              <div className="flex items-center justify-between border-b border-line pb-3">
-                <p className="text-xs tracking-widest text-soft uppercase">What it flags</p>
-                <Sparkles className="size-4 text-gold" aria-hidden="true" />
-              </div>
-              <p className="mt-4 font-display text-2xl leading-snug text-ink-deep">
-                A shaft. Diameter stated. Tolerance missing.
+          <div className="relative mx-auto max-w-6xl px-5 pt-14 pb-16 md:px-8 md:pt-20 md:pb-24">
+            <div className="max-w-3xl">
+              <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">AI sourcing for specified parts</p>
+              <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
+                AI that matches your machined parts with the right Indian plant
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                Sourza's AI reads your drawing, spots the gaps, writes a clear brief that a plant can quote against, and lines the quotes up side by side. Gulf buyers get to a decision faster, and Indian plants get enquiries that are ready to price.
               </p>
-              <ul className="mt-5 space-y-3 text-sm">
-                <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">Plant A</span>
-                  <span className="text-right">Can mill it. No tolerance on the file, so no price.</span>
-                </li>
-                <li className="flex items-start justify-between gap-4 border-b border-line pb-3">
-                  <span className="text-muted">Plant B</span>
-                  <span className="text-right">Can turn and grind it. Asks for the tolerance before quoting.</span>
-                </li>
-                <li className="flex items-start justify-between gap-4">
-                  <span className="text-muted">What stays visible</span>
-                  <span className="text-right">The gap, not a guess.</span>
-                </li>
-              </ul>
-            </div>
-          </aside>
-          </div>
-        </section>
-
-        <section className="border-y border-line bg-ink-deep text-cream">
-          <div className="mx-auto grid max-w-6xl gap-8 px-5 py-8 sm:grid-cols-3 md:px-8">
-            {[
-              ["Plants", "Factories we are qualifying in India"],
-              ["Buyers", "Teams in the Gulf who already know the part"],
-              ["Our role", "The plant stays the exporter"],
-            ].map(([label, value]) => (
-              <div key={label}>
-                <p className="text-xs tracking-widest text-gold uppercase">{label}</p>
-                <p className="mt-2 font-display text-2xl">{value}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a href="/#introduction" className={btn}>I'm a buyer<ArrowRight className="size-4" /></a>
+                <a href="/#introduction" className={btn2}>I'm a plant</a>
+                <a href="/#introduction" className={btn2}>Investors</a>
               </div>
-            ))}
+            </div>
           </div>
         </section>
 
-        <section id="intelligence" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <section id="intelligence" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
-            <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-              The model
-            </p>
-            <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-              It reads the spec. Then it keeps the decision.
-            </h2>
+            <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">How the AI works</p>
+            <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">From a messy drawing to quotes you can compare</h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              This is not a supplier directory, and it is not a freight desk. The model
-              reads a messy requirement, finds the plants that can run it, lines the quotes
-              up, and keeps what fitted or failed last time.
+              Sourza isn't a supplier directory or a freight desk. It's an AI platform that does the slow, careful part of sourcing: reading the requirement properly, finding the plants that can make it, and keeping a record of what worked. Here's what happens to a job.
             </p>
           </div>
+          <ol className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+            {STEPS.map((step) => (
+              <li key={step.n} className="bg-cream p-7">
+                <span className="flex items-center justify-between"><span className="font-display text-3xl text-gold">{step.n}</span><step.icon className="size-5 text-gold-deep" aria-hidden="true" /></span>
+                <h3 className="mt-4 text-lg">{step.title}</h3>
+                <p className="mt-2 leading-relaxed text-muted">{step.text}</p>
+              </li>
+            ))}
+          </ol>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-12">
-            <div className="flex flex-col gap-2 lg:col-span-5" role="tablist" aria-label="Model lenses">
-              {LENSES.map((item) => {
-                const selected = item.id === lens;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={selected}
-                    onClick={() => setLens(item.id)}
-                    className={
-                      "rounded-2xl border px-4 py-4 text-left transition-colors " +
-                      (selected
-                        ? "border-ink bg-ink text-cream"
-                        : "border-line bg-cream text-ink hover:border-ink")
-                    }
-                  >
-                    <span className="flex items-center justify-between gap-3">
-                      <span className={selected ? "text-gold" : "text-gold-deep"}>{item.kicker}</span>
-                      <item.icon className="size-4 shrink-0" aria-hidden="true" />
-                    </span>
-                    <span className="mt-1 block font-display text-2xl">{item.title}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <article
-              className="flex flex-col justify-between rounded-card border border-line bg-cream p-8 lg:col-span-7"
-              role="tabpanel"
-            >
-              <div>
-                <active.icon className="size-6 text-gold-deep" aria-hidden="true" />
-                <h3 className="mt-6 font-display text-4xl leading-tight text-ink-deep">
-                  {active.title}
-                </h3>
-                <p className="mt-4 max-w-md text-lg leading-relaxed text-muted">{active.body}</p>
-              </div>
-            </article>
+          <div className="mt-12 rounded-3xl border border-line bg-cream p-6 shadow-lg md:max-w-3xl">
+            <h3 className="font-display text-3xl text-ink-deep">See it on a real example</h3>
+            <p className="mt-2 text-sm text-muted italic">Here's what a typical drawing looks like when it reaches us, and how two plants respond to it.</p>
+            <p className="mt-4"><strong>The part:</strong> a shaft. The diameter is stated, but the tolerance is missing.</p>
+            <ul className="mt-4 space-y-2 text-muted">
+              <li><strong className="text-ink">Plant A</strong> can mill it. With no tolerance on the drawing, it can't give a reliable price.</li>
+              <li><strong className="text-ink">Plant B</strong> can turn and grind it, and asks for the tolerance before quoting.</li>
+            </ul>
+            <p className="mt-4"><strong>What Sourza shows you:</strong> the gap itself, not a guess. Once you add the tolerance, both plants quote the same part, and the comparison means something.</p>
           </div>
         </section>
 
-        <section id="method" className="bg-paper-2">
+        <section id="audiences" className="bg-paper-2">
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-            <div className="flex items-end justify-between gap-6">
-              <div className="max-w-xl">
-                <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-                  For a buyer
-                </p>
-                <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                  From a requirement to a decision you can compare.
-                </h2>
-              </div>
-              <GitCompare className="hidden size-8 text-gold md:block" aria-hidden="true" />
-            </div>
-            <ol className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-3">
-              {STEPS.map((step) => (
-                <li key={step.n} className="bg-cream p-7">
-                  <p className="font-display text-3xl text-gold">{step.n}</p>
-                  <h3 className="mt-4 text-lg">{step.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{step.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section id="corridor" className="relative overflow-hidden">
-          <img
-            src="/corridor.jpg"
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-paper/90" />
-          <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2 md:px-8 md:py-28">
-            <div>
-              <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-                Where we begin
-              </p>
-              <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                Indian plants. Gulf buyers first.
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                We start with machined parts, between verified Indian plants and buyers in
-                the UAE and the wider Gulf. The software can go further later. We are not
-                trying to cover every trade on day one.
-              </p>
-            </div>
-            <div className="grid gap-4">
-              {[
-                ["Buyers", "Traders and contractor buying teams who already import parts, and want another plant that can hit the drawing.", "/#introduction", "Tell us the part"],
-                ["Plants", "Factories that export, or are getting ready to. You get a clearer requirement and a written decision. The customer stays with you.", "/plants", "Register interest"],
-              ].map(([title, text, href, link]) => (
-                <div key={title} className="rounded-2xl border border-line bg-cream p-5">
-                  <h3 className="font-display text-2xl text-ink-deep">{title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{text}</p>
-                  {href ? (
-                    <a href={href} className="mt-3 inline-flex min-h-11 items-center text-sm text-gold-deep">
-                      {link}
-                    </a>
-                  ) : null}
-                </div>
-              ))}
+            <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Who Sourza is for</h2>
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              <Audience id="buyers" eyebrow="Buyers" title="For buyers in the Gulf" lead="Quotes you can actually compare, and a clear record of every decision."
+                intro="If you already import machined parts and want another plant that can hit your drawing, Sourza makes the search easier. You tell us the part, the standard and any constraints. There's no catalogue to browse, because the work starts from what you need made."
+                points={[["Quotes that price the same part.", "The AI fixes the gaps in the brief before it goes out, so differences in price reflect the plants, not the paperwork."], ["A short list, with reasons.", "A few suitable plants are invited, and you can see why each one was considered and where an offer misses the brief."], ["A written decision.", "Who you chose, or why a job stopped, stays on file for your team, your auditors and your next order."]]}
+                cta={["/#introduction", "Tell us about your part"]} />
+              <Audience id="plants" eyebrow="Plants" title="For plants in India" lead="Clear, quote-ready enquiries from Gulf buyers, and the customer stays yours."
+                intro="If your factory exports, or is getting ready to, Sourza sends you enquiries that have already been checked and completed. You spend your time quoting, not chasing missing details."
+                points={[["Quote-ready enquiries.", "Each brief has been read by the AI and checked for gaps, so you know exactly what you're pricing."], ["The customer stays with you.", "You deal directly with the buyer, and the relationship is yours to build."], ["You remain the exporter.", "You make the part, ship it and are paid for it under your own name."], ["You only pay when you sell.", "Joining is free. Sourza earns a 5% commission on each completed sale, so we only earn when you do."], ["A clear decision either way.", "If you aren't chosen, you'll know why, which helps with the next quote."]]}
+                cta={["/plants", "Register your plant"]} />
+              <Audience id="investors" eyebrow="Investors" title="For investors" lead="Bringing AI to cross-border sourcing of specified parts."
+                points={[["The problem.", "Buying specified parts across borders still runs on email, spreadsheets and guesswork. Drawings go out incomplete, quotes come back in different formats, and the reasoning behind a decision is rarely written down."], ["Our approach.", "An AI platform that reads requirements, matches them to plants by capability, and learns from every brief and quote that passes through it."], ["Where we're starting.", "Machined parts, between Indian plants and buyers in the UAE and the wider Gulf. It's a focused corridor where the need is clear, and the platform is built to extend to more parts and routes over time."]]}
+                cta={["/#introduction", "Talk to the founders"]} />
             </div>
           </div>
         </section>
 
-        <section id="principles" className="border-y border-line bg-ink text-cream">
+        <section className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
+          <div className="max-w-3xl">
+            <GitCompare className="size-7 text-gold" aria-hidden="true" />
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink-deep md:text-5xl">Why AI makes sourcing better over time</h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted">
+              Every job teaches the platform something. Each brief shows which details buyers tend to leave out, each quote shows which plants are a good fit for which parts, and each decision shows what made the difference. Sourza keeps all of it, so the next brief is clearer, the next short list is sharper, and the next comparison is faster. The more parts that go through the platform, the better its matching becomes for everyone who uses it.
+            </p>
+          </div>
+        </section>
+
+        <section id="principles" className="scroll-mt-24 border-y border-line bg-ink text-cream">
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="size-5 text-gold" aria-hidden="true" />
-              <p className="text-xs tracking-widest text-gold uppercase">What this is not</p>
-            </div>
-            <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">
-              A few things we will not do.
-            </h2>
-            <ul className="mt-10 grid gap-8 md:grid-cols-3">
+            <div className="flex items-center gap-3"><ShieldCheck className="size-5 text-gold" aria-hidden="true" /></div>
+            <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">How we work with you</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-cream/75">We've kept Sourza's role clear and simple on purpose, so everyone knows who is responsible for what.</p>
+            <ul className="mt-10 grid gap-8 md:grid-cols-2">
               {[
-                ["We don't own the goods", "The plant remains the exporter. Sourza does not take title."],
-                ["No shop window", "There is no public list of parts. Work starts when someone has a requirement."],
-                ["We don't ship it", "Freight and duty stay with the people on the shipment. We keep the decision on file."],
+                ["The plant stays the exporter.", "You deal directly with the people making your part, and they stay accountable for it from the drawing to the dock."],
+                ["Sourza doesn't take title to the goods.", "We never buy or resell your parts, so the contract stays between buyer and plant. Sourza is paid a commission by the plant on the completed sale."],
+                ["There's no public catalogue.", "Work only starts when someone has a real requirement, which keeps every enquiry specific and every plant's details private."],
+                ["Freight and duty stay with the shipment parties.", "The buyer and the plant agree delivery terms as they normally would, and we keep the decision on file."],
               ].map(([title, text]) => (
-                <li key={title}>
-                  <h3 className="font-display text-2xl">{title}</h3>
-                  <p className="mt-2 leading-relaxed text-cream/75">{text}</p>
-                </li>
+                <li key={title}><h3 className="font-display text-2xl">{title}</h3><p className="mt-2 leading-relaxed text-cream/75">{text}</p></li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section id="introduction" className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+        <section id="faq" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+          <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Frequently asked questions</h2>
+          <dl className="mt-10 grid gap-6 md:grid-cols-2">
+            {FAQ.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-line bg-cream p-6">
+                <dt className="font-display text-2xl text-ink-deep">{item.q}</dt>
+                <dd className="mt-2 leading-relaxed text-muted">
+                  {item.q.startsWith("I run a plant") ? (
+                    <>Fill in the form below and choose "Plant". You can also register on our <a href="/plants" className="text-gold-deep underline">plants page</a>. Someone from the founding team will get in touch to learn about your machines, processes and export experience as part of qualifying your plant. Joining is free, and you pay a 5% commission only on completed sales.</>
+                  ) : item.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section id="guides" className="bg-paper-2">
+          <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
+            <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Guides for buyers and plants</h2>
+            <p className="mt-4 text-lg text-muted">Practical guides from the Sourza team on getting sourcing right:</p>
+            <ul className="mt-8 grid gap-3">
+              {GUIDES.map(([href, label]) => (
+                <li key={href}><a href={href} className="text-lg text-gold-deep underline">{label}</a></li>
+              ))}
+            </ul>
+            <a href="/resources" className={btn2 + " mt-8"}>See all guides<ArrowRight className="size-4" /></a>
+          </div>
+        </section>
+
+        <section id="introduction" className="scroll-mt-24 mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-                Introduction
+                Request an introduction
               </p>
               <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                Tell us who you are.
+                Let's get started
               </h2>
               <p className="mt-4 leading-relaxed text-muted">
-                If you buy or make, leave a note. Someone from the founding team will write back.
+                Whether you buy parts, make them or would like to invest, leave us a note. Someone from the founding team will write back to you personally.
               </p>
             </div>
             <div className="md:col-span-7">
@@ -363,7 +253,7 @@ export function Brochure() {
                 </div>
               ) : (
                 <form onSubmit={submit} className="relative rounded-card border border-line bg-cream p-6 md:p-7">
-                  <div className="absolute top-0 left-0 -z-10 h-px w-px overflow-hidden" aria-hidden="true">
+                  <div className="sr-only" aria-hidden="true">
                     <label>
                       Fax
                       <input name="fax" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
@@ -404,7 +294,7 @@ export function Brochure() {
                   <fieldset className="mt-4">
                     <legend className="text-sm">You are</legend>
                     <div className="mt-2 flex flex-wrap gap-2">
-                      {["Buyer", "Plant"].map((role) => (
+                      {["Buyer", "Plant", "Investor"].map((role) => (
                         <label
                           key={role}
                           className={
@@ -428,13 +318,13 @@ export function Brochure() {
                     </div>
                   </fieldset>
                   <label className="mt-4 block text-sm">
-                    What should the desk know
+                    Tell us about your part or your plant
                     <textarea
                       rows={4}
                       value={form.note}
                       onChange={(event) => setForm({ ...form, note: event.target.value })}
                       className="mt-2 w-full resize-y rounded-xl border border-line bg-paper px-3 py-3 outline-none focus:border-ink"
-                      placeholder="What you buy, what you make, or what you want to know."
+                      placeholder="What you buy, what you make, or what you'd like to know."
                     />
                   </label>
                   {error ? <p className="mt-4 text-sm text-gold-deep">{error}</p> : null}
@@ -447,7 +337,7 @@ export function Brochure() {
                     <ArrowRight className="size-4" />
                   </button>
                   <p className="mt-3 text-sm leading-relaxed text-soft">
-                    By sending this, you agree we may keep these details as described in the{" "}
+                    By sending this, you agree we may keep these details as described in our{" "}
                     <a href="/privacy" className="text-gold-deep underline">
                       privacy notice
                     </a>
@@ -465,7 +355,7 @@ export function Brochure() {
           <div>
             <img src="/sourza-logo.svg" alt="" className="h-6 w-auto" />
             <p className="mt-3 text-lg leading-snug text-muted md:text-xl">
-              Indian plants. Gulf buyers. Specified parts.
+              AI sourcing for specified parts · Indian plants · Gulf buyers
             </p>
           </div>
           <a href="/privacy" className="text-sm text-muted hover:text-ink">

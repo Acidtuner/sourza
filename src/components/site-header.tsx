@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { href: "/#intelligence", label: "How it works" },
-  { href: "/#method", label: "Buyers" },
-  { href: "/#corridor", label: "Where" },
-  { href: "/#principles", label: "Limits" },
+  { href: "/#intelligence", label: "How the AI works" },
+  { href: "/#buyers", label: "Buyers" },
+  { href: "/#plants", label: "Plants" },
+  { href: "/#investors", label: "Investors" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
-  { href: "/plants", label: "Plants" },
 ];
 
 export function SiteHeader({ action }: { action: { href: string; label: string } }) {

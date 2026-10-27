@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Brochure } from "@/components/brochure";
+import { Brochure, FAQ } from "@/components/brochure";
 import {
   canonicalLink,
+  faqPageJsonLd,
   HOME_DESCRIPTION,
   HOME_TITLE,
   jsonLdScript,
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: pageMeta(HOME_TITLE, HOME_DESCRIPTION, "/"),
     links: [canonicalLink("/")],
-    scripts: [jsonLdScript(organizationJsonLd())],
+    scripts: [jsonLdScript(organizationJsonLd()), jsonLdScript(faqPageJsonLd(FAQ))],
   }),
   component: Home,
 });
