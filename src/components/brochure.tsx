@@ -118,7 +118,6 @@ export function Brochure() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a href="/#introduction" className={btn}>I'm a buyer<ArrowRight className="size-4" /></a>
                 <a href="/#introduction" className={btn2}>I'm a plant</a>
-                <a href="/#introduction" className={btn2}>Investors</a>
               </div>
             </div>
           </div>
@@ -157,7 +156,7 @@ export function Brochure() {
         <section id="audiences" className="bg-paper-2">
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
             <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Who Sourza is for</h2>
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
               <Audience id="buyers" eyebrow="Buyers" title="For buyers in the Gulf" lead="Quotes you can actually compare, and a clear record of every decision."
                 intro="If you already import machined parts and want another plant that can hit your drawing, Sourza makes the search easier. You tell us the part, the standard and any constraints. There's no catalogue to browse, because the work starts from what you need made."
                 points={[["Quotes that price the same part.", "The AI fixes the gaps in the brief before it goes out, so differences in price reflect the plants, not the paperwork."], ["A short list, with reasons.", "A few suitable plants are invited, and you can see why each one was considered and where an offer misses the brief."], ["A written decision.", "Who you chose, or why a job stopped, stays on file for your team, your auditors and your next order."]]}
@@ -166,9 +165,6 @@ export function Brochure() {
                 intro="If your factory exports, or is getting ready to, Sourza sends you enquiries that have already been checked and completed. You spend your time quoting, not chasing missing details."
                 points={[["Quote-ready enquiries.", "Each brief has been read by the AI and checked for gaps, so you know exactly what you're pricing."], ["The customer stays with you.", "You deal directly with the buyer, and the relationship is yours to build."], ["You remain the exporter.", "You make the part, ship it and are paid for it under your own name."], ["You only pay when you sell.", "Joining is free. Sourza earns a 5% commission on each completed sale, so we only earn when you do."], ["A clear decision either way.", "If you aren't chosen, you'll know why, which helps with the next quote."]]}
                 cta={["/plants", "Register your plant"]} />
-              <Audience id="investors" eyebrow="Investors" title="For investors" lead="Bringing AI to cross-border sourcing of specified parts."
-                points={[["The problem.", "Buying specified parts across borders still runs on email, spreadsheets and guesswork. Drawings go out incomplete, quotes come back in different formats, and the reasoning behind a decision is rarely written down."], ["Our approach.", "An AI platform that reads requirements, matches them to plants by capability, and learns from every brief and quote that passes through it."], ["Where we're starting.", "Machined parts, between Indian plants and buyers in the UAE and the wider Gulf. It's a focused corridor where the need is clear, and the platform is built to extend to more parts and routes over time."]]}
-                cta={["/#introduction", "Talk to the founders"]} />
             </div>
           </div>
         </section>

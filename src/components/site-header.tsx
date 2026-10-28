@@ -5,7 +5,6 @@ const LINKS = [
   { href: "/#intelligence", label: "How the AI works" },
   { href: "/#buyers", label: "Buyers" },
   { href: "/#plants", label: "Plants" },
-  { href: "/#investors", label: "Investors" },
   { href: "/#faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
 ];
