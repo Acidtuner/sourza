@@ -32,6 +32,8 @@ export const ARTICLES: Article[] = [
     summary:
       "Two quotes for the same machined part only compare once they name the same drawing revision, material grade, Incoterm, currency and validity date.",
     bucket: "sourcing",
+    image: "/images/articles/how-to-compare-machined-parts-quotes-from-indian-plants.jpg",
+    imageAlt: "Two printed quotes side by side on a desk next to a machined steel flange",
     body: [
       "Two quotes for the same machined part only compare once they name the same drawing revision, material grade, Incoterm, currency and validity date. Until they do, the lower total may be pricing a different job. So line the quotes up row by row before you look at the bottom line.",
       "## Are the quotes pricing the same part?",
