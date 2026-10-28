@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-compare-machined-parts-quotes-from-indian-plants",
+    title: "How to compare machined parts quotes from Indian plants",
+    date: "2026-10-28",
+    summary:
+      "Two quotes for the same machined part only compare once they name the same drawing revision, material grade, Incoterm, currency and validity date.",
+    bucket: "sourcing",
+    body: [
+      "Two quotes for the same machined part only compare once they name the same drawing revision, material grade, Incoterm, currency and validity date. Until they do, the lower total may be pricing a different job. So line the quotes up row by row before you look at the bottom line.",
+      "## Are the quotes pricing the same part?",
+      "Start with the drawing revision each quote names. A price on Rev B and a price on Rev C are two parts. Then the material: one plant quotes the grade you named, another quotes an equivalent. Note it, and decide in writing whether you accept it. Then heat treatment, surface finish and documents. A quote that includes a mill test certificate to EN 10204 3.1 and a dimensional report is pricing more work than one that says nothing ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). Silence isn't a no. Ask. If your RFQ left a point open, each plant filled it with its own assumption; [our RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send) covers closing those gaps before the quotes come back.",
+      "## Which Incoterm and currency is each quote in?",
+      "An ex-works price and a CIF Jebel Ali price are not the same number written two ways. The Incoterm decides who pays which costs up to which point, and under Incoterms 2020 each rule lists its costs in one place, articles A9 and B9 ([ICC Incoterms 2020](https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/)). Put every quote on the same rule and the same named place, or ask the plant to requote. Under CIF, the default insurance is Institute Cargo Clauses (C) unless you agree higher cover (same ICC page; [our note on CIF and war risk](https://sourza.com/resources/under-cif-war-risk-is-yours-to-ask-for)). Then currency. A rupee quote and a dirham quote drift apart as the rate moves, so write down which currency each is in and the date you converted at. Payment terms go in the same row: compare on the same terms, for example 30/70 TT.",
+      "## How long is each quote valid, and what moves the price?",
+      "Every quote should carry a validity date. If one doesn't, ask for it before you count that quote. Then read what the plant says can move the price inside that window: material, freight, exchange rate. A price that holds for a short window with no conditions and a price that holds longer but resets with material cost are different offers. Lead time belongs here too. Check whether the weeks count from the PO, from drawing approval or from receipt of the advance. Three plants can quote the same number of weeks and start three different clocks.",
+      "## Who owns tooling and fixtures, and is it priced in?",
+      "One plant puts fixtures, special tooling or programming into a one-time charge. Another spreads it across the unit price. Neither is wrong. But a lower unit price plus a tooling charge can cost more at your quantity than a higher unit price without one, so add them up at the quantity you'll actually order. Do the same for first-article or sample charges. Then ask who owns the fixture once it's paid for, where it's kept, and whether it comes to you if the part moves. Put the answer in the PO.",
+      "In short: Two quotes for the same machined part only compare once they name the same drawing revision, material grade, Incoterm, currency and validity date. Add tooling and one-time charges at your real quantity before you compare totals.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step",
     title: "CEPA certificate of origin for UAE exports: a step-by-step guide for Indian plants",
     date: "2026-10-26",
