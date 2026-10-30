@@ -32,6 +32,8 @@ export const ARTICLES: Article[] = [
     summary:
       "A quote to a Gulf buyer should state drawing revision, material grade, Incoterm and named place, currency and validity, so it compares like for like.",
     bucket: "sourcing",
+    image: "/images/articles/how-to-quote-against-a-gulf-rfq.jpg",
+    imageAlt: "Machined steel bush, caliper and engineering drawing on an estimator's desk with a machine shop blurred behind",
     body: [
       "A quote to a Gulf buyer should state drawing revision, material grade, Incoterm and named place, currency and validity, so it compares like for like. The buyer may have other quotes on the desk ([how buyers compare quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)). If yours leaves a point open, they fill it with a guess, or they send a question and wait. Either way, your price gets read later than it could have been.",
       "## What should the quote repeat back from the RFQ?",
