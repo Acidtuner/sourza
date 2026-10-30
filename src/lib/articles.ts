@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "how-to-quote-against-a-gulf-rfq",
+    title: "How to quote against a Gulf RFQ: state your assumptions, validity and Incoterm",
+    date: "2026-10-30",
+    summary:
+      "A quote to a Gulf buyer should state drawing revision, material grade, Incoterm and named place, currency and validity, so it compares like for like.",
+    bucket: "sourcing",
+    body: [
+      "A quote to a Gulf buyer should state drawing revision, material grade, Incoterm and named place, currency and validity, so it compares like for like. The buyer may have other quotes on the desk ([how buyers compare quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)). If yours leaves a point open, they fill it with a guess, or they send a question and wait. Either way, your price gets read later than it could have been.",
+      "## What should the quote repeat back from the RFQ?",
+      "Repeat the RFQ's own terms back, line by line. Drawing number and revision letter. Material grade and the standard it's under. If you're quoting an equivalent grade, name it and say it needs the buyer's written approval. Heat treatment and hardness range, surface finish, quantity and any price breaks the RFQ asked for. Where the RFQ was silent, don't stay silent too. Write the assumption: \"general tolerance taken as ISO 2768-m\", \"finish on non-functional faces: our standard\". A stated assumption can be accepted or corrected in one email. ([Our RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send) shows what the buyer is asked to fill in on their side.)",
+      "## How should the Incoterm and named place be written?",
+      "Write the rule, the named place and the version together: \"FOB Nhava Sheva, Incoterms 2020\" or \"CIF Jebel Ali, Incoterms 2020\". The rule alone isn't enough. It's the named place that fixes where your costs stop. Under Incoterms 2020, every cost a rule puts on seller or buyer is listed at articles A9 and B9 ([ICC Incoterms 2020](https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/)), so check your price covers your side of that list and nothing past it. If you quote CIF, say what insurance cover is included. The default under CIF is Institute Cargo Clauses (C), and the buyer may ask for more (same ICC page; [our note on CIF and war risk](https://sourza.com/resources/under-cif-war-risk-is-yours-to-ask-for)). Then the currency, and the payment terms you're quoting on, for example 30/70 TT. If the RFQ named different terms, quote on those, and price any alternative as a separate line.",
+      "## What validity date and price conditions should the quote state?",
+      "Give a validity date, not \"subject to confirmation\". Then say plainly what can move the price inside that window: raw material, freight, exchange rate. That's a fair position. What costs the buyer time is finding the condition after they've picked you. Say where lead time starts counting: from PO, from drawing approval, or from receipt of the advance. If your price assumes an export incentive, say that it does, so the buyer knows what the number rests on. Rules change; confirm with your advisor. ([Our note on RoDTEP and January quotes](https://sourza.com/resources/rodtep-ends-31-december-check-your-january-quotes) has the background.) One more line belongs here: any one-time charge for fixtures, tooling, programming or first-article samples, shown separately from the unit price.",
+      "## Which documents should the quote say will ship with the goods?",
+      "List them in the quote, because each one is work you're pricing. A mill test certificate to EN 10204 3.1 if the RFQ asked for it ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). The dimensional report: how many pieces, which features. Commercial invoice and packing list. If the buyer wants to claim the preferential rate under the India–UAE CEPA, say whether you'll supply a CEPA certificate of origin; the plant applies for it as exporter ([our step-by-step guide](https://sourza.com/resources/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step)). And packing: how parts are protected, crate type, ISPM 15 treated wood if the packing is wooden ([IPPC standard](https://www.ippc.int/en/core-activities/standards-setting/ispms/)). A quote that names its documents and one that says nothing aren't pricing the same job. The buyer can only see that if you write it down.",
+      "In short: A quote to a Gulf buyer should state drawing revision, material grade, Incoterm and named place, currency and validity, so it compares like for like. Where the RFQ was silent, write your assumption instead of leaving a gap.",
+      "Make machined parts for export to the Gulf? Tell us about your plant and how you work. [Tell us about your plant](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "how-to-compare-machined-parts-quotes-from-indian-plants",
     title: "How to compare machined parts quotes from Indian plants",
     date: "2026-10-28",
