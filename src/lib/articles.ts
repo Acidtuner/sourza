@@ -32,6 +32,8 @@ export const ARTICLES: Article[] = [
     summary:
       "Ask for ISPM 15 treated and marked wood on every crate, pallet and piece of dunnage, or packing made wholly of plywood or other processed wood.",
     bucket: "sourcing",
+    image: "/images/articles/ispm-15-packing-for-machined-parts-shipped-to-the-uae.jpg",
+    imageAlt: "Open wooden export crate packed with film-wrapped machined steel parts, next to a closed crate on a warehouse floor",
     body: [
       "Ask for ISPM 15 treated and marked wood on every crate, pallet and piece of dunnage, or packing made wholly of plywood or other processed wood. The RFQ should also say how parts are protected inside. Packing usually gets one line in an RFQ, or none. Then it's the plant's call, made at dispatch, and you see the result when the container is opened.",
       "## What is ISPM 15 and when does it apply?",
