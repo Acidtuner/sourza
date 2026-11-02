@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "ispm-15-packing-for-machined-parts-shipped-to-the-uae",
+    title: "ISPM 15 packing for machined parts to the UAE: what to put in the RFQ",
+    date: "2026-11-02",
+    summary:
+      "Ask for ISPM 15 treated and marked wood on every crate, pallet and piece of dunnage, or packing made wholly of plywood or other processed wood.",
+    bucket: "sourcing",
+    body: [
+      "Ask for ISPM 15 treated and marked wood on every crate, pallet and piece of dunnage, or packing made wholly of plywood or other processed wood. The RFQ should also say how parts are protected inside. Packing usually gets one line in an RFQ, or none. Then it's the plant's call, made at dispatch, and you see the result when the container is opened.",
+      "## What is ISPM 15 and when does it apply?",
+      "ISPM 15 is the international standard for wood packaging in trade, issued under the International Plant Protection Convention ([IPPC, ISPM 15](https://www.ippc.int/en/publications/640/)). It covers wood packaging made from raw wood: crates, cases, pallets, cable drums and dunnage, the loose timber that braces a load. It doesn't cover packaging made wholly of processed wood such as plywood, particle board or oriented strand board, or wood 6 mm thick or less. One approved treatment is heat: at least 56°C for 30 continuous minutes through the whole piece, core included. In the UAE, the Ministry of Climate Change and Environment accredits heat-treatment facilities for wood packaging ([MOCCAE service page](https://www.moccae.gov.ae/en/services/issuance-of-approval-certificate-for-thermo-treated-wood-unit)). We haven't found a UAE federal text that sets ISPM 15 out as an import condition, so treat it as the default and check before you rely on anything less. Rules change; confirm with your advisor or forwarder.",
+      "## What mark should the crate or pallet carry?",
+      "The mark has four parts: the IPPC symbol, the two-letter ISO country code (IN for India), a producer or treatment provider code assigned by that country's plant protection authority, and a treatment code. The codes are HT for heat treatment, DH for dielectric heating, MB for methyl bromide and SF for sulphuryl fluoride (ISPM 15, Annex 2). The mark has to be legible, durable and not hand drawn, and the standard prefers it on at least two opposite sides. Dunnage needs the mark too. Ask the plant for a photo of the mark on the actual crates before they're closed and loaded.",
+      "## What should the RFQ say about rust protection and packing?",
+      "Write packing the way you write tolerances. Rust protection first: VCI (volatile corrosion inhibitor) wrap, oil, or both, and whether each part is wrapped on its own. Carbon steel can rust on a humid sea leg. Then the wood packaging: ISPM 15 treated and marked, dunnage included, or made wholly of plywood or other processed wood. Then the practical lines: maximum weight per crate, part number and quantity on each crate, and a packing list inside and outside. If it's in the RFQ, it's in the price ([our RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send)). A plant quoting properly will repeat it back ([how plants quote against a Gulf RFQ](https://sourza.com/resources/how-to-quote-against-a-gulf-rfq)).",
+      "## What happens if packing isn't compliant on arrival?",
+      "ISPM 15 lets the importing country's plant protection authority act when wood packaging has no mark, or when live pests suggest the treatment didn't work. That can mean detention while it's dealt with, then removal of the packaging, treatment, destruction or reshipment (ISPM 15, section 4.6). The standard doesn't say who pays or how long it takes, and we don't have UAE figures for either. Your parts wait while it's sorted. Settle it in the RFQ, not at the port.",
+      "In short: Ask for ISPM 15 treated and marked wood on every crate, pallet and piece of dunnage, or packing made wholly of plywood or other processed wood. Then write down how the parts are protected inside.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "how-to-quote-against-a-gulf-rfq",
     title: "How to quote against a Gulf RFQ: state your assumptions, validity and Incoterm",
     date: "2026-10-30",
