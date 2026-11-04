@@ -32,6 +32,8 @@ export const ARTICLES: Article[] = [
     summary:
       "Send UAE buyers the commercial invoice, packing list and bill of lading, plus the MTC, inspection report and any certificate of origin they ask for.",
     bucket: "sourcing",
+    image: "/images/articles/export-documents-for-uae-buyers-of-machined-parts.jpg",
+    imageAlt: "Open wooden crate of wrapped machined steel parts with a document pouch on its side in a machine shop dispatch bay",
     body: [
       "Send UAE buyers the commercial invoice, packing list and bill of lading, plus the mill test certificate (MTC), dimensional inspection report and any certificate of origin they ask for. The invoice, packing list and bill of lading are customs papers. The MTC and the dimensional inspection report are for the buyer's goods-in. Agree the full set at the quote stage, so a missing page doesn't leave parts sitting at the port.",
       "## Which documents should ship with every consignment?",
