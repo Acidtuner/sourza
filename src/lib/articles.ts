@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "export-documents-for-uae-buyers-of-machined-parts",
+    title: "Export documents for UAE buyers of machined parts: MTC, inspection report, packing list",
+    date: "2026-11-04",
+    summary:
+      "Send UAE buyers the commercial invoice, packing list and bill of lading, plus the MTC, inspection report and any certificate of origin they ask for.",
+    bucket: "sourcing",
+    body: [
+      "Send UAE buyers the commercial invoice, packing list and bill of lading, plus the mill test certificate (MTC), dimensional inspection report and any certificate of origin they ask for. The invoice, packing list and bill of lading are customs papers. The MTC and the dimensional inspection report are for the buyer's goods-in. Agree the full set at the quote stage, so a missing page doesn't leave parts sitting at the port.",
+      "## Which documents should ship with every consignment?",
+      "On the Indian side, the Foreign Trade Policy names three mandatory export documents: the bill of lading or airway bill, the commercial invoice cum packing list, and the shipping bill ([FTP 2023, para 2.06](https://content.dgft.gov.in/Website/dgftprod/4f665d2f-20cc-4887-ae6a-5ec912bc0d44/FTP2023_Chapter02.pdf)). On the UAE side, Dubai Customs lists the bill of lading, commercial invoice, certificate of origin, packing list and delivery order for goods imported from outside the GCC (Gulf Cooperation Council) ([Dubai Customs Customer Guide, 15.10.1](https://www.dubaicustoms.gov.ae/en/OpenData/Publications/Customer_Guide_Booklet_EN.pdf)). Abu Dhabi Customs asks for a detailed invoice and the bill of lading, and a certificate of origin if requested ([Abu Dhabi Customs unified guide](https://www.adcustoms.gov.ae/-/media/Project/ADCustom/ADCustom/PDF/Unified-guide-for-customs-procedures-at-first-point-of-entry-EN-2025.pdf)). The plant stays the exporter, so these are your papers. Ask the buyer which port the goods clear at, and what their broker wants to see. Rules change; confirm with your advisor.",
+      "## What do UAE buyers check on the MTC and inspection report?",
+      "Neither is a customs document. Both are what the buyer's quality team checks before the parts are booked in. The MTC should be the type the RFQ named. If it said EN 10204 3.1, that means test results on the material actually supplied, validated by an inspection representative independent of production (EN 10204:2004, clause 3). Keep the heat number on the certificate, on the bar and on your route card, so each part traces back to paper ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). The dimensional inspection report should cover the pieces and features the RFQ asked for, with measured values, against the drawing revision on the purchase order (PO). A report against an older revision is a question, not a pass.",
+      "## What goes on the commercial invoice and packing list?",
+      "Write the same description, quantity and HS code (Harmonized System code) on the invoice, the packing list, the shipping bill and any certificate of origin. \"Machined components\" on one page and \"shafts\" on another reads as a query. The invoice should carry the PO number, the Incoterm with its named place, the currency and the payment terms you quoted, for example 30/70 TT ([how to quote against a Gulf RFQ](https://sourza.com/resources/how-to-quote-against-a-gulf-rfq)). The packing list should say what is in each crate: part number, quantity, net and gross weight, crate dimensions. One copy inside the crate, one outside ([our ISPM 15 packing guide](https://sourza.com/resources/ispm-15-packing-for-machined-parts-shipped-to-the-uae)). Send scans to the buyer before the vessel sails, so their broker can check the UAE side early.",
+      "## When is a certificate of origin needed, and who issues it?",
+      "Two kinds come up. If the buyer wants the preferential duty rate under the India–UAE CEPA (Comprehensive Economic Partnership Agreement), they need a CEPA certificate of origin. The plant, as exporter, applies for it on the Directorate General of Foreign Trade (DGFT)'s eCoO 2.0 system, and an issuing agency issues it ([CEPA text, Article 3.17](https://www.eicindia.gov.in/WebApp1/resources/PDF/India-UAE%20Comprehensive%20Economic%20Partnership%20Agreement.pdf); [our step-by-step guide](https://sourza.com/resources/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step)). It only holds if the part meets the rule of origin for its HS code. If no preference is claimed, the broker may still ask for a non-preferential certificate of origin, since Dubai Customs lists one among its import documents. Ask the buyer which one they need before you quote. Each takes time, and time is in the price. Rules change; confirm with your advisor.",
+      "In short: Send UAE buyers the commercial invoice, packing list and bill of lading, plus the MTC, inspection report and any certificate of origin they ask for. Keep the description, quantity and HS code identical on every page.",
+      "Make machined parts for export to the Gulf? Tell us about your plant and how you work. [Tell us about your plant](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "ispm-15-packing-for-machined-parts-shipped-to-the-uae",
     title: "ISPM 15 packing for machined parts to the UAE: what to put in the RFQ",
     date: "2026-11-02",
