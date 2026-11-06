@@ -26,6 +26,29 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "vetting-a-machined-parts-plant-in-india",
+    title: "Vetting a machined parts plant in India: what to ask for before the first PO",
+    date: "2026-11-06",
+    summary:
+      "Before a first PO, ask the plant for a dimensional inspection report on a similar part, its mill-to-part traceability and how it handles rejections.",
+    bucket: "sourcing",
+    image: "/images/articles/vetting-a-machined-parts-plant-in-india.jpg",
+    imageAlt: "Machined steel part on a granite surface plate next to a height gauge and caliper in a machine shop inspection area",
+    body: [
+      "Before a first PO, ask the plant for a dimensional inspection report on a similar part, its mill-to-part traceability and how it handles rejections. A machine list tells you what a plant owns. Records tell you how it works on an ordinary day. Ask for them before the purchase order (PO) goes out, while changing your mind still costs nothing.",
+      "## Which records show the plant can hold your tolerances?",
+      "Ask for a dimensional inspection report on a part close to yours in size, material and tolerance, with the customer's name removed. Look for measured values against each drawing dimension, not ticks. Ask what measured each feature and when that instrument was last calibrated. If the plant holds ISO 9001 certification, ask for the certificate and read its scope: it should cover machining, at the site that will make your part.",
+      "## What should a first article inspection report include?",
+      "A first article inspection (FAI) measures the first parts off production against the drawing before the rest of the batch runs. Agree in the PO what the FAI report covers: every dimension and note on the drawing, each with its measured value and numbered so it maps back to the drawing; the drawing revision; the material grade and heat number; and any heat treatment or surface finish record. Say how many pieces are measured, and whether the batch waits for your approval. If it does, put your own turnaround time in writing, because the plant's clock stops while it waits for you. FAI is work, so it belongs in the quote ([how to compare machined parts quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants); [how to quote against a Gulf RFQ](https://sourza.com/resources/how-to-quote-against-a-gulf-rfq)).",
+      "## How do you check material traceability from mill to part?",
+      "Ask the plant to walk you through one finished part back to its mill test certificate (MTC). The heat number should be on the certificate, on the bar and on the route card after cutting. The plant usually buys bar from a mill or a stockist, and EN 10204 expects whoever passes material on to hand over the original certificate or an unaltered copy, with a way to trace product to paper (EN 10204:2004, clause 6; [our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). If your RFQ (request for quotation) named EN 10204 3.1, check that the certificate you're shown is a 3.1, not a 2.2 ([our RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send)). A plant with a working system can do this walk-through quickly. If it can't, ask why before you order.",
+      "## What should you agree on rejections and rework before ordering?",
+      "Ask how the plant records a rejection: who decides, where the part goes, and whether the record names a cause. Then write your own terms into the PO before the first part is cut. How long you have after arrival to inspect and report a nonconformance. What evidence you'll send, such as photos and measured values against the drawing. Whether the plant reworks, replaces or credits. Who pays return freight. Whether reworked parts need your approval before they ship. Settle it before the advance is paid on the usual 30/70 TT (telegraphic transfer) terms, while both sides are still reading the same document.",
+      "In short: Before a first PO, ask the plant for a dimensional inspection report on a similar part, its mill-to-part traceability and how it handles rejections. Then write the FAI scope and the rejection terms into the PO.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "export-documents-for-uae-buyers-of-machined-parts",
     title: "Export documents for UAE buyers of machined parts: MTC, inspection report, packing list",
     date: "2026-11-04",
