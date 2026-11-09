@@ -354,7 +354,8 @@ export function Brochure() {
               AI sourcing for specified parts · Indian plants · Gulf buyers
             </p>
           </div>
-          <div className="flex flex-col items-start gap-4 md:items-end">
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <p className="text-sm text-muted">Part of the Vel Venture ecosystem</p>
             <a
               href="https://velventurestudio.com/"
               target="_blank"
@@ -362,7 +363,7 @@ export function Brochure() {
               className="block"
             >
               <img
-                src="/vel-venture-studio.png"
+                src="/vel-venture-studio.svg"
                 alt="Vel Venture Studio"
                 className="h-14 w-auto"
               />
