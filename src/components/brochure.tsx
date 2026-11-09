@@ -226,24 +226,6 @@ export function Brochure() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-          <a
-            href="https://velventurestudio.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center sm:gap-6 sm:text-left"
-          >
-            <img
-              src="/vel-venture-studio.png"
-              alt="Vel Venture Studio"
-              className="h-12 w-auto"
-            />
-            <span className="text-lg leading-snug text-muted">
-              Part of the <span className="text-ink">Vel Venture</span> ecosystem
-            </span>
-          </a>
-        </section>
-
         <section id="introduction" className="scroll-mt-24 mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
@@ -372,9 +354,23 @@ export function Brochure() {
               AI sourcing for specified parts · Indian plants · Gulf buyers
             </p>
           </div>
-          <a href="/privacy" className="text-sm text-muted hover:text-ink">
-            Privacy
-          </a>
+          <div className="flex flex-col items-start gap-4 md:items-end">
+            <a
+              href="https://velventurestudio.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <img
+                src="/vel-venture-studio.png"
+                alt="Vel Venture Studio"
+                className="h-14 w-auto"
+              />
+            </a>
+            <a href="/privacy" className="text-sm text-muted hover:text-ink">
+              Privacy
+            </a>
+          </div>
         </div>
       </footer>
       <DeskChat />
