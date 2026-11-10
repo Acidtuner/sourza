@@ -26,6 +26,31 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "rodtep-in-export-quotes",
+    title: "RoDTEP in an export quote: what to state before 31 December 2026",
+    date: "2026-11-09",
+    summary:
+      "If your price assumes RoDTEP, say so in the quote and state what happens if the scheme ends or changes before shipment.",
+    bucket: "policy",
+    image: "/images/articles/rodtep-in-export-quotes.jpg",
+    imageAlt: "Printed quotation on a clipboard with a pen, calculator and machined steel part on a plant office desk",
+    body: [
+      "If your price assumes RoDTEP, say so in the quote and state what happens if the scheme ends or changes before shipment. A buyer reads a number as a number. If it quietly rests on an incentive, the first they hear of it may be a revised price after they've chosen you. Rules change; confirm with your advisor.",
+      "## What is RoDTEP and what is its current end date?",
+      "RoDTEP is the Remission of Duties and Taxes on Exported Products scheme. The Press Information Bureau describes it as refunding embedded central, state and local duties and taxes on exported products that aren't otherwise rebated ([PIB release](https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2318052&lang=2&reg=48)).",
+      "Directorate General of Foreign Trade (DGFT) Notification No. 41/2026-27, dated 30 September 2026, says the scheme continues up to 31 December 2026 for exports from domestic tariff area units, advance authorisation holders, special economic zone units and export-oriented units. It also says the rates and value caps in force on 30 September 2026 stay unchanged for that period ([DGFT notification, via APEDA](https://apeda.gov.in/sites/default/files/dgft_notifications/41_Notification_2026_27.pdf)). Nothing in that notification says what happens after 31 December. Treat the end date as an end date, not as a renewal waiting to be announced.",
+      "## Should a quote say whether it assumes RoDTEP?",
+      "Yes. It takes one line. \"Price includes expected RoDTEP remission\" or \"Price does not assume any export incentive.\" Either is fine. What costs the buyer time is finding the assumption after the price is agreed. This is disclosure only. How you price around an incentive is for you and your advisor, and we don't advise on it.",
+      "## What should a quote valid past 31 December say?",
+      "Check your validity date against the end date. If the quote runs past 31 December, or the shipment could, the buyer needs to know which side of that date the price sits on. Say what the price assumes. Say what happens to the price if the scheme ends or its rates change before shipment: it holds, it is revised, or the buyer may cancel before the advance is paid. Agree one with the buyer and write it down.",
+      "Put the same wording in the quote, the pro forma invoice (PI) and the purchase order (PO), so nobody is reading three versions. Say where the lead time starts counting too, so a revision doesn't also become a date dispute. Rules change; confirm with your advisor.",
+      "## Where do you check the latest notification?",
+      "Go to the source: the [DGFT notifications page](https://www.dgft.gov.in/CP/?opt=notification). A forwarded message or a summary isn't a notification. Check it on the day you send the quote, and again before you ship against it, and write the date you last checked into your own file. Our earlier note on [RoDTEP and January quotes](https://sourza.com/resources/rodtep-ends-31-december-check-your-january-quotes) has the background, and [how to quote against a Gulf request for quotation (RFQ)](https://sourza.com/resources/how-to-quote-against-a-gulf-rfq) covers validity dates and what a price assumes.",
+      "In short: If your price assumes RoDTEP, say so in the quote and state what happens if the scheme ends or changes before shipment. Check the [DGFT notifications page](https://www.dgft.gov.in/CP/?opt=notification) on the day you send it.",
+      "Make machined parts for export to the Gulf? Tell us about your plant and how you work. [Tell us about your plant](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "vetting-a-machined-parts-plant-in-india",
     title: "Vetting a machined parts plant in India: what to ask for before the first PO",
     date: "2026-11-06",
