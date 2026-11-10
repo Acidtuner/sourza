@@ -176,16 +176,17 @@ function ArticlePage() {
         </div>
       </main>
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-8 md:flex-row md:items-end md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap flex-col gap-6 px-5 py-8 md:flex-row md:items-end md:justify-between md:px-8">
           <div>
             <img src="/sourza-logo.svg" alt="" className="h-6 w-auto" />
             <p className="mt-3 text-lg leading-snug text-muted md:text-xl">
               Indian plants. Gulf buyers. Specified parts.
             </p>
           </div>
-          <a href="/privacy" className="text-sm text-muted hover:text-ink">
-            Privacy
-          </a>
+          <nav aria-label="Footer" className="flex shrink-0 gap-5">
+            <a href="/careers" className="text-sm text-muted hover:text-ink">Careers</a>
+            <a href="/privacy" className="text-sm text-muted hover:text-ink">Privacy</a>
+          </nav>
         </div>
       </footer>
     </div>

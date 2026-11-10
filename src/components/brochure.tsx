@@ -466,9 +466,10 @@ export function Brochure() {
                 ecosystem
               </span>
             </a>
-            <a href="/privacy" className="text-sm text-muted hover:text-ink">
-              Privacy
-            </a>
+            <nav aria-label="Footer" className="flex shrink-0 gap-5">
+              <a href="/careers" className="text-sm text-muted hover:text-ink">Careers</a>
+              <a href="/privacy" className="text-sm text-muted hover:text-ink">Privacy</a>
+            </nav>
           </div>
         </div>
       </footer>

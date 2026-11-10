@@ -359,11 +359,12 @@ function PlantsPage() {
         </div>
       </main>
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-8 md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8 md:px-8">
           <p className="text-sm text-muted">Indian plants. Gulf buyers. Specified parts.</p>
-          <a href="/privacy" className="text-sm text-muted hover:text-ink">
-            Privacy
-          </a>
+          <nav aria-label="Footer" className="flex shrink-0 gap-5">
+            <a href="/careers" className="text-sm text-muted hover:text-ink">Careers</a>
+            <a href="/privacy" className="text-sm text-muted hover:text-ink">Privacy</a>
+          </nav>
         </div>
       </footer>
       <DeskChat />
