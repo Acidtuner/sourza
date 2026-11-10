@@ -2,6 +2,8 @@ import { useState } from "react";
 import { DeskChat } from "@/components/desk-chat";
 import { registerIntroduction } from "@/lib/introduction";
 import { SiteHeader } from "@/components/site-header";
+import { listArticles, type ArticleBucket } from "@/lib/articles";
+import { ARTICLE_IMAGE_HEIGHT, ARTICLE_IMAGE_WIDTH } from "@/lib/seo";
 import {
   ArrowRight,
   Columns2,
@@ -30,12 +32,11 @@ export const FAQ = [
   { q: "I run a plant. How do I join?", a: "Fill in the form below and choose \"Plant\". You can also register on our plants page. Someone from the founding team will get in touch to learn about your machines, processes and export experience as part of qualifying your plant. Joining is free, and you pay a 5% commission only on completed sales." },
 ] as const;
 
-const GUIDES = [
-  ["/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send", "What to put in an RFQ for machined parts before you send it"],
-  ["/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq", "Mill test certificates: ask for EN 10204 3.1 in the RFQ"],
-  ["/resources/under-cif-war-risk-is-yours-to-ask-for", "Under CIF, war risk cover is yours to ask for"],
-  ["/resources/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step", "CEPA certificate of origin for UAE exports: a step-by-step guide"],
-] as const;
+function bucketLabel(bucket: ArticleBucket) {
+  if (bucket === "sourcing") return "Sourcing";
+  if (bucket === "policy") return "Policy";
+  return "Macro";
+}
 
 const btn = "inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream";
 const btn2 = "inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-cream px-5 py-3 text-sm";
@@ -217,9 +218,40 @@ export function Brochure() {
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
             <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Guides for buyers and plants</h2>
             <p className="mt-4 text-lg text-muted">Practical guides from the Sourza team on getting sourcing right:</p>
-            <ul className="mt-8 grid gap-3">
-              {GUIDES.map(([href, label]) => (
-                <li key={href}><a href={href} className="text-lg text-gold-deep underline">{label}</a></li>
+            <ul className="mt-8 grid gap-6 md:grid-cols-2">
+              {listArticles().slice(0, 4).map((article) => (
+                <li key={article.slug}>
+                  <a
+                    href={`/resources/${article.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-cream transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  >
+                    {article.image ? (
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        width={ARTICLE_IMAGE_WIDTH}
+                        height={ARTICLE_IMAGE_HEIGHT}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-video h-auto w-full object-cover"
+                      />
+                    ) : null}
+                    <div className="flex flex-1 flex-col p-6">
+                      <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
+                        {bucketLabel(article.bucket)}
+                      </p>
+                      <h3 className="mt-3 font-display text-2xl leading-tight text-ink-deep">
+                        {article.title}
+                      </h3>
+                      <p className="mt-3 flex-1 leading-relaxed text-muted">{article.summary}</p>
+                      <span className="mt-4 inline-flex items-center gap-2 text-sm text-gold-deep">
+                        Read the guide
+                        <ArrowRight className="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </a>
+                </li>
               ))}
             </ul>
             <a href="/resources" className={btn2 + " mt-8"}>See all guides<ArrowRight className="size-4" /></a>
