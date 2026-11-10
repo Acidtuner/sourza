@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DeskChat } from "@/components/desk-chat";
 import { registerIntroduction } from "@/lib/introduction";
 import { SiteHeader } from "@/components/site-header";
@@ -36,6 +36,103 @@ function bucketLabel(bucket: ArticleBucket) {
   if (bucket === "sourcing") return "Sourcing";
   if (bucket === "policy") return "Policy";
   return "Macro";
+}
+
+function GuidesCards() {
+  const articles = listArticles().slice(0, 4);
+  const scrollerRef = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+
+  function onScroll() {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const origin = scroller.getBoundingClientRect().left;
+    let best = 0;
+    let bestDist = Infinity;
+    Array.from(scroller.children).forEach((child, index) => {
+      const dist = Math.abs(child.getBoundingClientRect().left - origin);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = index;
+      }
+    });
+    setActive((current) => (current === best ? current : best));
+  }
+
+  function goTo(index: number) {
+    const card = scrollerRef.current?.children[index];
+    if (card instanceof HTMLElement) {
+      card.scrollIntoView({ inline: "start", block: "nearest", behavior: "smooth" });
+    }
+  }
+
+  return (
+    <>
+      <ul
+        ref={scrollerRef}
+        onScroll={onScroll}
+        className="mt-8 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden md:grid md:snap-none md:grid-cols-2 md:gap-6 md:overflow-visible"
+      >
+        {articles.map((article) => (
+          <li key={article.slug} className="w-[85%] shrink-0 snap-start md:w-auto md:min-w-0 md:shrink md:snap-align-none">
+            <a
+              href={`/resources/${article.slug}`}
+              className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-cream transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              {article.image ? (
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  width={ARTICLE_IMAGE_WIDTH}
+                  height={ARTICLE_IMAGE_HEIGHT}
+                  sizes="(min-width: 768px) 50vw, 85vw"
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-video h-auto w-full object-cover"
+                />
+              ) : null}
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
+                  {bucketLabel(article.bucket)}
+                </p>
+                <h3 className="mt-3 font-display text-2xl leading-tight text-ink-deep">
+                  {article.title}
+                </h3>
+                <p className="mt-3 flex-1 leading-relaxed text-muted">{article.summary}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm text-gold-deep">
+                  Read the guide
+                  <ArrowRight className="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div
+        className="mt-5 flex justify-center gap-2 md:hidden"
+        role="group"
+        aria-label="Guide cards"
+      >
+        {articles.map((article, index) => (
+          <button
+            key={article.slug}
+            type="button"
+            aria-label={`Show ${article.title}`}
+            aria-current={index === active ? "true" : undefined}
+            onClick={() => goTo(index)}
+            className="flex size-8 items-center justify-center"
+          >
+            <span
+              className={
+                "size-2 rounded-full transition-colors " +
+                (index === active ? "bg-ink" : "bg-line")
+              }
+            />
+          </button>
+        ))}
+      </div>
+    </>
+  );
 }
 
 const btn = "inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream";
@@ -218,42 +315,7 @@ export function Brochure() {
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
             <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Guides for buyers and plants</h2>
             <p className="mt-4 text-lg text-muted">Practical guides from the Sourza team on getting sourcing right:</p>
-            <ul className="mt-8 grid gap-6 md:grid-cols-2">
-              {listArticles().slice(0, 4).map((article) => (
-                <li key={article.slug}>
-                  <a
-                    href={`/resources/${article.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-cream transition duration-200 motion-safe:hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                  >
-                    {article.image ? (
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        width={ARTICLE_IMAGE_WIDTH}
-                        height={ARTICLE_IMAGE_HEIGHT}
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        loading="lazy"
-                        decoding="async"
-                        className="aspect-video h-auto w-full object-cover"
-                      />
-                    ) : null}
-                    <div className="flex flex-1 flex-col p-6">
-                      <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-                        {bucketLabel(article.bucket)}
-                      </p>
-                      <h3 className="mt-3 font-display text-2xl leading-tight text-ink-deep">
-                        {article.title}
-                      </h3>
-                      <p className="mt-3 flex-1 leading-relaxed text-muted">{article.summary}</p>
-                      <span className="mt-4 inline-flex items-center gap-2 text-sm text-gold-deep">
-                        Read the guide
-                        <ArrowRight className="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <GuidesCards />
             <a href="/resources" className={btn2 + " mt-8"}>See all guides<ArrowRight className="size-4" /></a>
           </div>
         </section>
