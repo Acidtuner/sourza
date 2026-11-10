@@ -10,16 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as PlantsRouteImport } from './routes/plants'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CareersIndexRouteImport } from './routes/careers.index'
+import { Route as CareersOperationsManagerBangaloreRouteImport } from './routes/careers.operations-manager-bangalore'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlantsRoute = PlantsRouteImport.update({
@@ -42,6 +50,17 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CareersRoute,
+} as any)
+const CareersOperationsManagerBangaloreRoute =
+  CareersOperationsManagerBangaloreRouteImport.update({
+    id: '/operations-manager-bangalore',
+    path: '/operations-manager-bangalore',
+    getParentRoute: () => CareersRoute,
+  } as any)
 const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,11 +74,14 @@ const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/careers': typeof CareersRouteWithChildren
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/careers/operations-manager-bangalore': typeof CareersOperationsManagerBangaloreRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/careers/': typeof CareersIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -67,28 +89,36 @@ export interface FileRoutesByTo {
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/careers/operations-manager-bangalore': typeof CareersOperationsManagerBangaloreRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/careers': typeof CareersIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/careers': typeof CareersRouteWithChildren
   '/plants': typeof PlantsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/careers/operations-manager-bangalore': typeof CareersOperationsManagerBangaloreRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/careers/': typeof CareersIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/careers'
     | '/plants'
     | '/privacy'
     | '/resources'
     | '/sitemap.xml'
+    | '/careers/operations-manager-bangalore'
     | '/resources/$slug'
+    | '/careers/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -96,21 +126,27 @@ export interface FileRouteTypes {
     | '/plants'
     | '/privacy'
     | '/sitemap.xml'
+    | '/careers/operations-manager-bangalore'
     | '/resources/$slug'
+    | '/careers'
     | '/resources'
   id:
     | '__root__'
     | '/'
+    | '/careers'
     | '/plants'
     | '/privacy'
     | '/resources'
     | '/sitemap.xml'
+    | '/careers/operations-manager-bangalore'
     | '/resources/$slug'
+    | '/careers/'
     | '/resources/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CareersRoute: typeof CareersRouteWithChildren
   PlantsRoute: typeof PlantsRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
@@ -124,6 +160,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plants': {
@@ -154,6 +197,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers/': {
+      id: '/careers/'
+      path: '/'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/operations-manager-bangalore': {
+      id: '/careers/operations-manager-bangalore'
+      path: '/operations-manager-bangalore'
+      fullPath: '/careers/operations-manager-bangalore'
+      preLoaderRoute: typeof CareersOperationsManagerBangaloreRouteImport
+      parentRoute: typeof CareersRoute
+    }
     '/resources/': {
       id: '/resources/'
       path: '/'
@@ -171,6 +228,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CareersRouteChildren {
+  CareersOperationsManagerBangaloreRoute: typeof CareersOperationsManagerBangaloreRoute
+  CareersIndexRoute: typeof CareersIndexRoute
+}
+
+const CareersRouteChildren: CareersRouteChildren = {
+  CareersOperationsManagerBangaloreRoute:
+    CareersOperationsManagerBangaloreRoute,
+  CareersIndexRoute: CareersIndexRoute,
+}
+
+const CareersRouteWithChildren =
+  CareersRoute._addFileChildren(CareersRouteChildren)
+
 interface ResourcesRouteChildren {
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
@@ -187,6 +258,7 @@ const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CareersRoute: CareersRouteWithChildren,
   PlantsRoute: PlantsRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRouteWithChildren,

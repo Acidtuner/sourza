@@ -28,6 +28,8 @@ export function buildSitemap() {
     })),
     { loc: canonicalUrl("/plants") },
     { loc: canonicalUrl("/privacy") },
+    { loc: canonicalUrl("/careers"), lastmod: "2026-11-10" },
+    { loc: canonicalUrl("/careers/operations-manager-bangalore"), lastmod: "2026-11-10" },
   ];
 
   const urls = entries
