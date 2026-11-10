@@ -455,16 +455,16 @@ export function Brochure() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl border border-line bg-white px-3 py-2"
             >
-              <span className="text-sm leading-snug text-muted">
-                Part of the Vel Venture
-                <br />
-                ecosystem
-              </span>
               <img
                 src="/vel-venture-studio.svg"
                 alt="Vel Venture Studio"
                 className="h-14 w-auto shrink-0"
               />
+              <span className="text-sm leading-snug text-muted">
+                Part of the Vel Venture
+                <br />
+                ecosystem
+              </span>
             </a>
             <a href="/privacy" className="text-sm text-muted hover:text-ink">
               Privacy
