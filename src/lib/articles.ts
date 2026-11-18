@@ -26,6 +26,34 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "india-uae-cepa-duty-on-engineering-goods",
+    title: "India–UAE CEPA duty on engineering goods: what a buyer should ask the plant",
+    date: "2026-11-18",
+    summary:
+      "A CEPA duty preference on machined parts from India needs a part that meets its rule of origin and a CEPA certificate of origin from the plant.",
+    bucket: "policy",
+    image: "/images/articles/india-uae-cepa-duty-on-engineering-goods.jpg",
+    imageAlt: "Machined steel shaft on an office desk beside shipping papers, with warehouse racking blurred behind glass",
+    body: [
+      "A CEPA duty preference on machined parts from India needs a part that meets its rule of origin and a CEPA certificate of origin from the plant. The claim is yours, at UAE customs. The paper that makes it possible starts at the plant. Rules change; confirm with your advisor.",
+      "## What does India–UAE CEPA change about duty on engineering goods?",
+      "Under the India–UAE Comprehensive Economic Partnership Agreement (CEPA), the UAE eliminates customs duty on goods from India according to its schedule of tariff commitments, Annex 2B (Article 2.4, [CEPA text](https://www.eicindia.gov.in/WebApp1/resources/PDF/India-UAE%20Comprehensive%20Economic%20Partnership%20Agreement.pdf)). That schedule works line by line. Some lines had access from day one, some on a five-, seven- or ten-year timetable, some get only a reduction, some are excluded. So \"engineering goods\" has no single CEPA rate. Your part's Harmonized System (HS) code does.",
+      "For comparison, the UAE government portal gives the Dubai customs tariff as 5 per cent of cost, insurance and freight (CIF) value, outside alcohol and cigarettes ([u.ae](https://u.ae/en/information-and-services/finance-and-investment/taxation/clearing-the-customs-and-paying-customs-duty)). Check the preferential rate for your tariff line with your customs broker, and note the date you checked.",
+      "## Who applies for the certificate of origin, and who claims the preference?",
+      "Two sides, two jobs. The plant, as exporter, applies to the issuing authority in India, through the Directorate General of Foreign Trade (DGFT) electronic certificate of origin (eCoO) 2.0 system ([our plant guide](https://sourza.com/resources/cepa-certificate-of-origin-for-exports-to-the-uae-step-by-step)). The certificate should be issued before, at or within five working days of export. A late one can be issued retrospectively, marked as such, up to twelve months after shipment. The exporter forwards it to you (Article 3.14).",
+      "You, or your broker, present it with the import declaration to claim the preferential rate (Article 3.20). It is valid for twelve months from issue and for one import only (Articles 3.13 and 3.14). Clear without it and customs may deny the preference or ask for a guarantee. The agreement leaves room for a refund claim within a period set by UAE law (Article 3.20). That's a fallback, not a plan.",
+      "## What should you settle with the plant before the goods ship?",
+      "Three things, in writing, at the quote stage. First, the HS code at six digits, agreed between you, because the rule of origin and the duty line both hang on it ([our RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send)).",
+      "Second, whether the plant has checked the product-specific rule for that code and will apply for the CEPA certificate of origin for this shipment. A part machined from imported bar isn't wholly obtained in India, so the product-specific rule decides (Article 3.2).",
+      "Third, the route. The preference applies to goods transported directly between the two countries, or, if they pass through a third country, kept under customs control there (Article 3.12).",
+      "Ask these as questions. The plant knows its own costing; you only need its answer on record. Then say in the purchase order (PO) what happens to the price if the certificate isn't issued. That is disclosure only. How either side prices around the preference is for them and their advisor.",
+      "## How do you compare the invoice, packing list and certificate?",
+      "The certificate carries the HS code, description and quantity, the consignee, the exporter and the origin criterion, plus the commercial invoice number and date (Article 3.14). Read it next to the invoice and packing list before the vessel sails. Typing slips alone don't void it, but the agreement says differences in the issuing authority's signatures or seals are not minor. If someone other than the plant issues the invoice, the certificate has to say \"third-party invoicing\" and give that company's details (Article 3.15). Our [export documents guide](https://sourza.com/resources/export-documents-for-uae-buyers-of-machined-parts) covers the rest of the set.",
+      "In short: A CEPA duty preference on machined parts from India needs a part that meets its rule of origin and a CEPA certificate of origin from the plant. Agree the HS code, the certificate and the route with the plant before the goods ship, and present the certificate at import.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "rodtep-in-export-quotes",
     title: "RoDTEP in an export quote: what to state before 31 December 2026",
     date: "2026-11-09",
