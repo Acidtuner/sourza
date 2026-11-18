@@ -239,15 +239,28 @@ export function Brochure() {
             ))}
           </ol>
 
-          <div className="mt-12 rounded-3xl border border-line bg-cream p-6 shadow-lg md:max-w-3xl">
-            <h3 className="font-display text-3xl text-ink-deep">See it on a real example</h3>
-            <p className="mt-2 text-sm text-muted italic">Here's what a typical drawing looks like when it reaches us, and how two plants respond to it.</p>
-            <p className="mt-4"><strong>The part:</strong> a shaft. The diameter is stated, but the tolerance is missing.</p>
-            <ul className="mt-4 space-y-2 text-muted">
-              <li><strong className="text-ink">Plant A</strong> can mill it. With no tolerance on the drawing, it can't give a reliable price.</li>
-              <li><strong className="text-ink">Plant B</strong> can turn and grind it, and asks for the tolerance before quoting.</li>
-            </ul>
-            <p className="mt-4"><strong>What Sourza shows you:</strong> the gap itself, not a guess. Once you add the tolerance, both plants quote the same part, and the comparison means something.</p>
+          <div className="mt-12 rounded-3xl border border-line bg-cream p-6 shadow-lg">
+            <h3 className="font-display text-3xl text-ink-deep">How Sourza works</h3>
+            <p className="mt-2 text-sm text-muted italic">From the first drawing to the parts arriving.</p>
+            <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl bg-paper">
+              <video
+                className="h-full w-full"
+                controls
+                preload="metadata"
+                poster="/videos/how-sourza-works.jpg"
+                playsInline
+              >
+                <source src="/videos/how-sourza-works.mp4" type="video/mp4" />
+                <source src="/videos/how-sourza-works.webm" type="video/webm" />
+                <track
+                  kind="captions"
+                  src="/videos/how-sourza-works.vtt"
+                  srcLang="en"
+                  label="English"
+                  default
+                />
+              </video>
+            </div>
           </div>
         </section>
 
