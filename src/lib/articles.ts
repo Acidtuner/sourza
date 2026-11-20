@@ -26,6 +26,33 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "fob-vs-cif-vs-dap-for-machined-parts-from-india",
+    title: "FOB vs CIF vs DAP for machined parts from India: what each term leaves with you",
+    date: "2026-11-20",
+    summary:
+      "For machined parts from India, FOB and CIF pass risk to you once goods are on board in India; DAP passes it at the named place in the UAE.",
+    bucket: "sourcing",
+    image: "/images/articles/fob-vs-cif-vs-dap-for-machined-parts-from-india.jpg",
+    imageAlt: "Wooden crate of machined steel parts on a port quay, with a second crate being lifted toward a ship",
+    body: [
+      "For machined parts from India, FOB and CIF pass risk to you once goods are on board in India; DAP passes it at the named place in the UAE. The three letters are the short version. The quote should carry the long one: the term, the named place and the version, such as \"CIF Jebel Ali, Incoterms 2020\". This is not legal advice; confirm the contract wording with your advisor or forwarder.",
+      "## What does FOB leave with you, and what stays with the plant?",
+      "Under Free on Board (FOB), the plant delivers the goods on board the vessel you nominate at the named port of shipment. Risk passes to you once they are on board, and the costs from that moment are yours ([ICC, Incoterms 2020, FOB explanatory notes](https://library.iccwbo.org/content/tfb/BOOKS/BK_0049/BK_0049_05_RulesSea.htm?l1=Books&l2=Incoterms%C2%AE+2020)). So you, or your forwarder, book the sea freight and insure the sea leg if you want cover. The plant clears the goods for export. Import clearance and UAE duty are yours. The friction point is the vessel. If the one you nominate arrives late or closes for cargo early, the rule moves that risk onto you (ICC, FOB article B3).",
+      "## What does CIF cover, and what does it not?",
+      "Under Cost Insurance and Freight (CIF), the plant pays freight to the named destination port and buys cargo insurance. Risk still passes on board in India, the same point as FOB ([ICC, CIF explanatory notes](https://library.iccwbo.org/content/tfb/BOOKS/BK_0049/BK_0049_05_RulesSea.htm?l1=Books&l2=Incoterms%C2%AE+2020)). The plant has paid for the trip. The risk on it is yours. The insurance is minimum cover: Institute Cargo Clauses (C), for at least the contract price plus 10 per cent, in the contract currency (ICC, CIF article A5). War and strikes cover is extra, provided when you ask for it and at your cost. Ask for the insurance certificate with the shipping documents and read which clauses it lists. Our [CIF war risk note](https://sourza.com/resources/under-cif-war-risk-is-yours-to-ask-for) covers that gap in more detail.",
+      "## What changes if you buy DAP instead?",
+      "Under Delivered at Place (DAP), the plant delivers when the goods are at your disposal on the arriving transport, ready for unloading, at the named place of destination, and carries the risk until then ([ICC, DAP explanatory notes](https://library.iccwbo.org/content/tfb/BOOKS/BK_0049/BK_0049_04_RulesAny.htm?l1=Books&l2=Incoterms%C2%AE+2020); [GOV.UK customs valuation guidance](https://www.gov.uk/guidance/customs-valuation/incoterms)). The named place can be a UAE port or your own warehouse. Write it precisely, because that point is where risk and cost change hands. Unloading is yours. So are import clearance and duty; the plant has no obligation to clear the goods for import. If nobody organises clearance, ICC's notes say the goods will be held up at a port or inland terminal. The plant's price now carries freight and transit risk, so expect a different number from its FOB quote for the same parts.",
+      "## What should every quote write next to the three-letter term?",
+      "Three things beside the term. The named place: the port of shipment for FOB, the destination port for CIF, the destination place for DAP. Under CIF, name the shipment port too, since that is where risk passes (ICC, CIF explanatory notes). And the version, Incoterms 2020, because parties can still agree an older version if the contract says so ([trade.gov, Know Your Incoterms](https://www.trade.gov/know-your-incoterms)). Then settle what the term does not: payment terms, when title passes, and the documents your customs clearance needs (same source). Those go in the purchase order (PO) separately, such as 30 per cent advance and 70 per cent balance by telegraphic transfer (TT).",
+      "## Can you compare an FOB quote with a DAP quote?",
+      "Picture this: one quote says FOB Nhava Sheva, another says DAP Jebel Ali, for the same shaft. They are not comparable until you add freight, insurance and your sea-leg risk to the first one ([how to compare quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)).",
+      "## Do FOB and CIF suit container shipments?",
+      "FOB and CIF are written for goods placed on board a vessel, and where a container is handed to the carrier at a container terminal, ICC's notes point to Free Carrier (FCA) or Carriage and Insurance Paid To (CIP) instead. Raise that with your forwarder before you change a default.",
+      "In short: For machined parts from India, FOB and CIF pass risk to you once goods are on board in India; DAP passes it at the named place in the UAE. Write the term, the named place and the version in every quote, and settle payment and documents separately.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "india-uae-cepa-duty-on-engineering-goods",
     title: "India–UAE CEPA duty on engineering goods: what a buyer should ask the plant",
     date: "2026-11-18",
