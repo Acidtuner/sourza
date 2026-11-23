@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "institute-cargo-clauses-a-vs-c-cif-india",
+    title: "Institute Cargo Clauses (A) vs (C) on a CIF quote from India",
+    date: "2026-11-23",
+    summary:
+      "On a CIF quote from India, the plant only has to buy Institute Cargo Clauses (C): cover for a short list of named events.",
+    bucket: "sourcing",
+    body: [
+      "On a CIF quote from India, the plant only has to buy Institute Cargo Clauses (C): cover for a short list of named events. Institute Cargo Clauses (A) covers all risks, subject to stated exclusions. If you want (A), or war and strikes cover, write it into the request for quotation (RFQ). Either way, expect to pay for it.",
+      "## What does Clauses (C) actually cover?",
+      "Clause 1 of Clauses (C) is the list. Fire or explosion. The vessel stranded, grounded, sunk or capsized. A truck or rail wagon overturned or derailed. The vessel, craft or truck in collision or contact with any external object other than water. Cargo discharged at a port of distress. General average sacrifice (cargo deliberately given up to save the voyage). Jettison. That is the whole list. A crate of turned shafts that lands wet, dented or short is not covered unless one of those events caused it. Water getting into the container is not on the (C) list either. Clauses (B) add, at clause 1.2.3, \"entry of sea lake or river water into vessel craft hold conveyance container or place of storage\"; (C) has no such clause.",
+      "## What does Clauses (A) add, and what does it still leave out?",
+      "Clauses (A) covers \"all risks of loss of or damage to the subject-matter insured\", except what clauses 4 to 7 exclude. Read those before you relax. Clause 4.3 excludes loss caused by packing not fit for the ordinary incidents of the transit, where the insured or their employees packed it, or it was packed before cover started. Clause 4.4 excludes inherent vice. Clause 4.5 excludes delay. So a rusted bore from thin oil and no volatile corrosion inhibitor (VCI) wrap can end up a packing question, not an insurance one ([our ISPM 15 packing guide](https://sourza.com/resources/ispm-15-packing-for-machined-parts-shipped-to-the-uae)). Clauses 6 and 7 exclude war and strikes, even under (A). Those come from the Institute War Clauses (Cargo) and Institute Strikes Clauses (Cargo), added by name ([why war risk is yours to ask for](https://sourza.com/resources/under-cif-war-risk-is-yours-to-ask-for)).",
+      "## What does CIF require the plant to buy?",
+      "Incoterms 2020 CIF, article A5: unless otherwise agreed or customary in the trade, the seller buys cover complying with Clauses (C). It must cover at least the contract price plus 10%, in the contract currency, from the point of delivery to at least the named port of destination. You can claim directly from the insurer. If you ask, the seller must add cover such as the war and strikes clauses, if procurable, at your cost. Carriage and Insurance Paid To (CIP), the term for any mode of transport, defaults to Clauses (A) instead. Note the end point: \"at least the named port\". The leg from Jebel Ali to your site is a separate question ([FOB vs CIF vs DAP](https://sourza.com/resources/fob-vs-cif-vs-dap-for-machined-parts-from-india)).",
+      "## What should the RFQ and the quote say?",
+      "One line does it: \"Quote CIF Jebel Ali, Incoterms 2020, insured on Institute Cargo Clauses (A) with Institute War Clauses (Cargo) and Institute Strikes Clauses (Cargo), 110% of invoice value. State where each cover ends. Show insurance as its own line and send the insurance certificate with the shipping documents.\" Then compare like with like. A quote on Clauses (C) and a quote on Clauses (A) are not the same price for the same thing ([how to compare quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)). The plant stays the exporter and buys the cover you agreed. Sourza books no freight and buys no insurance. This is not legal advice; confirm the policy wording with your advisor or forwarder.",
+      "In short: On a CIF quote from India, the plant only has to buy Institute Cargo Clauses (C): cover for a short list of named events. If you want all-risks, war or strikes cover, name it in the RFQ and expect to pay for it.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "fob-vs-cif-vs-dap-for-machined-parts-from-india",
     title: "FOB vs CIF vs DAP for machined parts from India: what each term leaves with you",
     date: "2026-11-20",
