@@ -40,6 +40,15 @@ function PrivacyPage() {
           </p>
         </Section>
 
+        <Section title="Where it is built">
+          <p>
+            Sentiera's engineering and production for its platforms is handled at its
+            technical hub in Bangalore, with strategic leadership from Masdar City, Abu
+            Dhabi. That is where Sourza is being built. It is not a Sourza sales office,
+            and it is not a claim about where parts are made or bought.
+          </p>
+        </Section>
+
         <Section title="The UAE rules this follows">
           <p>
             Two federal laws matter when someone in the UAE sends us a form.

@@ -320,9 +320,6 @@ export function Brochure() {
                 <li key={title}><h3 className="font-display text-2xl">{title}</h3><p className="mt-2 leading-relaxed text-cream/75">{text}</p></li>
               ))}
             </ul>
-            <p className="mt-10 max-w-3xl text-sm leading-relaxed text-cream/70">
-              Sentiera's engineering and production for its platforms is handled at its technical hub in Bangalore, with strategic leadership from Masdar City, Abu Dhabi. That is where Sourza is being built. It is not a Sourza sales office, and it is not a claim about where parts are made or bought.
-            </p>
           </div>
         </section>
 
