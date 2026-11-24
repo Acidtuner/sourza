@@ -7,9 +7,9 @@ import type { Article } from "@/lib/articles";
  */
 export const SITE_URL = "https://sourza.com";
 
-export const HOME_TITLE = "Sourza | Autonomous B2B procurement marketplace";
+export const HOME_TITLE = "Sourza | Machined parts from Indian plants for Gulf buyers";
 export const HOME_DESCRIPTION =
-  "Sourza is an autonomous B2B procurement marketplace, built by Sentiera. The AI engine is in development. It is designed to read a drawing, complete the brief, match plants by capability and compare quotes.";
+  "Sourza sources made-to-spec parts from Indian plants it is qualifying, for buyers in the UAE and the GCC. The AI engine is in development. Leave a note and the founding team will write back.";
 
 export const PLANTS_TITLE = "Sourza — Register an Indian factory";
 export const PLANTS_DESCRIPTION =
@@ -106,9 +106,48 @@ const ORG = {
   logo: { "@type": "ImageObject", url: `${SITE_URL}/sourza-logo.svg` },
 };
 
-/** schema.org Organization JSON-LD for the home page. */
+/** schema.org Organization JSON-LD for the buyer homepage. No street address. */
 export function organizationJsonLd() {
-  return { "@context": "https://schema.org", ...ORG };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Sourza",
+    url: `${SITE_URL}/`,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/sourza-logo.svg` },
+    description:
+      "Sourza sources made-to-spec, machined parts from Indian plants it is qualifying, for buyers in the UAE and the GCC. The AI engine is in development.",
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Sentiera Technologies Limited",
+      url: "https://www.sentieratech.com/",
+    },
+    sameAs: [
+      "https://www.sentieratech.com/products/sourza",
+      "https://velventurestudio.com/",
+    ],
+  };
+}
+
+/** schema.org Service JSON-LD for the buyer homepage. No ratings, offers, or areaServed. */
+export function serviceJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Sourza",
+    url: `${SITE_URL}/`,
+    serviceType: "Sourcing of made-to-spec metal parts",
+    provider: {
+      "@type": "Organization",
+      name: "Sourza",
+      url: `${SITE_URL}/`,
+    },
+    description:
+      "Sourza sources made-to-spec metal parts from Indian plants it is qualifying, for buyers in the UAE and the GCC. The plant stays the exporter. Sourza does not take title to the goods. Sourza is free for buyers. Plants pay a 5% commission on completed sales. Orders start at USD 5,000. The AI engine is in development.",
+    audience: {
+      "@type": "Audience",
+      audienceType: "Buyers of made-to-spec metal parts in the UAE and the GCC",
+    },
+  };
 }
 
 /** schema.org Article JSON-LD for one /resources/<slug> page. */
@@ -136,24 +175,6 @@ export function jsonLdScript(data: unknown) {
     type: "application/ld+json",
     // Escape `<` so article text can never close the script element.
     children: JSON.stringify(data).replace(/</g, "\\u003c"),
-  };
-}
-
-/** schema.org SoftwareApplication JSON-LD for Sourza. No ratings, offers, or stack claims. */
-export function softwareApplicationJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Sourza",
-    url: `${SITE_URL}/`,
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    description: HOME_DESCRIPTION,
-    creator: {
-      "@type": "Organization",
-      name: "Sentiera Technologies Limited",
-      url: "https://www.sentieratech.com/",
-    },
   };
 }
 
