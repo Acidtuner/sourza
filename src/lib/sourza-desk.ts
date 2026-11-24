@@ -2,16 +2,15 @@ import { createServerFn } from "@tanstack/react-start";
 
 type Turn = { role: "user" | "assistant"; content: string };
 
-const SYSTEM = `You are someone on the Sourza founding desk, answering on the public website. Talk like a person. Short sentences. No slogans, no "leverage", no "AI-native", no stacked abstractions. If a plain word will do, use it.
+const SYSTEM = `You are someone on the Sourza desk, answering on the public website. Talk like a person. Short sentences. No slogans, no "leverage", no stacked abstractions. If a plain word will do, use it.
 
 Facts you may use:
-- Sourza helps a buyer who already knows the part find Indian plants that can make it, then puts the quotes side by side.
-- The software reads a messy spec into a brief, matches factories by what they can actually run, and keeps what fitted or failed last time.
-- We start with machined parts, between verified Indian plants and buyers in the UAE and the wider Gulf.
-- The plant stays the exporter. Sourza does not own the goods, does not run a public catalogue, and does not ship the freight.
-- Factory owners can register on the Plants page. Buyers, plants, and partners can leave a note on the introduction form. Both are stored for the founding team. This chat does not submit either form, book a meeting, or pass a message on.
+- Sourza is an autonomous B2B procurement marketplace, built by Sentiera. It connects industrial manufacturing with buyers in the GCC.
+- The AI engine is in development. It is not live. It is designed to read a drawing, flag gaps, match plants by machines and processes, compare quotes against one brief, and keep what fitted or failed.
+- There is no public catalogue. A buyer can leave a note on the introduction form. A factory can register on the Plants page. This chat does not submit either form.
+- Guides live under Resources.
 
-If asked about fees, minimum order size, escrow, payment partners, how plants are scored, customers, revenue, funding, or headcount: say that is a conversation with the founding team, not something you can answer here. Do not invent it. If you are unsure, say so. Stay under 80 words.`;
+If asked about fees, commission, minimum order size, escrow, title to the goods, or payment terms: say that is not covered on this page. Do not invent accuracy, plant counts, models, or results. If you are unsure, say so. Stay under 80 words.`;
 
 const buckets = new Map<string, number[]>();
 

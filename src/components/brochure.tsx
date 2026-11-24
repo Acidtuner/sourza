@@ -16,20 +16,31 @@ import {
 } from "lucide-react";
 
 const STEPS = [
-  { n: "01", title: "It reads the drawing.", text: "You send a drawing as a PDF or a high-resolution JPG or PNG, along with any specification or a plain description. The AI picks out the material, the dimensions, the standards and the notes in the margin, even when the units are mixed.", icon: FileSearch },
-  { n: "02", title: "It flags the gaps before anyone quotes.", text: "If a tolerance, a finish or a material grade is missing, the AI spots it and asks you first. That way no plant has to guess, and every quote prices the same part.", icon: Sparkles },
-  { n: "03", title: "It matches plants by what they can actually make.", text: "The AI looks at each plant's capabilities, meaning its machines and processes, and invites the few that fit. You can see why each one was chosen. Over time, we plan to add each plant's delivery record and part quality to the matching too.", icon: Factory },
-  { n: "04", title: "It lines the quotes up side by side.", text: "Quotes arrive in different formats. Sourza puts them on one page against the brief, so you can see the price, the lead time and where an offer falls short.", icon: Columns2 },
-  { n: "05", title: "It remembers the last job.", text: "What fitted, what failed and why are all kept on file. Your next enquiry starts from what you already know, not from a blank page.", icon: History },
+  { n: "01", title: "Understand the drawing and the RFQ.", text: "The input is a drawing as a PDF or a high-resolution JPG or PNG, together with any specification or a plain description. The engine is designed to pick out the material, the dimensions, the standards and the notes in the margin, even when the units are mixed.", icon: FileSearch },
+  { n: "02", title: "Flag the gaps before a plant is asked to quote.", text: "If a tolerance, a finish or a material grade is missing, the engine is designed to spot it and ask for it first. The aim is a brief that is complete enough that no plant has to guess, and every quote is for the same part.", icon: Sparkles },
+  { n: "03", title: "Match plants by what they can actually make.", text: "The engine is designed to look at each plant's capabilities — its machines and processes — and invite the few that fit, rather than sending the drawing to everyone. Why a plant was chosen should be visible. Delivery record and part quality are planned additions, not present today.", icon: Factory },
+  { n: "04", title: "Compare quotes against the same brief.", text: "Quotes often arrive in different formats. The platform is designed to put them on one page against the brief, so price, lead time and any shortfall can be read side by side.", icon: Columns2 },
+  { n: "05", title: "Keep the job on file.", text: "What fitted, what failed and why are designed to be kept, so the next enquiry can start from what is already known, not from a blank page.", icon: History },
+] as const;
+
+const FUNCTIONS = [
+  ["Drawing and RFQ understanding", "Read a PDF, JPG or PNG drawing, plus a specification or a plain-language description. Extract the material, dimensions, standards and marginal notes, including where units are mixed, and turn that into a brief a plant can quote against."],
+  ["Gap detection", "Check the brief for missing details that would otherwise force a plant to guess — a tolerance, a finish, a material grade — and send those questions back before anyone is invited to quote."],
+  ["Plant matching", "Compare the completed brief with what each plant can actually run. Invite a short list, and show why each plant was chosen. Folding in delivery record and part quality is planned, not present."],
+  ["Quote comparison", "Take quotes that arrive in different formats and line them up against the same brief, so a buyer can see price, lead time and where an offer falls short."],
 ] as const;
 
 export const FAQ = [
-  { q: "What do I need to send?", a: "A drawing as a PDF or a high-resolution JPG or PNG is ideal, together with any specification or a clear description. Include the material, quantity, any standards and the delivery location, and the AI will flag anything that's missing before plants are asked to quote." },
-  { q: "How many quotes will I get?", a: "Usually two or three, from plants that can actually make the part. We invite a small, suitable short list rather than sending your drawing to everyone." },
-  { q: "Who do I pay?", a: "You pay the plant directly, not Sourza. Default terms are 30% advance and 70% balance by telegraphic transfer (TT), agreed between the buyer and the plant." },
-  { q: "What parts do you cover?", a: "Any metal part made to a drawing. We cover all metal materials and every machining and fabrication process, with no size limits. Machined parts are where we started, and there is a minimum order value of USD 5,000." },
-  { q: "What does it cost?", a: "Sourza is free for buyers. Sourza earns a 5% commission on each completed sale, paid by the plant." },
-  { q: "I run a plant. How do I join?", a: "Fill in the form below and choose \"Plant\". You can also register on our plants page. Someone from the founding team will get in touch to learn about your machines, processes and export experience as part of qualifying your plant. Joining is free, and you pay a 5% commission only on completed sales." },
+  { q: "What is Sourza?", a: "Sourza is an autonomous B2B procurement marketplace, built by Sentiera. It is designed to connect a drawing-based requirement with plants that can actually make the part, and to compare their quotes against the same brief." },
+  { q: "Is the Sourza AI engine live today?", a: "No. The engine is in development. This page describes the design we are building: reading the drawing, flagging gaps, matching plants by capability, comparing quotes and keeping a record of the job. Proof of the engine can be added once the product is mature." },
+  { q: "What is the engine designed to do?", a: "It is designed to read a drawing and any accompanying specification or description, write a clear brief, catch missing details before plants are asked to quote, invite plants whose machines and processes fit, and line the quotes up side by side." },
+  { q: "What inputs is it designed to take?", a: "A drawing as a PDF or a high-resolution JPG or PNG, together with any specification or a plain description." },
+  { q: "What is it designed to read from a drawing?", a: "The material, the dimensions, the standards and the notes in the margin, even when the units are mixed." },
+  { q: "Which gaps is it designed to flag?", a: "A missing tolerance, finish or material grade — the kind of omission that would otherwise leave a plant guessing." },
+  { q: "How is plant matching designed to work?", a: "By capability: each plant's machines and processes, compared with the completed brief. A short list is invited, and the reason for each choice is designed to be visible. Delivery record and part quality are planned additions to matching, not present today." },
+  { q: "How are quotes designed to be compared?", a: "Quotes often arrive in different formats. The platform is designed to put them on one page against the same brief, so price, lead time and any shortfall can be read together." },
+  { q: "What is the platform designed to remember?", a: "What fitted, what failed and why, so the next enquiry can start from what is already known. Over time, each brief, quote and decision is designed to make the next match sharper." },
+  { q: "Is Sourza a catalogue you can browse?", a: "No. There is no public catalogue. The pipeline is designed to start from a real requirement, and to represent plants by what they can run." },
 ] as const;
 
 function bucketLabel(bucket: ArticleBucket) {
@@ -138,23 +149,6 @@ function GuidesCards() {
 const btn = "inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream";
 const btn2 = "inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-cream px-5 py-3 text-sm";
 
-function Audience({ id, eyebrow, title, lead, intro, points, cta }: { id: string; eyebrow: string; title: string; lead: string; intro?: string; points: [string, string][]; cta: [string, string] }) {
-  return (
-    <div id={id} className="scroll-mt-24 rounded-card border border-line bg-cream p-7">
-      <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">{eyebrow}</p>
-      <h3 className="mt-3 font-display text-3xl leading-tight text-ink-deep">{title}</h3>
-      <p className="mt-3 text-lg text-ink">{lead}</p>
-      {intro ? <p className="mt-3 leading-relaxed text-muted">{intro}</p> : null}
-      <ul className="mt-5 space-y-3">
-        {points.map(([t, x]) => (
-          <li key={t} className="leading-relaxed text-muted"><strong className="text-ink">{t}</strong> {x}</li>
-        ))}
-      </ul>
-      <a href={cta[0]} className={btn + " mt-6"}>{cta[1]}<ArrowRight className="size-4" /></a>
-    </div>
-  );
-}
-
 export function Brochure() {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -198,7 +192,7 @@ export function Brochure() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
+      <SiteHeader action={{ href: "/#introduction", label: "Tell us about a part" }} />
 
       <main id="top">
         <section className="relative overflow-hidden">
@@ -206,27 +200,38 @@ export function Brochure() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper/95 via-paper/88 to-paper/92 md:bg-gradient-to-r md:from-paper/96 md:via-paper/88 md:to-paper/72" />
           <div className="relative mx-auto max-w-6xl px-5 pt-14 pb-16 md:px-8 md:pt-20 md:pb-24">
             <div className="max-w-3xl">
-              <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">AI sourcing for specified parts</p>
-              <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-6xl">
-                AI that matches your machined parts with the right Indian plant
+              <p className="mb-5 text-xs font-medium tracking-widest text-gold-deep uppercase">Active / Scaling</p>
+              <h1 className="font-display text-5xl leading-tight font-medium tracking-tight text-ink-deep md:text-7xl">
+                Sourza
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                Sourza's AI reads your drawing, spots the gaps, writes a clear brief that a plant can quote against, and lines the quotes up side by side. Gulf buyers get to a decision faster, and Indian plants get enquiries that are ready to price.
+              <p className="mt-4 font-display text-2xl leading-snug text-ink md:text-3xl">
+                Autonomous B2B procurement.
               </p>
+              <p className="mt-3 text-sm text-muted">
+                Built by{" "}
+                <a href="https://www.sentieratech.com/about" className="text-gold-deep underline decoration-gold/40 underline-offset-4">
+                  Sentiera
+                </a>
+              </p>
+              <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+                <p>Sourza is an AI-native marketplace, built by Sentiera. It connects industrial manufacturing with buyers in the GCC.</p>
+                <p>The hard problem the platform is built around is a familiar one in this corridor: a drawing that may be incomplete or mixed in its units, plants whose real capability sits in their machines and processes, and quotes that arrive in different formats. Sourza is designed to turn that into a single brief, a short list of plants that can actually make the part, and a comparison against the same requirement.</p>
+                <p>The Sourza AI engine is in development. It is the core of the platform — the part that is designed to read the drawing, flag the gaps, match plants and line the quotes up. This page explains that technical design. The engine is not live today. Proof can be added once the product is mature.</p>
+              </div>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="/#introduction" className={btn}>I'm a buyer<ArrowRight className="size-4" /></a>
-                <a href="/#introduction" className={btn2}>I'm a plant</a>
+                <a href="/#introduction" className={btn}>Tell us about a part<ArrowRight className="size-4" /></a>
+                <a href="/plants" className={btn2}>Register a plant</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="intelligence" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+        <section id="pipeline" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
-            <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">How the AI works</p>
-            <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">From a messy drawing to quotes you can compare</h2>
+            <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">The pipeline</p>
+            <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">How the platform pipeline is designed to work</h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              Sourza isn't a supplier directory or a freight desk. It's an AI platform that does the slow, careful part of sourcing: reading the requirement properly, finding the plants that can make it, and keeping a record of what worked. Here's what happens to a job.
+              This is the Sourza pipeline we are building. The AI engine that will carry these steps is in development. Each stage is designed to take work that is usually slow and uneven — reading a requirement, completing it, finding a capable plant, and comparing offers — and put it in a form that can be inspected.
             </p>
           </div>
           <ol className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -241,7 +246,7 @@ export function Brochure() {
 
           <div className="mt-12 rounded-3xl border border-line bg-cream p-6 shadow-lg">
             <h3 className="font-display text-3xl text-ink-deep">How Sourza works</h3>
-            <p className="mt-2 text-sm text-muted italic">From the first drawing to the parts arriving.</p>
+            <p className="mt-2 text-sm text-muted italic">The pipeline we are building. The AI engine is in development.</p>
             <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl bg-paper">
               <video
                 className="h-full w-full"
@@ -264,47 +269,78 @@ export function Brochure() {
           </div>
         </section>
 
-        <section id="audiences" className="bg-paper-2">
-          <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
-            <h2 className="font-display text-4xl leading-tight text-ink-deep md:text-5xl">Who Sourza is for</h2>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              <Audience id="buyers" eyebrow="Buyers" title="For buyers in the Gulf" lead="Quotes you can actually compare, and a clear record of every decision."
-                intro="If you already import machined parts and want another plant that can hit your drawing, Sourza makes the search easier. You tell us the part, the standard and any constraints. There's no catalogue to browse, because the work starts from what you need made."
-                points={[["Quotes that price the same part.", "The AI fixes the gaps in the brief before it goes out, so differences in price reflect the plants, not the paperwork."], ["A short list, with reasons.", "A few suitable plants are invited, and you can see why each one was considered and where an offer misses the brief."], ["A written decision.", "Who you chose, or why a job stopped, stays on file for your team, your auditors and your next order."]]}
-                cta={["/#introduction", "Tell us about your part"]} />
-              <Audience id="plants" eyebrow="Plants" title="For plants in India" lead="Clear, quote-ready enquiries from Gulf buyers, and the customer stays yours."
-                intro="If your factory exports, or is getting ready to, Sourza sends you enquiries that have already been checked and completed. You spend your time quoting, not chasing missing details."
-                points={[["Quote-ready enquiries.", "Each brief has been read by the AI and checked for gaps, so you know exactly what you're pricing."], ["The customer stays with you.", "You deal directly with the buyer, and the relationship is yours to build."], ["You remain the exporter.", "You make the part, ship it and are paid for it under your own name."], ["You only pay when you sell.", "Joining is free. Sourza earns a 5% commission on each completed sale, so we only earn when you do."], ["A clear decision either way.", "If you aren't chosen, you'll know why, which helps with the next quote."]]}
-                cta={["/plants", "Register your plant"]} />
-            </div>
+        <section id="engine" className="bg-paper-2">
+          <div className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+            <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">In development</p>
+            <h2 className="mt-3 max-w-3xl font-display text-4xl leading-tight text-ink-deep md:text-5xl">The Sourza AI engine</h2>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+              The engine is in development. It is designed as a sequence of functions that sit over a single requirement, not as a catalogue search.
+            </p>
+            <ul className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2">
+              {FUNCTIONS.map(([title, text]) => (
+                <li key={title} className="bg-cream p-7">
+                  <h3 className="font-display text-2xl text-ink-deep">{title}</h3>
+                  <p className="mt-2 leading-relaxed text-muted">{text}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-soft">
+              These four functions, plus the record of each job, are the architecture we can describe today. Models, accuracy targets and integrations are not named here.
+            </p>
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
+        <section id="memory" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-24">
           <div className="max-w-3xl">
             <GitCompare className="size-7 text-gold" aria-hidden="true" />
-            <h2 className="mt-4 font-display text-4xl leading-tight text-ink-deep md:text-5xl">Why AI makes sourcing better over time</h2>
-            <p className="mt-4 text-lg leading-relaxed text-muted">
-              Every job teaches the platform something. Each brief shows which details buyers tend to leave out, each quote shows which plants are a good fit for which parts, and each decision shows what made the difference. Sourza keeps all of it, so the next brief is clearer, the next short list is sharper, and the next comparison is faster. The more parts that go through the platform, the better its matching becomes for everyone who uses it.
-            </p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink-deep md:text-5xl">What the platform is designed to remember</h2>
+            <div className="mt-4 space-y-4 text-lg leading-relaxed text-muted">
+              <p>The intelligence in Sourza is designed to come from the jobs that run through it, not from a static catalogue of parts.</p>
+              <p>Each brief is designed to show which details buyers tend to leave out. Each quote is designed to show which plants are a good fit for which parts. Each decision is designed to show what made the difference. The platform is being built to keep that record, so the next brief can be clearer, the next short list sharper, and the next comparison faster. The more parts that go through the platform, the better its matching is designed to become.</p>
+              <p>Two further signals are on the roadmap, and are not in the engine today: a plant's delivery record, and the quality of the parts it has made.</p>
+              <p className="text-base text-soft">We do not publish data volumes, training-set sizes or performance figures here, because we do not have approved numbers to stand behind.</p>
+            </div>
           </div>
         </section>
 
         <section id="principles" className="scroll-mt-24 border-y border-line bg-ink text-cream">
           <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-24">
             <div className="flex items-center gap-3"><ShieldCheck className="size-5 text-gold" aria-hidden="true" /></div>
-            <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">How we work with you</h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-cream/75">We've kept Sourza's role clear and simple on purpose, so everyone knows who is responsible for what.</p>
+            <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight md:text-5xl">How Sentiera is engineering Sourza</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-cream/75">Sourza is built by Sentiera as one of its own platforms — a product the studio is engineering, not a slide about a client. A few design rules follow from that, and from the problem the pipeline is meant to solve.</p>
             <ul className="mt-10 grid gap-8 md:grid-cols-2">
               {[
-                ["The plant stays the exporter.", "You deal directly with the people making your part, and they stay accountable for it from the drawing to the dock."],
-                ["Sourza doesn't take title to the goods.", "We never buy or resell your parts, so the contract stays between buyer and plant. Sourza is paid a commission by the plant on the completed sale."],
-                ["There's no public catalogue.", "Work only starts when someone has a real requirement, which keeps every enquiry specific and every plant's details private."],
-                ["Freight and duty stay with the shipment parties.", "The buyer and the plant agree delivery terms as they normally would, and we keep the decision on file."],
+                ["Start from the requirement, not a catalogue.", "The work begins with a drawing or a description. Plants are represented by what they can run, not by a public list of parts."],
+                ["Complete the brief before anyone quotes.", "Missing tolerances, finishes or grades are treated as a problem to catch early, so quotes can be compared on the same part."],
+                ["Match on capability, and show the reason.", "Invitation is designed to follow machines and processes, with the reason visible, rather than a broadcast of the drawing."],
+                ["Compare like for like.", "Different quote formats are a data problem the platform is designed to normalise against one brief."],
+                ["Keep the job, so the next one is better.", "The record of what fitted, what failed and why is part of the system, not an afterthought."],
+                ["Be clear about what is not live yet.", "The engine is in development. Planned additions, such as delivery and quality records in matching, are labelled as planned. Sentiera's own rule is to say what it can and cannot do."],
               ].map(([title, text]) => (
                 <li key={title}><h3 className="font-display text-2xl">{title}</h3><p className="mt-2 leading-relaxed text-cream/75">{text}</p></li>
               ))}
             </ul>
+            <p className="mt-10 max-w-3xl text-sm leading-relaxed text-cream/70">
+              Sentiera's engineering and production for its platforms is handled at its technical hub in Bangalore, with strategic leadership from Masdar City, Abu Dhabi. That is where Sourza is being built. It is not a Sourza sales office, and it is not a claim about where parts are made or bought.
+            </p>
+          </div>
+        </section>
+
+        <section id="status" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:px-8 md:py-28">
+          <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">Where it stands</p>
+          <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">Status and roadmap</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-card border border-line bg-cream p-7">
+              <p className="text-xs tracking-widest text-gold-deep uppercase">Active / Scaling</p>
+              <p className="mt-3 leading-relaxed text-muted">Sourza is an Active / Scaling product in Sentiera's lineup: an autonomous B2B procurement marketplace, built by Sentiera.</p>
+              <p className="mt-3 leading-relaxed text-muted">The AI engine at the core of that marketplace is in development. It is not live today. The pipeline, the four engine functions and the memory layer on this page are the design we are building toward.</p>
+            </div>
+            <div className="rounded-card border border-line bg-cream p-7">
+              <p className="text-xs tracking-widest text-gold-deep uppercase">On the roadmap</p>
+              <p className="mt-3 leading-relaxed text-muted">Adding each plant's delivery record and part quality to matching.</p>
+              <p className="mt-4 text-xs tracking-widest text-soft uppercase">Not claimed on this page</p>
+              <p className="mt-3 leading-relaxed text-muted">Live accuracy, throughput, plant counts, case studies, or a finished autonomous flow. Those can be added when they can be shown.</p>
+            </div>
           </div>
         </section>
 
@@ -314,11 +350,7 @@ export function Brochure() {
             {FAQ.map((item) => (
               <div key={item.q} className="rounded-2xl border border-line bg-cream p-6">
                 <dt className="font-display text-2xl text-ink-deep">{item.q}</dt>
-                <dd className="mt-2 leading-relaxed text-muted">
-                  {item.q.startsWith("I run a plant") ? (
-                    <>Fill in the form below and choose "Plant". You can also register on our <a href="/plants" className="text-gold-deep underline">plants page</a>. Someone from the founding team will get in touch to learn about your machines, processes and export experience as part of qualifying your plant. Joining is free, and you pay a 5% commission only on completed sales.</>
-                  ) : item.a}
-                </dd>
+                <dd className="mt-2 leading-relaxed text-muted">{item.a}</dd>
               </div>
             ))}
           </dl>
@@ -337,14 +369,17 @@ export function Brochure() {
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-                Request an introduction
+                While the engine is being built
               </p>
               <h2 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">
-                Let's get started
+                Tell us about a part.
               </h2>
               <p className="mt-4 leading-relaxed text-muted">
-                Whether you buy parts, make them or would like to invest, leave us a note. Someone from the founding team will write back to you personally.
+                The technical design is on this page. Leave a note about a part, or register a plant. Someone from the founding team will write back.
               </p>
+              <a href="/plants" className="mt-6 inline-flex min-h-11 items-center text-sm text-gold-deep">
+                Register a plant
+              </a>
             </div>
             <div className="md:col-span-7">
               {sent ? (
@@ -436,7 +471,7 @@ export function Brochure() {
                     disabled={busy}
                     className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-cream disabled:opacity-60"
                   >
-                    {busy ? "Saving" : "Request an introduction"}
+                    {busy ? "Saving" : "Tell us about a part"}
                     <ArrowRight className="size-4" />
                   </button>
                   <p className="mt-3 text-sm leading-relaxed text-soft">

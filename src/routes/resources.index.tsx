@@ -29,13 +29,13 @@ function ResourcesIndex() {
   function setBucket(next?: ArticleBucket) {
     navigate({
       to: "/resources",
-      search: next ? { bucket: next } : {},
+      search: { bucket: next },
     });
   }
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
+      <SiteHeader action={{ href: "/#introduction", label: "Tell us about a part" }} />
       <main className="mx-auto max-w-3xl px-5 py-14 md:px-8 md:py-20">
         <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">Resources</p>
         <h1 className="mt-3 font-display text-4xl leading-tight text-ink-deep md:text-5xl">

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { href: "/#intelligence", label: "How the AI works" },
-  { href: "/#buyers", label: "Buyers" },
-  { href: "/#plants", label: "Plants" },
+  { href: "/#pipeline", label: "Pipeline" },
+  { href: "/#engine", label: "Engine" },
+  { href: "/#memory", label: "Memory" },
   { href: "/#faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
 ];

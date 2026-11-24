@@ -7,9 +7,9 @@ import type { Article } from "@/lib/articles";
  */
 export const SITE_URL = "https://sourza.com";
 
-export const HOME_TITLE = "AI sourcing for machined parts from India | Sourza";
+export const HOME_TITLE = "Sourza | Autonomous B2B procurement marketplace";
 export const HOME_DESCRIPTION =
-  "Sourza's AI reads your drawing, writes a clear brief and lines up quotes from Indian plants side by side, so Gulf buyers can choose with confidence.";
+  "Sourza is an autonomous B2B procurement marketplace, built by Sentiera. The AI engine is in development. It is designed to read a drawing, complete the brief, match plants by capability and compare quotes.";
 
 export const PLANTS_TITLE = "Sourza — Register an Indian factory";
 export const PLANTS_DESCRIPTION =
@@ -136,6 +136,24 @@ export function jsonLdScript(data: unknown) {
     type: "application/ld+json",
     // Escape `<` so article text can never close the script element.
     children: JSON.stringify(data).replace(/</g, "\\u003c"),
+  };
+}
+
+/** schema.org SoftwareApplication JSON-LD for Sourza. No ratings, offers, or stack claims. */
+export function softwareApplicationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Sourza",
+    url: `${SITE_URL}/`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    description: HOME_DESCRIPTION,
+    creator: {
+      "@type": "Organization",
+      name: "Sentiera Technologies Limited",
+      url: "https://www.sentieratech.com/",
+    },
   };
 }
 

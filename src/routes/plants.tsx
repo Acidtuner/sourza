@@ -143,7 +143,7 @@ function PlantsPage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <SiteHeader action={{ href: "/#introduction", label: "For buyers" }} />
+      <SiteHeader action={{ href: "/#introduction", label: "Tell us about a part" }} />
       <main className="mx-auto grid max-w-6xl gap-12 px-5 py-14 md:grid-cols-12 md:px-8 md:py-20">
         <div className="md:col-span-5">
           <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">

@@ -4,7 +4,7 @@ import { askSourzaDesk } from "@/lib/sourza-desk";
 
 type Turn = { role: "user" | "assistant"; content: string };
 
-const PROMPTS = ["Who is this for?", "What does the software do?", "Why India and the Gulf?"];
+const PROMPTS = ["Is the AI engine live?", "What is it designed to do?", "Is there a catalogue?"];
 
 export function DeskChat() {
   const [sessionId, setSessionId] = useState("");
@@ -76,7 +76,7 @@ export function DeskChat() {
           </header>
           <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
             <p className="rounded-2xl bg-paper px-3 py-3 text-sm leading-relaxed text-muted">
-              Ask what Sourza does, who it is for, or why we start with India and the Gulf.
+              Ask how the engine is designed to work, and what is still in development.
             </p>
             {turns.map((turn, index) => (
               <p

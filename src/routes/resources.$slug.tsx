@@ -54,7 +54,7 @@ export const Route = createFileRoute("/resources/$slug")({
       <main className="mx-auto max-w-3xl px-5 py-14 md:px-8 md:py-20">
         <h1 className="font-display text-4xl text-ink-deep">Not found</h1>
         <p className="mt-4 text-muted">That note is not on the desk.</p>
-        <Link to="/resources" className="mt-6 inline-flex text-gold-deep">
+        <Link to="/resources" search={{ bucket: undefined }} className="mt-6 inline-flex text-gold-deep">
           Back to resources
         </Link>
       </main>
@@ -72,12 +72,12 @@ function ArticlePage() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <SiteHeader action={{ href: "/#introduction", label: "Request an introduction" }} />
+      <SiteHeader action={{ href: "/#introduction", label: "Tell us about a part" }} />
       <main className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <article className="min-w-0">
             <p className="text-xs font-medium tracking-widest text-gold-deep uppercase">
-              <Link to="/resources" className="hover:text-ink">
+              <Link to="/resources" search={{ bucket: undefined }} className="hover:text-ink">
                 Resources
               </Link>
             </p>
@@ -117,7 +117,7 @@ function ArticlePage() {
                 href="/#introduction"
                 className="mt-4 inline-flex min-h-11 items-center text-gold-deep hover:text-ink"
               >
-                Request an introduction
+                Tell us about a part
               </a>
             </div>
 
