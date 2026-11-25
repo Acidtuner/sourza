@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "lead-time-in-a-quote-to-a-gulf-buyer",
+    title: "Lead time in a quote to a Gulf buyer: say when the clock starts",
+    date: "2026-11-25",
+    summary:
+      "A quote to a Gulf buyer should state lead time in weeks and the event that starts the clock. Then say what pauses it and where the weeks end.",
+    bucket: "sourcing",
+    body: [
+      "A quote to a Gulf buyer should state lead time in weeks and the event that starts the clock. Then say what pauses it and where the weeks end. The clock can start from the purchase order (PO), from drawing approval, or from receipt of the advance. A number of weeks on its own can mean three different promises. The buyer reads your quote next to others, and three plants can quote the same weeks and start three different clocks ([how buyers compare quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)). Pick one start event. Write it down.",
+      "## What should the quote name as the start of lead time?",
+      "Name the start event you actually wait for. If you won't cut material until the drawing is signed off, write \"from drawing approval\", and give the revision letter. If you won't order bar until the money lands, write \"from receipt of the advance\". On the default 30/70 telegraphic transfer (TT), that means the 30% in your account, not the buyer's payment advice. If you need both, write \"from the later of drawing approval and receipt of the advance\". Then say where the weeks end: ready at your works, or on board at the named port. Those are not the same day, and the quote should say which one it means ([how to quote against a Gulf RFQ](https://sourza.com/resources/how-to-quote-against-a-gulf-rfq)).",
+      "## What events can pause or restart the clock?",
+      "List them in the quote before they happen. A drawing revision after approval. A change in quantity or material grade. A first-article sample the buyer has to approve before the batch runs: say the clock waits while the sample is with them. Picture this: the quote says \"from PO\". The PO arrives, then a revised drawing. The plant restarts its count. The buyer doesn't, and still expects the original date. One line, \"a drawing revision after approval restarts lead time from the revised approval\", settles that before anyone is annoyed. Risks on your own side, such as power, are a different question. They move the dispatch date, not the start event ([what a power cut does to your dispatch date](https://sourza.com/resources/what-a-power-cut-in-india-does-to-your-dispatch-date)).",
+      "## How should material, heat treatment and inspection sit inside the weeks?",
+      "The buyer sees one number. You know it is a chain: material in, rough machining, heat treatment, finish machining, inspection, packing. Say which steps sit inside the quoted weeks. If heat treatment goes to an outside shop, the buyer will read it as inside your weeks unless the quote says otherwise. If the request for quotation (RFQ) asks for a mill test certificate to EN 10204 3.1, the material has to arrive with one, so bar from stock and bar on order are different starts ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). If the buyer books a third-party inspection, say the weeks assume the inspector comes when you give notice, and that waiting days are added. Packing is in the weeks too, including wood treated to ISPM 15 (International Standard for Phytosanitary Measures No. 15) if the crate is wooden ([our ISPM 15 packing guide](https://sourza.com/resources/ispm-15-packing-for-machined-parts-shipped-to-the-uae)).",
+      "## What should the quote say if the buyer gives a required-at-site date?",
+      "Answer with the date you control. Under Incoterms 2020 Free on Board (FOB) and Cost, Insurance and Freight (CIF), your delivery is done once the goods are on board the vessel at the port of shipment in India. Under Delivered at Place (DAP), it is done at the named place in the UAE, and import clearance stays with the buyer ([ICC Incoterms 2020](https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/); [FOB vs CIF vs DAP](https://sourza.com/resources/fob-vs-cif-vs-dap-for-machined-parts-from-india)). On an FOB or CIF quote, the sea voyage and UAE customs clearance are outside what you deliver, so don't fold them into a promise. Write the date the goods will be on board, and let the buyer or their forwarder plan back from site. If you quote DAP, you are carrying the goods to the named place, so say what that date depends on. The plant stays the exporter. Sourza books no freight.",
+      "In short: A quote to a Gulf buyer should state lead time in weeks and the event that starts the clock. Then say what pauses it and where the weeks end.",
+      "Make machined parts for export to the Gulf? Tell us about your plant and how you work. [Tell us about your plant](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "institute-cargo-clauses-a-vs-c-cif-india",
     title: "Institute Cargo Clauses (A) vs (C) on a CIF quote from India",
     date: "2026-11-23",
