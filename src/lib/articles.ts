@@ -26,6 +26,27 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "material-grade-equivalents-in-quotes",
+    title: "Material grade equivalents in quotes from Indian plants: what to accept in writing",
+    date: "2026-11-27",
+    summary:
+      "If a quote for machined parts from India offers an equivalent grade, treat it as a different offer until you accept that grade in writing.",
+    bucket: "sourcing",
+    body: [
+      "If a quote for machined parts from India offers an equivalent grade, treat it as a different offer until you accept that grade in writing. Your drawing names a grade under a stated standard. The quote names another grade, sometimes under another standard, with \"equivalent\" next to it. That one word carries the whole substitution. It is the plant's view, given in good faith, and it may well be right. But the part is yours, and so is the decision. When you line quotes up, an equivalent grade is a row to note, not a detail to skip ([how to compare machined parts quotes](https://sourza.com/resources/how-to-compare-machined-parts-quotes-from-indian-plants)).",
+      "## Why do quotes come back with a different grade?",
+      "The reasons are plain. The plant buys bar from a mill or a stockist, and the grade on your drawing may not be on its rack or its supplier's list. Your drawing may name a grade under one standard while the plant's material is certified under another. Or the plant has machined a similar grade on a similar part and offers what it knows. None of that is a trick. It is still a change to your part, and the quote is the first place you see it.",
+      "## What should the request for quotation (RFQ) say about equivalents?",
+      "Say it before the quotes arrive. Name the grade and its standard, not \"SS\" or \"alloy steel\", and add one line: \"Equivalent grades only with written approval; name the offered grade and its standard in the quote.\" Our [RFQ guide](https://sourza.com/resources/rfq-for-machined-parts-what-to-put-in-it-before-you-send) covers the rest of that page. Each plant then quotes the grade on the drawing, or shows the substitute where you can see it. If you are open to an alternative, say what matters for this part: strength, hardness after heat treatment, corrosion resistance, weldability or finish. Then the plant can say why its offer fits, instead of just calling it equivalent.",
+      "## How do you check an offered equivalent grade for your part?",
+      "Check the offered grade against its own standard, not against a conversion chart. A chart tells you two names are related. It doesn't tell you the offered grade meets what your part needs; each grade's own standard sets its limits. Get the offered grade's standard, put it next to the one on your drawing, and have your engineer compare what matters for this part: chemical composition, mechanical properties, and the condition the material is supplied in. If the part is heat-treated, compare in the condition you will actually receive. This is not metallurgical advice; confirm the grade with your engineer or advisor. We don't publish an equivalence table, and we don't sign off a substitute for you.",
+      "## What should the purchase order and the mill test certificate show?",
+      "The accepted grade, word for word. If you accept an equivalent grade, write the offered grade and its standard into the purchase order (PO), with the drawing revision, and say it replaces the grade on the drawing for this order. Then ask for the mill test certificate to EN 10204 3.1 to show that grade, with the heat number traceable to each part ([our mill test certificate guide](https://sourza.com/resources/mill-test-certificates-ask-for-en-10204-3-1-in-the-rfq)). EN 10204 sets the types of inspection document. It doesn't map one grade to another. Picture this: the quote offers an equivalent grade, the buyer says \"fine\" on a call, the PO repeats the drawing grade, and the certificate shows the substitute. Every document is honest. None of them agree, and it surfaces with the parts packed. The plant stays the exporter and issues its own documents. One line in the PO keeps them consistent.",
+      "In short: If a quote for machined parts from India offers an equivalent grade, treat it as a different offer until you accept that grade in writing. Then put the accepted grade in the PO and ask for it on the mill test certificate.",
+      "Got a part you're trying to source? Send us the drawing or a plain description and we'll turn it into a brief. [Tell us about your part](https://sourza.com/#introduction)",
+    ],
+  },
+  {
     slug: "lead-time-in-a-quote-to-a-gulf-buyer",
     title: "Lead time in a quote to a Gulf buyer: say when the clock starts",
     date: "2026-11-25",
